@@ -14,18 +14,20 @@ class Deck:
         self.dealt_cards.append(given_card)
 
     def generate_card(self):
-        sel_suit = random.choice(self.__suits)
-        sel_rank = random.choice(list(self.__ranks.keys()))
-        card_face = sel_rank + " of " + sel_suit
-        self.add_dealt_cards(card_face)
-        
-        for i in range(0,len(self.dealt_cards)-1):
-            if(card_face == self.dealt_cards[i]):
-                
-                self.generate_card()
+        while True:
+            #Select random suit and rank
+            sel_suit = random.choice(self.__suits)
+            sel_rank = random.choice(list(self.__ranks.keys()))
 
-        def_value = self.__ranks[sel_rank]
-        
+            #Create the card face
+            card_face = sel_rank + " of " + sel_suit
+
+            #Check if card has already been dealt
+            if card_face not in self.dealt_cards:
+                self.add_dealt_cards(card_face)
+                def_value = self.__ranks[sel_rank]
+                break  #Break out of the loop if it's a unique card
+
         final_card =[card_face, def_value]
         return final_card
     
@@ -35,14 +37,14 @@ class Deck:
             print("No cards dealt so far")
             return
             
-        for card in range (0,len(self.dealt_cards)-1):    
+        for card in range (0,len(self.dealt_cards)):    
             if card == len(self.dealt_cards)-1:
                 print(self.dealt_cards[card],".",end="")
             else:
                 print(self.dealt_cards[card],",", end="")
 
-class Dealer: #Dealer must hit over and over until 17
-    def __init__(self,current_hand=None, name="John Doe",total_val=None):
+class Dealer: #Dealer must hit over and over until at least 17
+    def __init__(self,current_hand=[], name="John Doe",total_val=0):
         self.current_hand=current_hand
         self.name=name
         self.total_val=total_val
@@ -50,11 +52,17 @@ class Dealer: #Dealer must hit over and over until 17
     def calculate_hand(self):
         try:
             self.total_val=sum(each_card[1] for each_card in self.current_hand)
+            
+            #OR USE
+            
+            #for i in range(0,len(self.current_hand)):
+            #    self.total_val=self.total_val+self.current_hand[i][1]
         
             if any(each_card[0] == "Ace" for each_card in self.current_hand) and self.total_val>21:
                 self.total_val=self.total_val-10
-        
+    
             return self.total_val
+        
         except Exception as e:
             print(f"Error occurred during hand calculation: {e}")
             sys.exit(1)
@@ -66,7 +74,7 @@ class Dealer: #Dealer must hit over and over until 17
     #TODO: add current info for player
 
 class Player:
-    def __init__(self,current_hand=None, name="Player",total_val=None,hit_count=0,double_down=False):
+    def __init__(self,current_hand=[], name="Player",total_val=0,hit_count=0,double_down=False):
         self.current_hand=current_hand
         self.name=name
         self.total_val=total_val
@@ -75,7 +83,12 @@ class Player:
         
     def calculate_hand(self):
         try:
+        
             self.total_val=sum(each_card[1] for each_card in self.current_hand)
+            #OR USE 
+            #for i in range(0,len(self.current_hand)):
+            #    self.total_val=self.total_val+self.current_hand[i][1]
+                
             if any(each_card[0] == "Ace" for each_card in self.current_hand) and self.total_val>21:
                 self.total_val=self.total_val-10
         
@@ -91,7 +104,7 @@ class Player:
         self.calculate_hand()
         
     def doubling_down(self, new_card):
-        if(self.hit_count<=2):
+        if(self.hit_count<3):
             self.hit_count=self.hit_count+1
             self.current_hand.append(new_card)
             self.calculate_hand()
@@ -132,8 +145,8 @@ while True:
         #"Switch case" statement
         if user_option=="start":
             current_deck=Deck()
-            dealer=Dealer([])
-            player=Player([])
+            dealer=Dealer()
+            player=Player()
             print("Shuffling the deck...")
             print("Handing cards...\n")
             
@@ -154,13 +167,13 @@ while True:
             
             #***************************************************************
             if player.total_val == 21:
-                print("21 Black Jack!!!, You win")
+                print("21 Black Jack!!!, You win\n")
                 break
             
             #inner most infinite loop for player actions
             print("Do you want to: Hit, Double down, Stand or Surrender?")
             while True:
-                user_action=input("Entered option (Player action): ")
+                user_action=input("Entered option (Player action): ").lower()
                 
                 if user_action=="hit":
                     player.hit(current_deck.generate_card())
@@ -168,10 +181,13 @@ while True:
                     print(f"Total of: {player.total_val}\n")
                     
                 elif user_action=="double down" or user_action=="double" or user_action=="doubledown":
-                    player.doubling_down(current_deck.generate_card())
-                    if player.hit_count<=2:
+                    if player.hit_count<3:
+                        player.doubling_down(current_deck.generate_card())          
                         print(f"-New card: {player.current_hand[-1][0]}, Be careful!")
                         print(f"Total of: {player.total_val}\n")
+                    else:
+                        print("Player has already hit once, impossible to double down\n")
+                        continue
                     
                 elif user_action=="stand":
                     player.stand()
@@ -190,15 +206,16 @@ while True:
                     break   
             
             #****************************************************************        
+            if player.total_val>21:
+                print("You Bust, You lose")
+                print(f"-Dealer score: {dealer.total_val}")
+                print(f"-Player score: {player.total_val} (bust)\n")
+                break
+            
             if dealer.total_val>21:
                 print("Dealer Bust, You win")
                 print(f"-Dealer score: {dealer.total_val} (bust)")
                 print(f"-Player score: {player.total_val}\n")
-                break
-            elif player.total_val>21:
-                print("You Bust, You lose")
-                print(f"-Dealer score: {dealer.total_val}")
-                print(f"-Player score: {player.total_val} (bust)\n")
                 break
             
             #****************************************************************
