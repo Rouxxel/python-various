@@ -1,2 +1,2 @@
 # python terminal games
- Some simple python games withoutn UI
+Some simple python games without UI, and maybe some practice
