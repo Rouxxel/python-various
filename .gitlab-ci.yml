@@ -1,0 +1,62 @@
+# GitLab CI Configuration for Python Project
+
+image: python:3.12.2  # Python version to use for the CI pipeline
+
+before_script:
+  - python -m venv venv  # Set up a Python virtual environment
+  - source venv/bin/activate  # Activate the environment
+
+# Tags for the runner to specify a custom runner if needed
+tags:
+  - APPENZELLER
+
+# Define stages in the CI pipeline
+stages:
+  - linting
+  - build
+  - docs
+
+# Set environment variables (use your custom proxy or other variables)
+variables:
+  http_proxy: $CODE_PROXY
+  https_proxy: $CODE_PROXY
+  no_proxy: $CODE_NO_PROXY
+
+# Code formatting stage using 'black'
+formatting:
+  stage: linting  # Linting stage
+  before_script:
+    - pip install --upgrade black  # Install black for code formatting
+    - pip install --upgrade black[jupyter]  # Additional support for Jupyter notebooks
+  script:
+    - black --line-length 120 --verbose spindle_force/  # Run black formatter
+
+# Linting stage using 'pylint' to check the quality of the code
+linting:
+  stage: linting
+  before_script:
+    - python -m venv venv  # Create virtual environment again for linting
+    - source venv/bin/activate  # Activate the environment
+    - pip install -r requirements.txt  # Install dependencies from requirements.txt
+    - pip install --upgrade pylint  # Upgrade Pylint
+  script:
+    - pylint --disable=C0303,logging-format-interpolation,logging-fstring-interpolation,unspecified-encoding,wrong-import-position,broad-exception-caught --max-line-length=120 --recursive=y spindle_force/*  # Run Pylint
+
+# Build the project using the setup.py file
+build:
+  stage: build
+  script:
+    - python setup.py build  # Build the project
+
+# Documentation generation using Doxygen and doxypypy
+documentation:
+  stage: docs  # Documentation stage
+  before_script:
+    - apt-get update && apt-get install -y doxygen  # Install Doxygen
+    - pip install --upgrade doxypypy  # Install doxypypy for Python doc generation
+  script:
+    - doxygen doxygen/doxygen_config  # Run Doxygen with the provided config
+    - mv doxygen/documentation/html public  # Move the generated docs to a public directory
+  artifacts:
+    paths:
+      - public  # Save the generated documentation as artifacts
