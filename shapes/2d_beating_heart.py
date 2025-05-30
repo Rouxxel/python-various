@@ -12,30 +12,51 @@ import math
 class HeartApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Beating ASCII Heart ❤️")
-        self.canvas = tk.Canvas(root, width=500, height=500, bg='black')
-        self.canvas.pack()
+        self.root.title("Beating, scalable Heart ❤️")
+
+        self.canvas = tk.Canvas(root, bg='black')
+        self.canvas.pack(fill=tk.BOTH, expand=True)
+
         self.frame = 0
+        self.pixel_size = 15 
+        self.root.bind('<Configure>', self.on_resize)
+        self.width = self.root.winfo_width()
+        self.height = self.root.winfo_height()
         self.update_heart()
 
+    def on_resize(self, event):
+        """Update canvas size on window resize."""
+        self.width = event.width
+        self.height = event.height
+
+    def heart_equation(self, x, y):
+        return (x**2 + y**2 - 1)**3 - x**2 * y**3 <= 0
+
     def update_heart(self):
-        self.canvas.delete("all")
-        scale = 10 + 2 * math.sin(self.frame / 5)  # creates beating effect
+        self.canvas.delete("all") #Delete each frame to create animation effect
+        scale = min(self.width, self.height) / 30 + 2 * math.sin(self.frame / 5)
 
-        for t in range(0, 628, 1):  # 0 to 2π
-            t = t / 100
-            x = 16 * math.sin(t)**3
-            y = 13 * math.cos(t) - 5 * math.cos(2*t) - 2 * math.cos(3*t) - math.cos(4*t)
+        for i in range(-30, 31):
+            for j in range(-30, 31):
+                x = i / 15.0
+                y = j / 15.0
 
-            screen_x = 250 + int(x * scale)
-            screen_y = 250 - int(y * scale)
+                if self.heart_equation(x, y):
+                    brightness = int((1 - y / 1.5) * 255)
+                    brightness = max(0, min(255, brightness))
+                    color = f"#{brightness:02x}0000"
 
-            self.canvas.create_text(screen_x, screen_y, text='*', fill='red', font=('Courier', 8))
+                    screen_x = self.width // 2 + int(i * scale / 3)
+                    screen_y = self.height // 2 - int(j * scale / 3)
+
+                    self.canvas.create_text(screen_x, screen_y, 
+                                            text='█', fill=color, font=('Courier', self.pixel_size))
 
         self.frame += 1
         self.root.after(50, self.update_heart)
 
 if __name__ == "__main__":
     root = tk.Tk()
+    root.attributes("-fullscreen", False)  # or use root.state("zoomed") on Windows
     app = HeartApp(root)
     root.mainloop()
