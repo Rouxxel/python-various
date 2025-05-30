@@ -162,7 +162,7 @@ class Jellyfish3DApp:
                 size = self.pixel_size
                 self.canvas.create_oval(px, py, px + size, py + size, fill=color, outline='')
 
-        self.frame += 1
+        self.frame = self.frame + 1
         self.root.after(30, self.update_animation)
     
 if __name__ == "__main__":

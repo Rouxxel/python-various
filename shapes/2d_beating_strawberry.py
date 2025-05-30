@@ -161,7 +161,7 @@ class StrawberryApp:
         self.canvas.delete("all")
         scale = 1 + 0.1 * math.sin(self.frame / 10)
         self.draw_strawberry_parametric(scale)
-        self.frame += 1
+        self.frame = self.frame + 1
         self.root.after(60, self.update_strawberry)
 
 if __name__ == "__main__":

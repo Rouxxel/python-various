@@ -75,7 +75,7 @@ class BeatingRedGlobuleStream3DApp:
                     outline=color, fill=color
                 )
 
-        self.frame += 1
+        self.frame = self.frame + 1
         self.root.after(30, self.update_RedGlobuleStream)
 
 if __name__ == "__main__":
