@@ -18,7 +18,14 @@ class HeartApp:
         self.canvas.pack(fill=tk.BOTH, expand=True)
 
         self.frame = 0
-        self.pixel_size = 15 
+        
+        self.pixel_size = 15 #Level of detail, the bigger the faster
+        
+        #Color and brightness
+        self.color_base_red = 255      #max red component
+        self.color_min_red = 0         #min red component
+        self.color_brightness_factor = 1.0 / 1.5  #factor to scale y for brightness calculation
+        
         self.root.bind('<Configure>', self.on_resize)
         self.width = self.root.winfo_width()
         self.height = self.root.winfo_height()
@@ -32,6 +39,11 @@ class HeartApp:
     def heart_equation(self, x, y):
         return (x**2 + y**2 - 1)**3 - x**2 * y**3 <= 0
 
+    def get_heart_color(self, y):
+        brightness = int((1 - y * self.color_brightness_factor) * self.color_base_red)
+        brightness = max(self.color_min_red, min(self.color_base_red, brightness))
+        return f"#{brightness:02x}0000"
+
     def update_heart(self):
         self.canvas.delete("all") #Delete each frame to create animation effect
         scale = min(self.width, self.height) / 30 + 2 * math.sin(self.frame / 5)
@@ -42,17 +54,18 @@ class HeartApp:
                 y = j / 15.0
 
                 if self.heart_equation(x, y):
-                    brightness = int((1 - y / 1.5) * 255)
-                    brightness = max(0, min(255, brightness))
-                    color = f"#{brightness:02x}0000"
+                    color = self.get_heart_color(y)
 
                     screen_x = self.width // 2 + int(i * scale / 3)
                     screen_y = self.height // 2 - int(j * scale / 3)
 
-                    self.canvas.create_text(screen_x, screen_y, 
-                                            text='█', fill=color, font=('Courier', self.pixel_size))
+                    self.canvas.create_text(screen_x, 
+                                            screen_y, 
+                                            text='█', 
+                                            fill=color, 
+                                            font=('Courier',self.pixel_size))
 
-        self.frame += 1
+        self.frame = self.frame + 1
         self.root.after(50, self.update_heart)
 
 if __name__ == "__main__":
