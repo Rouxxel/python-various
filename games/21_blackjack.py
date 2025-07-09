@@ -3,6 +3,7 @@
 """
 21 black jack game
 Console game to play 21 black jack against the CPU only
+Can be broken down in several files, maybe will be done in the future
 """
 
 import random
@@ -29,7 +30,7 @@ class Deck:
         dealt_cards (list): A list of cards that have been dealt already so they are not repeated.
     
     Methods:
-        add_dealt_cards(given_card): Adds a given card to the list of dealt cards.
+        add_to_dealt_cards(given_card): Adds a given card (string) to the list of dealt cards.
         generate_card(): Generates a random card from the deck, ensuring no duplicate cards are dealt.
         display_dealt_cards(): Displays all the cards that have been dealt so far.
     """
@@ -40,7 +41,7 @@ class Deck:
                         "Queen": 10, "King": 10}
         self.dealt_cards = []
 
-    def add_dealt_cards(self, given_card):
+    def add_to_dealt_cards(self, given_card):
         """Adds a given card to the list of dealt cards."""
         logger.debug(f"Adding {given_card} to dealt_cards list")
         self.dealt_cards.append(given_card)
@@ -53,7 +54,8 @@ class Deck:
         self.dealt_cards.
         
         Returns:
-            final_card (list): A list containing the card's face (rank and suit) and its corresponding value.
+            final_card (dict): A dict containing the card's face (rank and suit) as key and its 
+            corresponding value as the value.
         """
         while True:
             #Select random suit and rank
@@ -67,15 +69,15 @@ class Deck:
             #Check if card has already been dealt
             if card_face not in self.dealt_cards:
                 logger.debug(f"Card has not been dealt yet")
-                self.add_dealt_cards(card_face)
+                self.add_to_dealt_cards(card_face)
                 def_value = self.__ranks[sel_rank]
                 break  #Break out of the loop if it's a unique card
             else:
                 logger.debug(f"Card has been dealt already, re-doing")
                 continue
 
-        #Create and return final card
-        final_card = [card_face, def_value]
+        #Create and return final card as dictionary
+        final_card = {card_face: def_value}
         logger.info(f"Final card is {final_card}")
         return final_card
 
@@ -92,11 +94,11 @@ class Deck:
             print("No cards dealt so far")
             return
             
-        for card in range(0, len(self.dealt_cards)):    
-            if card == len(self.dealt_cards) - 1:
-                print(self.dealt_cards[card], ".", end="")
+        for i, card_dict in enumerate(self.dealt_cards):    
+            if i == len(self.dealt_cards) - 1:
+                print(next(iter(card_dict)), ".", end="")
             else:
-                print(self.dealt_cards[card], ",", end="")
+                print(next(iter(card_dict)), ",", end="")
 
 class Dealer:
     """
@@ -127,8 +129,10 @@ class Dealer:
         """
         try:
             logger.debug(f"Calculating dealer's hand")
-            self.total_val = sum(each_card[1] for each_card in self.current_hand)
-            if any(each_card[0] == "Ace" for each_card in self.current_hand) and self.total_val > 21:
+            self.total_val = sum(next(iter(each_card.values())) for each_card in self.current_hand)
+            
+            #Account for ace dynamic value
+            if any("Ace" in next(iter(each_card)) for each_card in self.current_hand) and self.total_val > 21:
                 self.total_val = self.total_val - 10
             logger.info(f"Dealer's hand total value: {self.total_val}")
             return self.total_val
@@ -184,8 +188,9 @@ class Player:
         """
         try:
             logger.debug(f"Calculating {self.name}'s hand")
-            self.total_val = sum(each_card[1] for each_card in self.current_hand)
-            if any(each_card[0] == "Ace" for each_card in self.current_hand) and self.total_val > 21:
+            self.total_val = sum(next(iter(each_card.values())) for each_card in self.current_hand)
+
+            if any("Ace" in next(iter(each_card)) for each_card in self.current_hand) and self.total_val > 21:
                 self.total_val = self.total_val - 10
             logger.info(f"{self.name}'s hand total value: {self.total_val}")
             return self.total_val
@@ -203,6 +208,7 @@ class Player:
         logger.debug(f"Adding {new_card} to {self.name}'s hand")
         self.hit_count += 1
         self.current_hand.append(new_card)
+        logger.debug(f"Current player hand: {self.current_hand}")
         #Recalculate player's hand
         self.calculate_hand()
         
@@ -217,6 +223,7 @@ class Player:
             logger.info(f"{self.name} doubling down")
             self.hit_count += 1
             self.current_hand.append(new_card)
+            logger.debug(f"Current player hand: {self.current_hand}")
             #Recalculate player's hand
             self.calculate_hand()
         else:
@@ -273,19 +280,19 @@ def main():
                 player.hit(current_deck.generate_card())
                 player.hit(current_deck.generate_card())
                 dealer.hit(current_deck.generate_card())
-                dealer.hit(current_deck.generate_card())      
+                dealer.hit(current_deck.generate_card())    
                 
                 logger.debug(f"Showing player's cards to player")
                 logger.debug(f"Player's card: {player.current_hand} and value of {player.total_val}")
                 print("Your cards are: ")
-                print(f"-{player.current_hand[0][0]}")
-                print(f"-{player.current_hand[1][0]}")
+                for card_dict in player.current_hand:
+                    print(f"-{next(iter(card_dict))}")
                 print(f"-Total of: {player.total_val}\n")
                 
                 logger.debug(f"Showing 1 of dealer's card to player")
                 logger.debug(f"Dealer's card: {dealer.current_hand} and value of {dealer.total_val}")
                 print("Dealer's cards are: ")
-                print(f"-{dealer.current_hand[0][0]}")
+                print(f"-{next(iter(dealer.current_hand[0]))}") #Always only print first card face key
                 print(f"-Secret card")
                 print(f"-Total of: ???\n")
                 
@@ -319,15 +326,15 @@ def main():
 
                     if user_action == "hit":
                         player.hit(current_deck.generate_card())
-                        logger.debug(f"Player hit with new card {player.current_hand[-1][0]}")
-                        print(f"-Player New card: {player.current_hand[-1][0]}")
+                        logger.debug(f"Player hit with new card {next(iter(player.current_hand[-1]))}")
+                        print(f"-Player New card: {next(iter(player.current_hand[-1]))}")
                         print(f"Total of: {player.total_val}\n")
                         
-                    elif user_action in ["double down", "double", "doubledown"]:
+                    elif user_action in ["double down", "double", "doubledown", "Double Down", "Double down", "double Down"]:
                         if player.hit_count < 3:
                             player.doubling_down(current_deck.generate_card())
-                            logger.debug(f"Player doubled down with new card {player.current_hand[-1][0]}")          
-                            print(f"-New card: {player.current_hand[-1][0]}, Be careful!")
+                            logger.debug(f"Player doubled down with new card {next(iter(player.current_hand[-1]))}")          
+                            print(f"-New card: {next(iter(player.current_hand[-1]))}, Be careful!")
                             print(f"Total of: {player.total_val}\n")
                         else:
                             logger.warning(f"Player already hit, impossible to double down")
@@ -363,8 +370,8 @@ def main():
                 
                 #Show Dealer's secret card
                 print("Dealer's cards are: ")
-                print(f"-{dealer.current_hand[0][0]}")
-                print(f"-{dealer.current_hand[1][0]}")
+                for card_dict in dealer.current_hand:
+                    print(f"-{next(iter(card_dict))}")
                 print(f"Total of: {dealer.total_val}\n")
                 
                 if dealer.total_val > 21:
@@ -377,7 +384,7 @@ def main():
                 #Dealer hit until bust or 21
                 while dealer.total_val < 21:
                     dealer.hit(current_deck.generate_card())
-                    print(f"-Dealer New card: {dealer.current_hand[-1][0]}")
+                    print(f"-Dealer New card: {next(iter(dealer.current_hand[-1]))}")
                 print(f"New Total of: {dealer.total_val}\n")
 
                 if dealer.total_val > 21:
