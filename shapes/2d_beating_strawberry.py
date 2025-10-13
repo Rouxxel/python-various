@@ -21,7 +21,7 @@ class StrawberryApp:
         self.height = 600
 
         self.frame = 0
-        self.pixel_size = 7  #improves the speed the bigger it is
+        self.pixel_size = max(1, int(min(self.width, self.height) / 100))
         self.root.bind("<Configure>", self.on_resize)
         self.root.bind("<Escape>", lambda e: self.root.attributes("-fullscreen", False))
         #Color control
@@ -115,18 +115,19 @@ class StrawberryApp:
                     )
         
         #Loop over seed positions in normalized coordinates
-        for sx in [x * self.seed_spacing_x for x in range(-3, 5)]:
-            for sy in [y * self.seed_spacing_y for y in range(-3, 5)]:
-                if self.is_in_strawberry(sx, sy):
-                    # Pulsate brightness or size with frame
+        seed_spacing_x_scaled = self.seed_spacing_x * width
+        seed_spacing_y_scaled = self.seed_spacing_y * height
+        for sx in range(-3, 5):
+            for sy in range(-3, 5):
+                if self.is_in_strawberry(sx * self.seed_spacing_x, sy * self.seed_spacing_y):
                     pulse = 0.5 + 0.5 * math.sin(self.frame / 10 + sx * 10 + sy * 10)
                     brightness = self.seed_min_brightness + self.seed_brightness_amplitude * pulse
                     brightness = min(1.0, max(0.0, brightness))
                     
                     color = self.apply_brightness(self.seed_base_color, brightness)
 
-                    px = int(x_center + sx * width)
-                    py = int(y_center - sy * height)  
+                    px = int(x_center + sx * seed_spacing_x_scaled)
+                    py = int(y_center - sy * seed_spacing_y_scaled)
 
                     self.canvas.create_oval(
                         px - self.seed_radius, py - self.seed_radius,
