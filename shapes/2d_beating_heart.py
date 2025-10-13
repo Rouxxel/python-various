@@ -45,7 +45,12 @@ class HeartApp:
         return f"#{brightness:02x}0000"
 
     def update_heart(self):
-        self.canvas.delete("all") #Delete each frame to create animation effect
+        self.canvas.delete("all")  # Delete previous frame
+
+        # Dynamically adjust pixel size based on window size
+        self.pixel_size = max(8, min(self.width, self.height) // 40)
+
+        # Scale for positions (with subtle beating animation)
         scale = min(self.width, self.height) / 30 + 2 * math.sin(self.frame / 5)
 
         for i in range(-30, 31):
@@ -59,13 +64,15 @@ class HeartApp:
                     screen_x = self.width // 2 + int(i * scale / 3)
                     screen_y = self.height // 2 - int(j * scale / 3)
 
-                    self.canvas.create_text(screen_x, 
-                                            screen_y, 
-                                            text='█', 
-                                            fill=color, 
-                                            font=('Courier',self.pixel_size))
+                    self.canvas.create_text(
+                        screen_x,
+                        screen_y,
+                        text='█',
+                        fill=color,
+                        font=('Courier', self.pixel_size)
+                    )
 
-        self.frame = self.frame + 1
+        self.frame += 1
         self.root.after(50, self.update_heart)
 
 if __name__ == "__main__":
