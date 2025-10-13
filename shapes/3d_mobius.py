@@ -56,10 +56,10 @@ class MobiusStrip3DApp:
     def update_animation(self):
         self.canvas.delete("all")
 
-        # Slowly rotate
-        angle_x = self.frame * 0.015
-        angle_y = self.frame * 0.01
-        angle_z = self.frame * 0.008
+        # Increased rotation speeds for faster animation
+        angle_x = self.frame * 0.06  # was 0.015
+        angle_y = self.frame * 0.04  # was 0.01
+        angle_z = self.frame * 0.03  # was 0.008
 
         self.scale = self.scale_base
 
@@ -87,7 +87,7 @@ class MobiusStrip3DApp:
             self.canvas.create_oval(px, py, px + size, py + size, fill=color, outline='')
 
         self.frame += 1
-        self.root.after(30, self.update_animation)
+        self.root.after(20, self.update_animation)  # decreased delay for faster frame updates
 
 if __name__ == "__main__":
     root = tk.Tk()
