@@ -97,13 +97,15 @@ class Jellyfish3DApp:
 
                 x, y, z = self.hemisphere_point(theta, phi)
 
-                # Rotate only around X axis (vertical spin)
-                x, y, z = self.rotate(x, y, z, angle_x, angle_y, angle_z)
+                # Rotate dome so it points upward along -Y axis (canvas top)
+                # Rotate -90 degrees around X axis
+                x, y, z = self.rotate(x, y, z, -math.pi/2, 0, 0)
+
 
                 # Apply pulse scaling (body beats)
-                x *= pulse
-                y *= pulse
-                z *= pulse
+                # x *= pulse
+                # y *= pulse
+                # z *= pulse
 
                 # Project to 2D
                 px, py = self.project(x, y, z)
