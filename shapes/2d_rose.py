@@ -16,7 +16,6 @@ class PsycodelicRoseCurveApp:
 
         self.center_x = width // 2
         self.center_y = height // 2
-
         self.max_radius = min(self.center_x, self.center_y) * 0.9
 
         self.frame = 0
@@ -25,14 +24,22 @@ class PsycodelicRoseCurveApp:
         # Animation parameters
         self.k_min = 2
         self.k_max = 8
-        self.k = self.k_min
-        self.k_speed = 0.02  # how fast k morphs
-        self.growing = True
+        self.k_speed = 0.02
+
+        # Bind resize event
+        self.root.bind("<Configure>", self.on_resize)
 
         self.update_animation()
 
+    def on_resize(self, event):
+        """Recalculate center and scale when window is resized"""
+        self.width = event.width
+        self.height = event.height
+        self.center_x = self.width // 2
+        self.center_y = self.height // 2
+        self.max_radius = min(self.center_x, self.center_y) * 0.9
+
     def rose_point(self, theta, a, k):
-        """Calculate (x, y) for rose curve at angle theta with amplitude a and petal count k"""
         r = a * math.sin(k * theta)
         x = r * math.cos(theta)
         y = r * math.sin(theta)
@@ -47,7 +54,7 @@ class PsycodelicRoseCurveApp:
         # Animate k smoothly morphing between k_min and k_max
         # We'll make k oscillate smoothly for petal count morph effect
         k_val = self.k_min + (self.k_max - self.k_min) * (0.5 + 0.5 * math.sin(self.frame * self.k_speed))
-        
+
         points = []
         for i in range(self.points_count + 1):
             theta = 2 * math.pi * i / self.points_count
@@ -61,16 +68,27 @@ class PsycodelicRoseCurveApp:
         for i in range(len(points) - 1):
             # Color changes along petals for effect
             color_val = int(128 + 127 * math.sin(i * 0.1 + self.frame * 0.1))
-            color_val = max(0, min(255, color_val))
-            color = f'#{color_val:02x}{(255 - color_val):02x}{255:02x}'  # gradient cyan-magenta
-
+            color = f'#{color_val:02x}{(255 - color_val):02x}{255:02x}'
             self.canvas.create_line(points[i][0], points[i][1], points[i+1][0], points[i+1][1], fill=color, width=2)
 
-        self.frame = self.frame + 1
+        self.frame += 1
         self.root.after(30, self.update_animation)
 
 
 if __name__ == "__main__":
     root = tk.Tk()
+
     app = PsycodelicRoseCurveApp(root)
+
+    # --- Fullscreen toggle with Escape ---
+    def toggle_fullscreen(event=None):
+        is_full = root.attributes("-fullscreen")
+        root.attributes("-fullscreen", not is_full)
+        # Trigger a resize recalculation immediately
+        root.event_generate("<Configure>")
+
+    # Press F11 to toggle fullscreen, Esc to exit
+    root.bind("<F11>", toggle_fullscreen)
+    root.bind("<Escape>", lambda e: root.attributes("-fullscreen", False))
+
     root.mainloop()
