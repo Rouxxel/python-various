@@ -24,4 +24,23 @@ public class Card {
         this.card_value = new_card_value;
     }
 
+    // Print info method
+    public void printInfo() {
+        System.out.println("Card: " + card_face + " (Value: " + card_value + ")");
+    }
+    
+    // toString method for better display
+    @Override
+    public String toString() {
+        return card_face + " (" + card_value + ")";
+    }
+    
+    // equals method for comparison
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Card card = (Card) obj;
+        return card_value == card.card_value && card_face.equals(card.card_face);
+    }
 }
