@@ -16,14 +16,14 @@ class StrawberryApp:
         self.canvas = tk.Canvas(root, bg='black')
         self.canvas.pack(fill=tk.BOTH, expand=True)
 
-        #Body parameters
-        self.width = 600
-        self.height = 600
-
         self.frame = 0
-        self.pixel_size = max(1, int(min(self.width, self.height) / 100))
+        
         self.root.bind("<Configure>", self.on_resize)
         self.root.bind("<Escape>", lambda e: self.root.attributes("-fullscreen", False))
+        
+        # Initialize dimensions
+        self.width = self.root.winfo_width()
+        self.height = self.root.winfo_height()
         #Color control
         self.body_base_color = (255, 0, 0)  #red
         self.body_min_brightness = 0.4  #40% minimum brightness
@@ -32,7 +32,6 @@ class StrawberryApp:
         #Seeds parameters
         self.seed_spacing_x = 0.3  #spacing between seeds in x (normalized units)
         self.seed_spacing_y = 0.3 #spacing between seeds in y
-        self.seed_radius = max(1, self.pixel_size // 3)  #small seed radius
         self.seed_base_color = (255, 255, 0)  #yellow
         self.seed_min_brightness = 0.6  #60%
         self.seed_brightness_amplitude = 0.4  #how much it pulsates
@@ -52,6 +51,7 @@ class StrawberryApp:
 
 #######################################################################################
     def on_resize(self, event):
+        """Update canvas size on window resize."""
         self.width = event.width
         self.height = event.height
         
@@ -89,6 +89,12 @@ class StrawberryApp:
         y_center = self.height // 2
         width = scale * self.width * 0.13
         height = scale * self.height * 0.2
+
+        # Dynamically adjust pixel size based on window size (bigger pixels for larger windows)
+        self.pixel_size = max(3, min(self.width, self.height) // 40)
+        
+        # Dynamically adjust seed radius based on pixel size
+        self.seed_radius = max(1, self.pixel_size // 3)
 
         # Update leaf sizes now that width/height/scale are known
         self.leaf_length = height * self.leaf_length_ratio
