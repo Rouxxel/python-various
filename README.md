@@ -35,6 +35,30 @@ This repository contains a diverse collection of programming projects including 
 8. **Password Generator**
    - A utility to generate random passwords with varying lengths and complexities based on user preferences, including lowercase, uppercase letters, numbers, and special characters.
 
+## 🌐 Templates
+
+### REST API Template (`templates/rest_api_template/`)
+A production-ready FastAPI template for building scalable REST APIs featuring:
+
+- **FastAPI Framework**: Modern, fast web framework with automatic API documentation
+- **Docker Support**: Multi-stage Dockerfile and docker-compose for easy deployment
+- **Rate Limiting**: Built-in request rate limiting with SlowAPI
+- **Comprehensive Logging**: File and console logging with configurable levels
+- **Security Features**: Non-root Docker user, input validation, encryption utilities
+- **Configuration Management**: JSON-based configuration system
+- **Health Checks**: Built-in health check endpoints and Docker health monitoring
+- **Development Ready**: Hot reload support and development scripts
+
+**Quick Start:**
+```bash
+cd templates/rest_api_template
+./start.sh          # Linux/Mac
+# or
+start.bat           # Windows
+# or
+docker-compose up --build
+```
+
 ## ☕ Java Projects
 
 ### WAR Card Game (`java_card_game/`)
@@ -87,6 +111,13 @@ cd java_card_game
 │   ├── lib/               # External libraries
 │   ├── build.sh           # Build and run script
 │   └── README.md          # Detailed project documentation
+├── templates/             # Project templates
+│   └── rest_api_template/ # FastAPI REST API template
+│       ├── src/          # API source code
+│       ├── DOCKERFILE    # Docker configuration
+│       ├── docker-compose.yml
+│       ├── start.sh      # Development startup script
+│       └── README.md     # Template documentation
 └── utilities/             # Various utility programs
 ```
 
@@ -95,10 +126,14 @@ cd java_card_game
 These projects demonstrate:
 - **Object-Oriented Programming** (Python & Java)
 - **GUI Development** (Tkinter, Swing)
+- **Web API Development** (FastAPI, REST APIs)
+- **Containerization** (Docker, Docker Compose)
 - **Game Logic Implementation**
 - **File I/O and Data Persistence**
 - **Animation and Graphics Programming**
 - **User Interface Design**
 - **Error Handling and Validation**
+- **Production Deployment** (Multi-stage Docker builds)
+- **Security Best Practices** (Rate limiting, input validation)
 
 Each project includes comprehensive documentation and follows best practices for code organization and design patterns.
