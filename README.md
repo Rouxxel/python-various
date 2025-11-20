@@ -59,6 +59,34 @@ start.bat           # Windows
 docker-compose up --build
 ```
 
+### GraphQL API Template (`templates/graphql_template/`)
+A production-ready GraphQL API template built with FastAPI and Strawberry GraphQL featuring:
+
+- **Strawberry GraphQL**: Modern, type-safe GraphQL library for Python
+- **FastAPI Integration**: Seamless integration with FastAPI framework
+- **GraphiQL Interface**: Interactive GraphQL query interface for development
+- **Type Safety**: Full type safety with Python type hints and Strawberry
+- **Docker Support**: Multi-stage Dockerfile and docker-compose for easy deployment
+- **Rate Limiting**: Built-in request rate limiting for GraphQL endpoints
+- **Schema Introspection**: Auto-generated documentation from Python types
+- **Comprehensive Logging**: File and console logging with GraphQL query tracking
+- **Security Features**: Input validation, rate limiting, non-root Docker user
+
+**Quick Start:**
+```bash
+cd templates/graphql_template
+./start.sh          # Linux/Mac
+# or
+start.bat           # Windows
+# or
+docker-compose up --build
+```
+
+**GraphQL Endpoints:**
+- GraphQL API: http://localhost:8000/graphql
+- GraphiQL Interface: http://localhost:8000/graphql
+- Health Check: http://localhost:8000/health
+
 ## ☕ Java Projects
 
 ### WAR Card Game (`java_card_game/`)
@@ -112,8 +140,18 @@ cd java_card_game
 │   ├── build.sh           # Build and run script
 │   └── README.md          # Detailed project documentation
 ├── templates/             # Project templates
-│   └── rest_api_template/ # FastAPI REST API template
-│       ├── src/          # API source code
+│   ├── rest_api_template/ # FastAPI REST API template
+│   │   ├── src/          # API source code
+│   │   ├── DOCKERFILE    # Docker configuration
+│   │   ├── docker-compose.yml
+│   │   ├── start.sh      # Development startup script
+│   │   └── README.md     # Template documentation
+│   └── graphql_template/  # FastAPI + Strawberry GraphQL template
+│       ├── src/          # GraphQL API source code
+│       │   ├── graphql_schema/ # Schema definitions
+│       │   ├── resolvers/     # Query/Mutation resolvers
+│       │   ├── types/         # GraphQL types
+│       │   └── utils/         # Utility modules
 │       ├── DOCKERFILE    # Docker configuration
 │       ├── docker-compose.yml
 │       ├── start.sh      # Development startup script

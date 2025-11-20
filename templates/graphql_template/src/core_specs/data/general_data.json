@@ -1,0 +1,58 @@
+{
+    "api_info": {
+        "name": "GraphQL API Template",
+        "version": "1.0.0",
+        "description": "A template for building GraphQL APIs with FastAPI and Strawberry"
+    },
+    "sample_data": {
+        "users": [
+            {
+                "id": 1,
+                "name": "John Doe",
+                "email": "john@example.com",
+                "age": 30,
+                "active": true
+            },
+            {
+                "id": 2,
+                "name": "Jane Smith",
+                "email": "jane@example.com",
+                "age": 25,
+                "active": true
+            },
+            {
+                "id": 3,
+                "name": "Bob Johnson",
+                "email": "bob@example.com",
+                "age": 35,
+                "active": false
+            }
+        ],
+        "posts": [
+            {
+                "id": 1,
+                "title": "Getting Started with GraphQL",
+                "content": "GraphQL is a query language for APIs...",
+                "author_id": 1,
+                "published": true,
+                "created_at": "2025-01-01T10:00:00Z"
+            },
+            {
+                "id": 2,
+                "title": "Advanced GraphQL Patterns",
+                "content": "Learn about advanced GraphQL patterns...",
+                "author_id": 2,
+                "published": true,
+                "created_at": "2025-01-02T14:30:00Z"
+            },
+            {
+                "id": 3,
+                "title": "Draft Post",
+                "content": "This is a draft post...",
+                "author_id": 1,
+                "published": false,
+                "created_at": "2025-01-03T09:15:00Z"
+            }
+        ]
+    }
+}
