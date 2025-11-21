@@ -18,6 +18,9 @@ public class WarGameGUI extends JFrame {
     private JTextArea gameLogArea;
     private JScrollPane scrollPane;
     
+    // Card image labels
+    private JLabel player1CardImageLabel, player2CardImageLabel;
+    
     // Queue for typewriter effect
     private java.util.Queue<String> messageQueue = new java.util.LinkedList<>();
     private boolean isTyping = false;
@@ -38,7 +41,7 @@ public class WarGameGUI extends JFrame {
         createBottomPanel();
         
         // Set window properties
-        setSize(800, 600);
+        setSize(900, 750);
         setLocationRelativeTo(null);
         setResizable(true);
         
@@ -47,36 +50,70 @@ public class WarGameGUI extends JFrame {
     }
     
     private void createTopPanel() {
-        JPanel topPanel = new JPanel(new GridLayout(2, 4, 10, 5));
-        topPanel.setBorder(BorderFactory.createTitledBorder("Game Status"));
+        JPanel topPanel = new JPanel(new BorderLayout());
         
-        // Player info labels
-        player1Label = new JLabel("Player 1: Not Set", SwingConstants.CENTER);
-        player2Label = new JLabel("Player 2: Not Set", SwingConstants.CENTER);
-        player1CardsLabel = new JLabel("Cards: 0", SwingConstants.CENTER);
-        player2CardsLabel = new JLabel("Cards: 0", SwingConstants.CENTER);
-        
-        // Current cards
-        player1CardLabel = new JLabel("No Card", SwingConstants.CENTER);
-        player2CardLabel = new JLabel("No Card", SwingConstants.CENTER);
+        // Status panel at the very top
+        JPanel statusPanel = new JPanel(new GridLayout(1, 2, 10, 5));
         roundLabel = new JLabel("Round: 0", SwingConstants.CENTER);
         statusLabel = new JLabel("Ready to Start", SwingConstants.CENTER);
+        Font statusFont = new Font("Arial", Font.BOLD, 14);
+        roundLabel.setFont(statusFont);
+        statusLabel.setFont(statusFont);
+        statusPanel.add(roundLabel);
+        statusPanel.add(statusLabel);
         
-        // Style labels
+        // Card display panel
+        JPanel cardPanel = new JPanel(new GridLayout(1, 2, 20, 10));
+        cardPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        
+        // Player 1 card area
+        JPanel player1Area = new JPanel(new BorderLayout());
+        player1Area.setBorder(BorderFactory.createTitledBorder("Player 1"));
+        player1Label = new JLabel("Not Set", SwingConstants.CENTER);
+        player1CardsLabel = new JLabel("Cards: 0", SwingConstants.CENTER);
+        player1CardLabel = new JLabel("No Card", SwingConstants.CENTER);
+        player1CardImageLabel = new JLabel("", SwingConstants.CENTER);
+        player1CardImageLabel.setPreferredSize(new Dimension(150, 200));
+        player1CardImageLabel.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
+        
         Font labelFont = new Font("Arial", Font.BOLD, 12);
         player1Label.setFont(labelFont);
-        player2Label.setFont(labelFont);
         player1Label.setForeground(Color.BLUE);
+        
+        JPanel p1Info = new JPanel(new GridLayout(3, 1));
+        p1Info.add(player1Label);
+        p1Info.add(player1CardsLabel);
+        p1Info.add(player1CardLabel);
+        
+        player1Area.add(p1Info, BorderLayout.NORTH);
+        player1Area.add(player1CardImageLabel, BorderLayout.CENTER);
+        
+        // Player 2 card area
+        JPanel player2Area = new JPanel(new BorderLayout());
+        player2Area.setBorder(BorderFactory.createTitledBorder("Player 2"));
+        player2Label = new JLabel("Not Set", SwingConstants.CENTER);
+        player2CardsLabel = new JLabel("Cards: 0", SwingConstants.CENTER);
+        player2CardLabel = new JLabel("No Card", SwingConstants.CENTER);
+        player2CardImageLabel = new JLabel("", SwingConstants.CENTER);
+        player2CardImageLabel.setPreferredSize(new Dimension(150, 200));
+        player2CardImageLabel.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+        
+        player2Label.setFont(labelFont);
         player2Label.setForeground(Color.RED);
         
-        topPanel.add(player1Label);
-        topPanel.add(player2Label);
-        topPanel.add(roundLabel);
-        topPanel.add(statusLabel);
-        topPanel.add(player1CardsLabel);
-        topPanel.add(player2CardsLabel);
-        topPanel.add(player1CardLabel);
-        topPanel.add(player2CardLabel);
+        JPanel p2Info = new JPanel(new GridLayout(3, 1));
+        p2Info.add(player2Label);
+        p2Info.add(player2CardsLabel);
+        p2Info.add(player2CardLabel);
+        
+        player2Area.add(p2Info, BorderLayout.NORTH);
+        player2Area.add(player2CardImageLabel, BorderLayout.CENTER);
+        
+        cardPanel.add(player1Area);
+        cardPanel.add(player2Area);
+        
+        topPanel.add(statusPanel, BorderLayout.NORTH);
+        topPanel.add(cardPanel, BorderLayout.CENTER);
         
         add(topPanel, BorderLayout.NORTH);
     }
@@ -213,6 +250,10 @@ public class WarGameGUI extends JFrame {
         player1CardLabel.setText(card1.get_card_face());
         player2CardLabel.setText(card2.get_card_face());
         
+        // Display card images
+        displayCardImage(card1, player1CardImageLabel);
+        displayCardImage(card2, player2CardImageLabel);
+        
         java.util.List<Card> cardsOnTable = new java.util.ArrayList<>();
         cardsOnTable.add(card1);
         cardsOnTable.add(card2);
@@ -294,6 +335,10 @@ public class WarGameGUI extends JFrame {
         
         player1CardLabel.setText("WAR: " + warCard1.get_card_face());
         player2CardLabel.setText("WAR: " + warCard2.get_card_face());
+        
+        // Display war card images
+        displayCardImage(warCard1, player1CardImageLabel);
+        displayCardImage(warCard2, player2CardImageLabel);
         
         // Compare war cards
         if (warCard1.get_card_value() > warCard2.get_card_value()) {
@@ -384,8 +429,8 @@ public class WarGameGUI extends JFrame {
     
     private void updateGUI() {
         if (game.getPlayer1() != null && game.getPlayer2() != null) {
-            player1Label.setText("Player 1: " + game.getPlayer1().getName());
-            player2Label.setText("Player 2: " + game.getPlayer2().getName());
+            player1Label.setText(game.getPlayer1().getName());
+            player2Label.setText(game.getPlayer2().getName());
             player1CardsLabel.setText("Cards: " + game.getPlayer1().getHandSize());
             player2CardsLabel.setText("Cards: " + game.getPlayer2().getHandSize());
             roundLabel.setText("Round: " + game.getRoundNumber());
@@ -397,6 +442,33 @@ public class WarGameGUI extends JFrame {
                 statusLabel.setText("Game in Progress");
                 statusLabel.setForeground(Color.GREEN);
             }
+        }
+    }
+    
+    private void displayCardImage(Card card, JLabel imageLabel) {
+        if (card == null) {
+            imageLabel.setIcon(null);
+            imageLabel.setText("No Card");
+            return;
+        }
+        
+        // Convert card face to filename format
+        // e.g., "Ace of Spades" -> "ace_of_spades.png"
+        String cardFace = card.get_card_face().toLowerCase().replace(" ", "_");
+        String imagePath = "src/resources/img/" + cardFace + ".png";
+        
+        try {
+            ImageIcon cardIcon = new ImageIcon(imagePath);
+            
+            // Scale image to fit label
+            Image img = cardIcon.getImage();
+            Image scaledImg = img.getScaledInstance(150, 200, Image.SCALE_SMOOTH);
+            imageLabel.setIcon(new ImageIcon(scaledImg));
+            imageLabel.setText("");
+        } catch (Exception e) {
+            // If image not found, just show text
+            imageLabel.setIcon(null);
+            imageLabel.setText(card.get_card_face());
         }
     }
     

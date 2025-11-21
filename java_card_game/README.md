@@ -59,15 +59,50 @@ java_card_game/
 ✅ **Two Game Modes** - Human vs Computer, Human vs Human  
 ✅ **Save/Load System** - JSON-based game state persistence  
 ✅ **Dual Interface** - Both console and GUI versions  
+✅ **Visual Card Display** - GUI shows actual playing card images (PNG/JPG/GIF)  
+✅ **Typewriter Effect** - Animated text display in game log  
 ✅ **War Logic** - Complete implementation of war scenarios  
 ✅ **Input Validation** - Robust error handling  
 ✅ **Game Statistics** - Round counting and game progress tracking
+
+## 🎨 Card Images Setup
+
+### Required Card Images
+The GUI version displays visual card images during gameplay. You need to add card image files to the `src/resources/img/` folder.
+
+**Supported Image Formats:**
+- `.png` (recommended)
+- `.jpg` / `.jpeg`
+- `.gif`
+
+**Required File Names:**
+Card images must follow this naming convention (lowercase with underscores):
+```
+2_of_clubs.png, 2_of_diamonds.png, 2_of_hearts.png, 2_of_spades.png
+3_of_clubs.png, 3_of_diamonds.png, 3_of_hearts.png, 3_of_spades.png
+...
+10_of_clubs.png, 10_of_diamonds.png, 10_of_hearts.png, 10_of_spades.png
+jack_of_clubs.png, jack_of_diamonds.png, jack_of_hearts.png, jack_of_spades.png
+queen_of_clubs.png, queen_of_diamonds.png, queen_of_hearts.png, queen_of_spades.png
+king_of_clubs.png, king_of_diamonds.png, king_of_hearts.png, king_of_spades.png
+ace_of_clubs.png, ace_of_diamonds.png, ace_of_hearts.png, ace_of_spades.png
+```
+
+**Total:** 52 card images (one for each card in a standard deck)
+
+**Image Specifications:**
+- Recommended size: 500x726 pixels (standard playing card ratio)
+- Images will be automatically scaled to 150x200 pixels in the GUI
+- Transparent backgrounds work well
+
+**Note:** If card images are not found, the GUI will display card names as text instead.
 
 ## 🚀 How to Run
 
 ### Prerequisites
 - Java 8 or higher
 - Jackson JSON library (included in lib/ folder)
+- Card images in `src/resources/img/` (for GUI visual display)
 
 ### Console Version
 
@@ -133,10 +168,13 @@ cd java_card_game
 
 ### GUI Interface
 - User-friendly graphical interface
-- Visual game status display
+- **Visual card display** with actual playing card images
+- **Typewriter effect** in game log (50ms per character)
+- Color-coded player areas (Blue for Player 1, Red for Player 2)
 - File dialog for save/load operations
-- Game log with complete history
+- Scrolling game log with complete history
 - Intuitive button controls
+- 900x750 window with card image display areas
 
 ### Save System
 - JSON-based save files
