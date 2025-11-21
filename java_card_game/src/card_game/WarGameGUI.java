@@ -18,6 +18,10 @@ public class WarGameGUI extends JFrame {
     private JTextArea gameLogArea;
     private JScrollPane scrollPane;
     
+    // Queue for typewriter effect
+    private java.util.Queue<String> messageQueue = new java.util.LinkedList<>();
+    private boolean isTyping = false;
+    
     public WarGameGUI() {
         game = new WarGame();
         initializeGUI();
@@ -185,31 +189,153 @@ public class WarGameGUI extends JFrame {
             return;
         }
         
-        // Capture game state before round
-        int oldRound = game.getRoundNumber();
+        // Play round and capture output for GUI
+        int roundNum = game.getRoundNumber() + 1;
+        appendToLog("\n=== Round " + roundNum + " ===");
         
-        // Play the round (this will update the game state)
-        game.playRound();
+        // Check if players have cards
+        if (!game.getPlayer1().hasCards()) {
+            endGameGUI(game.getPlayer2());
+            return;
+        }
+        if (!game.getPlayer2().hasCards()) {
+            endGameGUI(game.getPlayer1());
+            return;
+        }
+        
+        // Play cards
+        Card card1 = game.getPlayer1().playCard();
+        Card card2 = game.getPlayer2().playCard();
+        
+        appendToLog(game.getPlayer1().getName() + " plays: " + card1.get_card_face() + " (" + card1.get_card_value() + ")");
+        appendToLog(game.getPlayer2().getName() + " plays: " + card2.get_card_face() + " (" + card2.get_card_value() + ")");
+        
+        player1CardLabel.setText(card1.get_card_face());
+        player2CardLabel.setText(card2.get_card_face());
+        
+        java.util.List<Card> cardsOnTable = new java.util.ArrayList<>();
+        cardsOnTable.add(card1);
+        cardsOnTable.add(card2);
+        
+        // Compare cards
+        if (card1.get_card_value() > card2.get_card_value()) {
+            appendToLog(game.getPlayer1().getName() + " wins the round!");
+            game.getPlayer1().addCards(cardsOnTable);
+        } else if (card2.get_card_value() > card1.get_card_value()) {
+            appendToLog(game.getPlayer2().getName() + " wins the round!");
+            game.getPlayer2().addCards(cardsOnTable);
+        } else {
+            appendToLog("WAR! Cards are equal!");
+            handleWarGUI(cardsOnTable);
+        }
+        
+        // Increment round counter manually since we're not using game.playRound()
+        java.lang.reflect.Field roundField;
+        try {
+            roundField = game.getClass().getDeclaredField("roundNumber");
+            roundField.setAccessible(true);
+            roundField.setInt(game, roundNum);
+        } catch (Exception e) {
+            // Ignore reflection errors
+        }
+        
+        // Show current status
+        appendToLog(game.getPlayer1().getName() + ": " + game.getPlayer1().getHandSize() + " cards");
+        appendToLog(game.getPlayer2().getName() + ": " + game.getPlayer2().getHandSize() + " cards");
         
         // Update GUI
         updateGUI();
         
-        // Show round result
-        if (game.isGameOver()) {
-            appendToLog("\n🎉 GAME OVER! 🎉");
-            appendToLog(game.getWinner().getName() + " wins the game!");
-            appendToLog("Total rounds: " + game.getRoundNumber());
-            
-            playRoundButton.setEnabled(false);
-            saveButton.setEnabled(false);
-            
-            int result = JOptionPane.showConfirmDialog(this, 
-                game.getWinner().getName() + " wins!\nWould you like to start a new game?",
-                "Game Over", JOptionPane.YES_NO_OPTION);
-            
-            if (result == JOptionPane.YES_OPTION) {
-                showNewGameDialog();
+        // Check for game over
+        if (!game.getPlayer1().hasCards()) {
+            endGameGUI(game.getPlayer2());
+        } else if (!game.getPlayer2().hasCards()) {
+            endGameGUI(game.getPlayer1());
+        }
+    }
+    
+    private void handleWarGUI(java.util.List<Card> cardsOnTable) {
+        appendToLog("Starting WAR sequence...");
+        
+        // Each player puts down 2 face-down cards and 1 face-up
+        for (int i = 0; i < 2; i++) {
+            if (game.getPlayer1().hasCards()) {
+                Card faceDown1 = game.getPlayer1().playCard();
+                cardsOnTable.add(faceDown1);
+                appendToLog(game.getPlayer1().getName() + " places a face-down card");
             }
+            if (game.getPlayer2().hasCards()) {
+                Card faceDown2 = game.getPlayer2().playCard();
+                cardsOnTable.add(faceDown2);
+                appendToLog(game.getPlayer2().getName() + " places a face-down card");
+            }
+        }
+        
+        // Check if players still have cards for face-up battle
+        if (!game.getPlayer1().hasCards()) {
+            appendToLog(game.getPlayer1().getName() + " runs out of cards during war!");
+            endGameGUI(game.getPlayer2());
+            return;
+        }
+        if (!game.getPlayer2().hasCards()) {
+            appendToLog(game.getPlayer2().getName() + " runs out of cards during war!");
+            endGameGUI(game.getPlayer1());
+            return;
+        }
+        
+        // Face-up cards
+        Card warCard1 = game.getPlayer1().playCard();
+        Card warCard2 = game.getPlayer2().playCard();
+        cardsOnTable.add(warCard1);
+        cardsOnTable.add(warCard2);
+        
+        appendToLog(game.getPlayer1().getName() + " war card: " + warCard1.get_card_face() + " (" + warCard1.get_card_value() + ")");
+        appendToLog(game.getPlayer2().getName() + " war card: " + warCard2.get_card_face() + " (" + warCard2.get_card_value() + ")");
+        
+        player1CardLabel.setText("WAR: " + warCard1.get_card_face());
+        player2CardLabel.setText("WAR: " + warCard2.get_card_face());
+        
+        // Compare war cards
+        if (warCard1.get_card_value() > warCard2.get_card_value()) {
+            appendToLog(game.getPlayer1().getName() + " wins the WAR!");
+            game.getPlayer1().addCards(cardsOnTable);
+        } else if (warCard2.get_card_value() > warCard1.get_card_value()) {
+            appendToLog(game.getPlayer2().getName() + " wins the WAR!");
+            game.getPlayer2().addCards(cardsOnTable);
+        } else {
+            appendToLog("Another WAR!");
+            handleWarGUI(cardsOnTable); // Recursive war
+        }
+    }
+    
+    private void endGameGUI(Player winner) {
+        appendToLog("\n🎉 GAME OVER! 🎉");
+        appendToLog(winner.getName() + " wins the game!");
+        appendToLog("Total rounds: " + game.getRoundNumber());
+        
+        // Set game over state using reflection
+        try {
+            java.lang.reflect.Field gameOverField = game.getClass().getDeclaredField("gameOver");
+            gameOverField.setAccessible(true);
+            gameOverField.setBoolean(game, true);
+            
+            java.lang.reflect.Field winnerField = game.getClass().getDeclaredField("winner");
+            winnerField.setAccessible(true);
+            winnerField.set(game, winner);
+        } catch (Exception e) {
+            // Ignore reflection errors
+        }
+        
+        playRoundButton.setEnabled(false);
+        saveButton.setEnabled(false);
+        updateGUI();
+        
+        int result = JOptionPane.showConfirmDialog(this, 
+            winner.getName() + " wins!\nWould you like to start a new game?",
+            "Game Over", JOptionPane.YES_NO_OPTION);
+        
+        if (result == JOptionPane.YES_OPTION) {
+            showNewGameDialog();
         }
     }
     
@@ -275,8 +401,50 @@ public class WarGameGUI extends JFrame {
     }
     
     private void appendToLog(String message) {
-        gameLogArea.append(message + "\n");
-        gameLogArea.setCaretPosition(gameLogArea.getDocument().getLength());
+        synchronized (messageQueue) {
+            messageQueue.offer(message);
+            if (!isTyping) {
+                processNextMessage();
+            }
+        }
+    }
+    
+    private void processNextMessage() {
+        synchronized (messageQueue) {
+            if (messageQueue.isEmpty()) {
+                isTyping = false;
+                return;
+            }
+            
+            isTyping = true;
+            String message = messageQueue.poll();
+            
+            // Typewriter effect - display characters one by one
+            new Thread(() -> {
+                try {
+                    for (int i = 0; i < message.length(); i++) {
+                        final char c = message.charAt(i);
+                        SwingUtilities.invokeLater(() -> {
+                            gameLogArea.append(String.valueOf(c));
+                            gameLogArea.setCaretPosition(gameLogArea.getDocument().getLength());
+                        });
+                        Thread.sleep(24); // 0.024 seconds per character (50ms)
+                    }
+                    // Add newline at the end
+                    SwingUtilities.invokeLater(() -> {
+                        gameLogArea.append("\n");
+                        gameLogArea.setCaretPosition(gameLogArea.getDocument().getLength());
+                    });
+                    
+                    // Process next message in queue
+                    processNextMessage();
+                    
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    isTyping = false;
+                }
+            }).start();
+        }
     }
     
     public static void main(String[] args) {
