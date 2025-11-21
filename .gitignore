@@ -23,6 +23,7 @@ doxygen/documentation/
 *.png
 *.jpg
 *.jpeg
+*.class
 
 # Ignore Jupyter Notebook checkpoints
 .ipynb_checkpoints/

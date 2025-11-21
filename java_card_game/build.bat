@@ -6,12 +6,12 @@ REM Prof. Dr. Rand Kouatly, EU University Europe, Summer 2025
 setlocal enabledelayedexpansion
 
 REM Project directories
-set SRC_DIR=src
-set LIB_DIR=lib
-set BIN_DIR=bin
+set "SRC_DIR=src"
+set "LIB_DIR=lib"
+set "BIN_DIR=bin"
 
 REM Create bin directory if it doesn't exist
-if not exist %BIN_DIR% mkdir %BIN_DIR%
+if not exist "%BIN_DIR%" mkdir "%BIN_DIR%"
 
 echo.
 echo WAR Card Game - Build Script
@@ -19,30 +19,29 @@ echo ============================
 
 REM Check if Java is installed
 echo Checking Java installation...
-java -version >nul 2>&1
-if errorlevel 1 (
+java -version >nul 2>nul
+if %errorlevel% neq 0 (
     echo ERROR: Java is not installed or not in PATH
     echo Please install Java 8 or higher and try again.
     pause
     exit /b 1
 )
 
-javac -version >nul 2>&1
-if errorlevel 1 (
-    echo ERROR: Java compiler (javac) is not installed or not in PATH
+javac -version >nul 2>nul
+if %errorlevel% neq 0 (
+    echo ERROR: Java compiler ^(javac^) is not installed or not in PATH
     echo Please install JDK and try again.
     pause
     exit /b 1
 )
 
 echo SUCCESS: Java installation found
-java -version
 echo.
 
 REM Check dependencies
 echo Checking dependencies...
 
-if not exist %LIB_DIR% mkdir %LIB_DIR%
+if not exist "%LIB_DIR%" mkdir "%LIB_DIR%"
 
 REM Check for Jackson JSON library
 if not exist "%LIB_DIR%\jackson-core-2.17.1.jar" (
@@ -64,10 +63,10 @@ REM Compile the project
 echo Compiling Java source files...
 
 REM Set classpath (Windows uses semicolon)
-set CLASSPATH=%LIB_DIR%\*;%SRC_DIR%
+set "CLASSPATH=%LIB_DIR%\*;%SRC_DIR%"
 
 REM Compile all Java files
-javac -cp "%CLASSPATH%" -d %BIN_DIR% %SRC_DIR%\card_game\*.java %SRC_DIR%\card_n_deck\*.java %SRC_DIR%\players_class\*.java %SRC_DIR%\logic_class\*.java
+javac -cp "%CLASSPATH%" -d "%BIN_DIR%" "%SRC_DIR%\card_game\*.java" "%SRC_DIR%\card_n_deck\*.java" "%SRC_DIR%\players_class\*.java" "%SRC_DIR%\logic_class\*.java"
 
 if errorlevel 1 (
     echo ERROR: Compilation failed
@@ -118,8 +117,8 @@ goto end
 
 :clean_project
 echo Cleaning build files...
-if exist %BIN_DIR% rmdir /s /q %BIN_DIR%
-for /r %SRC_DIR% %%f in (*.class) do del "%%f" 2>nul
+if exist "%BIN_DIR%" rmdir /s /q "%BIN_DIR%"
+for /r "%SRC_DIR%" %%f in (*.class) do del "%%f" 2>nul
 echo Clean complete
 goto end
 
