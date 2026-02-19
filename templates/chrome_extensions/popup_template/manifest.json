@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Popup Template",
+  "version": "1.0.0",
+  "description": "Chrome extension popup template with logo and click counter",
+  "icons": {
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
+  },
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "Popup Template",
+    "default_icon": "assets/icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

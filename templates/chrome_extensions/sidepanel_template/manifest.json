@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Side Panel Template",
+  "version": "1.0.0",
+  "description": "Chrome extension side panel template with logo and click counter",
+  "icons": {
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
+  },
+  "permissions": ["storage", "sidePanel"],
+  "action": {
+    "default_title": "Side Panel Template",
+    "default_icon": "assets/icon.png"
+  },
+  "side_panel": {
+    "default_path": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Side Panel Template</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header">
+    <img src="assets/icon.png" alt="" class="header-logo" width="32" height="32">
+    <h1 class="title">Side Panel Template</h1>
+  </header>
+
+  <main class="main">
+    <p class="count-label">Count is <span id="count">0</span></p>
+    <button type="button" id="countBtn" class="btn btn-primary">Count</button>
+
+    <section id="backendSection" class="backend-section" hidden>
+      <button type="button" id="pingBtn" class="btn btn-secondary">Ping backend</button>
+      <p id="pingStatus" class="ping-status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
