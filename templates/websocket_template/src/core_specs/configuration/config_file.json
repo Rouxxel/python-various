@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "general_data_path": "src/core_specs/data/general_data.json"
+  },
+  "logging": {
+    "logging_level": "debug",
+    "dir_name": "logs",
+    "log_file_name": "ws_bcknd"
+  },
+  "network": {
+    "uvicorn_app_reference": "main:app",
+    "server_port": 8000,
+    "host": "0.0.0.0",
+    "reload": false,
+    "workers": 1,
+    "proxy_headers": true
+  },
+  "endpoints": {
+    "root_directory_endpoint": {
+      "endpoint_prefix": "",
+      "endpoint_tag": "root",
+      "endpoint_route": "/"
+    },
+    "websocket_endpoint": {
+      "endpoint_prefix": "",
+      "endpoint_tag": "websocket",
+      "ws_route": "/ws"
+    }
+  }
+}
