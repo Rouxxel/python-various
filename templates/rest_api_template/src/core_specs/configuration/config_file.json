@@ -34,9 +34,16 @@
         "example_endpoint": {
             "request_limit": 3,
             "unit_of_time_for_limit": "m",
-            "endpoint_prefix": "/example",
-            "endpoint_tag": "example",
-            "endpoint_route": "/example"
+            "endpoint_prefix": "/subsection",
+            "endpoint_tag": "subsection",
+            "endpoint_route": "/endpoint_name"
+        },
+        "example_endpoint_2": {
+            "request_limit": 5,
+            "unit_of_time_for_limit": "m",
+            "endpoint_prefix": "/subsection",
+            "endpoint_tag": "subsection",
+            "endpoint_route": "/endpoint_name"
         }
     }
 }
