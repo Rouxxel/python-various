@@ -1,0 +1,144 @@
+{
+    "analysis": {
+        "duration": 53,
+        "event_type": "Film/TV Scene",
+        "context": "A scene from a war drama where a newly arrived, inexperienced officer volunteers for a patrol but is denied by his superiors.",
+        "sections": {
+            "0-5": {
+                "transcript": "-Who are you? -Lt. Jones, sir. Right, our West Pointer.",
+                "shot_type": "Medium",
+                "visual_tags": [
+                    "soldiers",
+                    "conversation",
+                    "interior"
+                ],
+                "technical_description": "Medium shot of two soldiers talking, camera is slightly shaky."
+            },
+            "5-9": {
+                "transcript": "-Yes, sir. -When did you graduate? June 6, sir.",
+                "shot_type": "Close-up",
+                "visual_tags": [
+                    "soldier",
+                    "uniform",
+                    "dialogue"
+                ],
+                "technical_description": "Close-up on the younger soldier, then cuts to the older one. Clean shot."
+            },
+            "9-14": {
+                "transcript": "June 6? Of last year? D-Day, yes, sir.",
+                "shot_type": "Medium",
+                "visual_tags": [
+                    "soldiers",
+                    "reaction",
+                    "interior"
+                ],
+                "technical_description": "Medium shot of the older soldier reacting, then close-up of the younger one. Clean shot."
+            },
+            "14-18": {
+                "transcript": "All right, don't get hurt.",
+                "shot_type": "Medium",
+                "visual_tags": [
+                    "soldiers",
+                    "laughing",
+                    "departure"
+                ],
+                "technical_description": "Medium shot of the older soldier laughing and walking away. Clean shot."
+            },
+            "18-23": {
+                "transcript": "Sir, I'd like to volunteer for the patrol.",
+                "shot_type": "Close-up",
+                "visual_tags": [
+                    "soldier",
+                    "volunteering",
+                    "serious"
+                ],
+                "technical_description": "Close-up of the younger soldier speaking. Clean shot."
+            },
+            "23-27": {
+                "transcript": "-Speirs, talk to you in an hour. -Yeah. Lt. Jones.",
+                "shot_type": "Medium",
+                "visual_tags": [
+                    "soldiers",
+                    "orders",
+                    "interior"
+                ],
+                "technical_description": "Medium shot of soldiers exchanging brief words. Clean shot."
+            },
+            "27-32": {
+                "transcript": "We're short on officers. You think a non-com could lead this?",
+                "shot_type": "Close-up",
+                "visual_tags": [
+                    "soldier",
+                    "listening",
+                    "interior"
+                ],
+                "technical_description": "Close-up of the younger soldier listening to the conversation off-screen. Clean shot."
+            },
+            "32-36": {
+                "transcript": "I can think of a few possibilities.",
+                "shot_type": "Medium",
+                "visual_tags": [
+                    "soldiers",
+                    "discussion",
+                    "seated"
+                ],
+                "technical_description": "Medium shot of two soldiers sitting and discussing. Clean shot."
+            },
+            "36-41": {
+                "transcript": "Martin? Malarkey? Grant? Honestly, sir, most of the NCOs could use a rest.",
+                "shot_type": "Close-up",
+                "visual_tags": [
+                    "soldier",
+                    "explaining",
+                    "interior"
+                ],
+                "technical_description": "Close-up of a soldier explaining the situation. Clean shot."
+            },
+            "41-46": {
+                "transcript": "Captain. Request permission to go on the patrol. There's your answer.",
+                "shot_type": "Close-up",
+                "visual_tags": [
+                    "soldier",
+                    "requesting",
+                    "interior"
+                ],
+                "technical_description": "Close-up of the younger soldier making a request, then a quick cut to another soldier. Clean shot."
+            },
+            "46-49": {
+                "transcript": "No. You don't have any experience.",
+                "shot_type": "Close-up",
+                "visual_tags": [
+                    "soldier",
+                    "denial",
+                    "serious"
+                ],
+                "technical_description": "Close-up of the commanding officer denying the request. Clean shot."
+            },
+            "49-53": {
+                "transcript": "-Report to 2nd Platoon. -Yes, sir.",
+                "shot_type": "Close-up",
+                "visual_tags": [
+                    "soldier",
+                    "orders",
+                    "acceptance"
+                ],
+                "technical_description": "Close-up of the younger soldier accepting orders. Clean shot."
+            }
+        }
+    },
+    "metadata": {
+        "model_used": "gemini-3.1-pro-preview",
+        "aspect_ratio": {
+            "resolution": "1080x1080",
+            "ratio_string": "1:1",
+            "decimal": 1.0
+        },
+        "tokens_used": {
+            "prompt_tokens": 4904,
+            "output_tokens": 1196,
+            "total_tokens": 9682
+        },
+        "processing_duration": "31.18 seconds",
+        "vid_duration": 53
+    }
+}
