@@ -16,6 +16,7 @@ import logging
 import sys
 import datetime
 
+# --- CONFIGURATION AREA ---
 #Map config string levels to logging module levels
 LOG_LEVELS = {
     "critical": logging.CRITICAL,
@@ -25,13 +26,16 @@ LOG_LEVELS = {
     "debug": logging.DEBUG,
     "notset": logging.NOTSET
 }
+LOG_FILE_NAME = "log_file_name_should_come_from_a_config_file_in_lower_case"
+LOG_LEVEL_STR = "logging_level_should_come_from_a_config_file_in_lower_case"
+LOG_DIRECTORY = "log_directory_name_should_come_from_a_config_file_in_lower_case"
 
+# --- CONFIGURATION AREA ---
 #Get log level string
-log_level_str = "should_come_from_a_config_file_in_lower_case"
-log_level = LOG_LEVELS.get("info", logging.INFO)
+log_level = LOG_LEVELS.get(LOG_LEVEL_STR.lower(), logging.INFO)
 
 """Log basic configuration"""
-log_handler = "log_file_name_here"
+log_handler = logging.getLogger(LOG_FILE_NAME)
 log_handler.setLevel(log_level)
 
 """Logger formatter"""
@@ -42,14 +46,14 @@ log_format = logging.Formatter(
 
 """File handler (File accessible only when it runs locally)"""
 #Create folder
-log_directory = "log_directory_name_here"
+log_directory = LOG_DIRECTORY
 os.makedirs(log_directory,exist_ok=True)
 
 #Create log file
 log_file = os.path.join(
                     log_directory, 
                     datetime.datetime.now().strftime(
-                        f"{"log_file_name_here"}_%Y-%m-%dT%H-%M-%S.log"))
+                        f"{LOG_FILE_NAME}_%Y-%m-%dT%H-%M-%S.log"))
 file_handler = logging.FileHandler(log_file)
 file_handler.setFormatter(log_format)
 
@@ -62,7 +66,7 @@ if not log_handler.hasHandlers():
     log_handler.addHandler(file_handler)
     log_handler.addHandler(console_handler)
 
-log_handler.info("Rift Riot hckthn backend server starting")
+log_handler.info("Project name backend server starting")
 log_handler.warning(f"Current working directory: {os.getcwd()}, Logs are written to '{log_file}'")
 
 #Example usage
