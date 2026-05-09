@@ -49,9 +49,9 @@ def run_video_only_pipeline(
             # We extract info first to see what extension we're actually getting
             info = ydl.extract_info(video_input, download=True)
             actual_ext = info.get('ext', video_ext)
-        
+
         print(f"SUCCESS: Silent video saved as {output_filename}.{actual_ext}")
-        
+
     except Exception as e:
         raise Exception(f"Video download failed: {str(e)}")
 
