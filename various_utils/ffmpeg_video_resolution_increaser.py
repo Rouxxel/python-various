@@ -1,7 +1,7 @@
 import subprocess
 import os
 
-def upscale_video_lanczos(input_file, output_file, scale_factor=2):
+def upscale_video_lanczos(input_file=None, output_file=None, scale_factor=2):
     """
     Doubles the resolution (or by scale_factor) using the Lanczos algorithm.
     """
