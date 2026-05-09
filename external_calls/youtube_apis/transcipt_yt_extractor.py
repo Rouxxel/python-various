@@ -127,7 +127,7 @@ def run_transcript_pipeline(
 if __name__ == "__main__":
     try:
         run_transcript_pipeline(
-            video_input="https://www.youtube.com/watch?v=uXalS69hPrE",
+            video_input="https://www.youtube.com/shorts/C80whOpK-PY",
             output_filename="transcript",
             languages=["en"],
             output_format="txt",
