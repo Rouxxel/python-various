@@ -9,8 +9,8 @@ from multiprocessing import Process
 from moviepy import VideoFileClip
 
 def extract_audio(
-    input_path=None,
-    output_audio_format=None,
+    input_path: str =None,
+    output_audio_format: str =None,
     ):
     """
     Extract audio from a given video file.
@@ -46,8 +46,8 @@ def extract_audio(
             clip.close()
 
 def extract_video(
-    input_path=None, 
-    output_video_format=None
+    input_path: str =None, 
+    output_video_format: str =None
     ):
     """
     Extract video from a given video file.
@@ -83,11 +83,11 @@ def extract_video(
             clip.close()
 
 def parallel_extraction(
-    input_path=None, 
-    xtrct_audio=True,
-    output_audio_format=None, 
-    xtrct_video=True,
-    output_video_format=None):
+    input_path: str =None, 
+    xtrct_audio: bool =True,
+    output_audio_format: str =None, 
+    xtrct_video: bool =True,
+    output_video_format: str =None):
     """
     Run audio and video extraction in parallel using multiprocessing.
     """

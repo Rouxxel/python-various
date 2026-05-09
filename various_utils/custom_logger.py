@@ -34,11 +34,9 @@ LOG_DIRECTORY = "log_directory_name_should_come_from_a_config_file_in_lower_case
 #Get log level string
 log_level = LOG_LEVELS.get(LOG_LEVEL_STR.lower(), logging.INFO)
 
-"""Log basic configuration"""
+"""Log basic configuration and formatting"""
 log_handler = logging.getLogger(LOG_FILE_NAME)
 log_handler.setLevel(log_level)
-
-"""Logger formatter"""
 log_format = logging.Formatter(
     fmt="%(asctime)s %(msecs)03dZ | %(levelname)s | %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
@@ -57,7 +55,7 @@ log_file = os.path.join(
 file_handler = logging.FileHandler(log_file)
 file_handler.setFormatter(log_format)
 
-"""Console handler for Render logs"""
+#Console handler to logs
 console_handler = logging.StreamHandler(sys.stdout)
 console_handler.setFormatter(log_format)
 

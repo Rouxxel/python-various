@@ -1,10 +1,16 @@
+"""
+    Simple script to delete specified folders 
+"""
+
 import os
 import shutil
 
-def remove_folders(root_dir, folders_to_remove=None):
-    if folders_to_remove is None:
-        folders_to_remove = ["__pycache__", "logs"]  # Folders to delete
-
+def remove_folders(root_dir: str, folders_to_remove: list = ["__pycache__", "logs"]):
+    """
+    Removes folders from the specified root directory and its subdirectories.
+    by default it will remove __pycache__ and logs folders
+    """  
+    # Folders to delete
     for dirpath, dirnames, filenames in os.walk(root_dir):
         for folder in folders_to_remove:
             if folder in dirnames:
