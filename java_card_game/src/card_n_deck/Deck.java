@@ -25,7 +25,7 @@ public class Deck {
             }
             shuffle();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error loading deck from config: " + e.getMessage());
         }
     }
 
@@ -34,7 +34,8 @@ public class Deck {
     }
 
     public Card drawCard() {
-        if (cards.isEmpty()) return null;
+        if (cards.isEmpty())
+            return null;
         return cards.remove(0);
     }
 
