@@ -36,18 +36,12 @@ def run_audio_pipeline(
 
     print(f"--- Processing Audio: {video_input} ---")
 
-    # Determine output template
-    if output_filename:
-        output_template = f"{output_filename}.%(ext)s"
-    else:
-        output_template = "%(title)s.%(ext)s"
-
     # Define yt-dlp options
     # 'outtmpl' handles filename. 'postprocessors' handles MP3 conversion + metadata.
     ydl_opts = {
         'format': 'bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio/best',
         'noplaylist': True,
-        'outtmpl': output_template,
+        'outtmpl': f'{output_filename}.%(ext)s' if output_filename else '%(title)s.%(ext)s',
 
         # Ensure safer filenames from YouTube titles
         'restrictfilenames': True,
@@ -92,13 +86,13 @@ if __name__ == "__main__":
 
         # Uses YouTube title as filename
         run_audio_pipeline(
-            video_input="https://youtu.be/CdhqVtpR2ts?si=SCbT5bZtynAQGcC9",
+            video_input="https://www.youtube.com/shorts/C80whOpK-PY",
             output_filename=None
         )
 
         # Uses custom filename override
         # run_audio_pipeline(
-        #     video_input="https://youtu.be/CdhqVtpR2ts?si=SCbT5bZtynAQGcC9",
+        #     video_input="https://www.youtube.com/shorts/C80whOpK-PY",
         #     output_filename="my_audio_track",
         #     audio_format="mp3"
         # )
