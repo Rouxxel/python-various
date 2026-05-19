@@ -34,7 +34,7 @@ def run_audio_pipeline(
 
     print(f"--- Processing Audio: {video_input} ---")
 
-    # 1. Define yt-dlp options
+    # Define yt-dlp options
     # The 'outtmpl' handles the filename. 'postprocessors' handles the MP3 conversion.
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -49,7 +49,7 @@ def run_audio_pipeline(
         'no_warnings': True,
     }
 
-    # 2. Execute Download
+    # Execute Download
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([video_input])
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     try:
         run_audio_pipeline(
             video_input="https://www.youtube.com/shorts/C80whOpK-PY",
-            output_filename="my_audio_track",
+            #output_filename="my_audio_track",
             audio_format="mp3"
         )
     except Exception as e:
