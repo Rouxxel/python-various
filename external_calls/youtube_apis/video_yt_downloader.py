@@ -17,7 +17,6 @@ import yt_dlp
 
 DEFAULT_VIDEO_EXT = "mp4"
 
-
 # ---------------------------------------------------------
 # CORE PIPELINE
 # ---------------------------------------------------------
@@ -37,6 +36,7 @@ def run_video_only_pipeline(
     # 'bestvideo' ensures we don't get the combined (often lower quality) file.
     ydl_opts = {
         'format': 'bestvideo', 
+        'noplaylist': True, 
         'outtmpl': f'{output_filename}.%(ext)s',
         'merge_output_format': video_ext,
         'quiet': False,

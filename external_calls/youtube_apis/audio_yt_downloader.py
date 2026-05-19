@@ -38,6 +38,7 @@ def run_audio_pipeline(
     # The 'outtmpl' handles the filename. 'postprocessors' handles the MP3 conversion.
     ydl_opts = {
         'format': 'bestaudio/best',
+        'noplaylist': True,
         'outtmpl': f'{output_filename}.%(ext)s',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
