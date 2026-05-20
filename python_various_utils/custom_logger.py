@@ -30,19 +30,20 @@ LOG_FILE_NAME = "log_file_name_should_come_from_a_config_file_in_lower_case"
 LOG_LEVEL_STR = "logging_level_should_come_from_a_config_file_in_lower_case"
 LOG_DIRECTORY = "log_directory_name_should_come_from_a_config_file_in_lower_case"
 
-# --- CONFIGURATION AREA ---
 #Get log level string
 log_level = LOG_LEVELS.get(LOG_LEVEL_STR.lower(), logging.INFO)
 
-"""Log basic configuration and formatting"""
+# --- Log basic configuration and formatting ---
 log_handler = logging.getLogger(LOG_FILE_NAME)
 log_handler.setLevel(log_level)
+
+# --- Logger formatter ---
 log_format = logging.Formatter(
     fmt="%(asctime)s %(msecs)03dZ | %(levelname)s | %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 
-"""File handler (File accessible only when it runs locally)"""
+# --- File handler (File accessible only when it runs locally) ---
 #Create folder
 log_directory = LOG_DIRECTORY
 os.makedirs(log_directory,exist_ok=True)
