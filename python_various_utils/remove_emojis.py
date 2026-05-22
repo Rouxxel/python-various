@@ -75,18 +75,19 @@ def find_project_root_by_name(start_path: str, target_name: str) -> str:
     current = os.path.abspath(start_path)
     if os.path.isfile(current):
         current = os.path.dirname(current)
-        
+
     target_lower = target_name.strip().lower()
     while True:
         if os.path.basename(current).lower() == target_lower:
             return current
-        
+
         parent = os.path.dirname(current)
         if parent == current:  # Reached the root of the file system
             break
         current = parent
-        
-    print(f"Error: Could not find any parent directory named '{target_name}' starting from '{os.path.abspath(start_path)}'.")
+
+    print(f"Error: Could not find any parent directory named "
+        f"'{target_name}' starting from '{os.path.abspath(start_path)}'.")
     sys.exit(1)
 
 def remove_emojis(root_dir: str, extensions: set = {".md", ".py", ".txt", ".json", ".cfg", ".ini", ".yml", ".yaml", ".html", ".css", ".js"}):
@@ -99,13 +100,15 @@ def remove_emojis(root_dir: str, extensions: set = {".md", ".py", ".txt", ".json
         print(f"Error: The specified root directory does not exist: {root_dir}")
         sys.exit(1)
 
-    # Exclude directories that we don't want to traverse into (e.g. version control, cache, virtualenvs)
+    # Exclude directories that we don't want to traverse into 
+    # (e.g. version control, cache, virtualenvs)
     exclude_dirs = {".git", "__pycache__", ".venv", "venv", "env", "node_modules", "build", "dist"}
-    
+    counter_of_files_affected = 0
+
     for dirpath, dirnames, filenames in os.walk(root_dir):
         # Modify dirnames in-place to avoid traversing excluded directories
         dirnames[:] = [d for d in dirnames if d not in exclude_dirs]
-        
+
         for filename in filenames:
             _, ext = os.path.splitext(filename)
             if ext.lower() in extensions:
@@ -116,22 +119,23 @@ def remove_emojis(root_dir: str, extensions: set = {".md", ".py", ".txt", ".json
                 except Exception:
                     # Skip files that can't be decoded as UTF-8
                     continue
-                
+
                 new_content = emoji_pattern.sub("", content)
                 if new_content != content:
                     try:
                         with open(file_path, "w", encoding="utf-8") as f:
                             f.write(new_content)
                         print(f"Cleaned emojis from: {file_path}")
+                        counter_of_files_affected += 1
                     except Exception as e:
                         print(f"Failed to write to {file_path}: {e}")
+    print(f"Total files affected: {counter_of_files_affected}, you sure love AI huh?")
 
 if __name__ == "__main__":
     if not ROOT_FOLDER:
         print("Error: ROOT_FOLDER is not set! Please open this script and specify your project's root folder name in the 'ROOT_FOLDER' variable.")
         sys.exit(1)
-        
+
     # Find the actual root directory by climbing up from the script's location
     actual_root = find_project_root_by_name(__file__, ROOT_FOLDER)
     remove_emojis(actual_root)
-
