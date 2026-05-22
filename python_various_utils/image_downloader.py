@@ -6,11 +6,18 @@ using a streamed approach to maintain memory efficiency.
 """
 
 import requests
+from urllib.parse import urlparse, unquote
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+import os
 
 def download_image(
     url: str = None, 
-    file_name: str = "downloaded_image.png",
-    timeout: int = 10
+    output_file_name: str = "downloaded_image",
+    output_extension: str = "png",
+    retries: int = 3,
+    timeout: int = 10,
+    chunk_size: int = 1024
 ) -> None:
     """
     Download an image from a URL and save it to the local directory.
@@ -23,36 +30,53 @@ def download_image(
         print("Error: No URL provided.")
         return
 
+    #session with retries
+    session = requests.Session()
+    retries = Retry(total=retries, backoff_factor=0.5, status_forcelist=(500,502,503,504))
+    session.mount("https://", HTTPAdapter(max_retries=retries))
+    session.mount("http://", HTTPAdapter(max_retries=retries))
+
+    headers = {"User-Agent": "python-image-downloader/1.0"}
+
     try:
+        resp = session.get(url, stream=True, timeout=timeout, headers=headers, allow_redirects=True)
+        resp.raise_for_status()
+
+        # Prefer filename from argument, then Content-Disposition, then URL path
+        file_name = f"{output_file_name}.{output_extension}" if output_file_name else None
+        if not file_name:
+            cd = resp.headers.get("content-disposition")
+            if cd and "filename=" in cd:
+                # crude parse; robust parsing can be added
+                file_name = cd.split("filename=")[-1].strip('"; ')
+            else:
+                parsed = urlparse(resp.url)  # use resp.url to follow redirects
+                file_name = os.path.basename(unquote(parsed.path)) or "downloaded_image"
+        # Ensure extension if content-type says so
+        ctype = resp.headers.get("content-type", "")
+        if not ctype.startswith("image/"):
+            print(f"Warning: content-type is '{ctype}'. Continuing if you explicitly want it.")
+
+        # Save file
         print(f"--- Starting download: {file_name} ---")
+        with open(file_name, "wb") as f:
+            for chunk in resp.iter_content(chunk_size=chunk_size):
+                if chunk:
+                    f.write(chunk)
+        print(f"Success! Image saved as: {file_name}")
 
-        # Send a GET request to the URL
-        response = requests.get(url, stream=True, timeout=timeout)
-        response.encoding = 'utf-8'
-
-        # Raise an exception for 4XX or 5XX status codes
-        response.raise_for_status()
-
-        # Write the image to a file in binary mode
-        print(f"Streaming content to {file_name}...")
-        with open(file_name, 'wb') as file:
-            for chunk in response.iter_content(chunk_size=1024):
-                if chunk:  # Filter out keep-alive new chunks
-                    file.write(chunk)
-
-        print(f"Success! Image has been saved as: {file_name}")
-
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred during the request: {e}")
+    except requests.RequestException as e:
+        print(f"Request error: {e}")
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"Unexpected error: {e}")
     finally:
-        print("--- Task completed ---")
+        session.close()
 
 if __name__ == "__main__":
-    TARGET_URL = "url here"
+    TARGET_URL = "https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/0_facelift_2025/model_details_new/temerario_2/mecha/Temerario_00-Mecha-H_Card-Powertrain-last.jpg"
 
     download_image(
         url=TARGET_URL,
-        file_name="MaxxWatt_Logo.png"
+        output_file_name="MaxxWatt_Logo",
+        output_extension="png"
     )
