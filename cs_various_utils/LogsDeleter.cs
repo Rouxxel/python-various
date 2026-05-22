@@ -1,4 +1,4 @@
-﻿// NOTE: These helper files are intended to be copied into other projects.
+// NOTE: These helper files are intended to be copied into other projects.
 // Change the namespace `cs_various_utils` below to match your project's namespace
 // before integrating.
 using System;
