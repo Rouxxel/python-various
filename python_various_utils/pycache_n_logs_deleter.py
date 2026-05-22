@@ -41,7 +41,7 @@ import sys
 import shutil
 
 # FORCE USER TO SET THE ROOT FOLDER NAME (e.g. "drone_battery_performance_prediction")
-ROOT_FOLDER = ""
+ROOT_FOLDER = "python-various"  # <-- Set this to your project's root folder name (case-insensitive)
 FOLDERS_TO_REMOVE = []
 
 def find_project_root_by_name(start_path: str, target_name: str) -> str:
@@ -96,6 +96,6 @@ if __name__ == "__main__":
     actual_root = find_project_root_by_name(__file__, ROOT_FOLDER)
     
     # Use user-specified folders to remove, otherwise default to ["__pycache__", "logs"]
-    targets = FOLDERS_TO_REMOVE if FOLDERS_TO_REMOVE else ["__pycache__", "logs"]
+    targets = FOLDERS_TO_REMOVE if FOLDERS_TO_REMOVE else ["__pycache__", "logs", "obj", "bin", ".pytest_cache", "build", "dist"]
     remove_folders(actual_root, targets)
 
