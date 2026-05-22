@@ -4,7 +4,7 @@
     PURPOSE
     -------
     Tired of AI always using emojis in your code and being a dead 
-    giveaway that its AI code? 😡 well you came to the right place!!!
+    giveaway that its AI code?  well you came to the right place!!!
     This script removes emoji characters from files in a project tree.
     It is intended for use in automated codebases where emoji usage is
     undesired in production or review environments.
@@ -54,7 +54,7 @@ import sys
 import re
 
 # FORCE USER TO SET THE ROOT FOLDER NAME (e.g. "drone_battery_performance_prediction")
-ROOT_FOLDER = ""
+ROOT_FOLDER = "python-various"  # <-- Set this to your project's root folder name (case-insensitive)
 
 # Define Unicode ranges that cover most emoji characters
 emoji_pattern = re.compile(
