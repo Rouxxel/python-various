@@ -15,7 +15,7 @@ namespace cs_various_utils
     {
         public static void ExtractAudio(
             string inputPath, 
-            string outputAudioFormat = "mp3"
+            string? outputAudioFormat = "mp3"
             ){
             if (string.IsNullOrEmpty(inputPath) || !File.Exists(inputPath))
             {
@@ -78,7 +78,7 @@ namespace cs_various_utils
 
         public static void ExtractVideoWithoutAudio(
             string inputPath,
-            string outputVideoFormat
+            string? outputVideoFormat = "mp4"
             ){
             if (string.IsNullOrEmpty(inputPath) || !File.Exists(inputPath))
             {
@@ -138,10 +138,10 @@ namespace cs_various_utils
 
         public static async Task ParallelExtraction(
             string inputPath, 
-            bool extractAudio = true, 
-            string? outputAudioFormat = null, 
-            bool extractVideo = true, 
-            string? outputVideoFormat = null
+            bool? extractAudio = true, 
+            string? outputAudioFormat = "wav", 
+            bool? extractVideo = true, 
+            string? outputVideoFormat = "mp4"
             ){
             var tasks = new System.Collections.Generic.List<Task>();
             if (extractAudio && !string.IsNullOrEmpty(outputAudioFormat))
