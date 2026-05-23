@@ -21,6 +21,9 @@ websocket_template/
 │   ├── core_specs/             # Configuration and data
 │   │   ├── configuration/     # JSON config and loaders
 │   │   └── data/              # Data files and loaders
+│   ├── resources/            # Database related folder
+│   │   ├── db/               # migration related files for DBs
+│   │   └── mock_db_jsons/    # mock up jsons that approximate to the actual tables
 │   └── utils/                 # Utilities
 │       └── custom_logger.py   # Logging setup
 ├── logs/                      # Log files (created automatically)

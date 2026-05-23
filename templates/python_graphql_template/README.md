@@ -31,6 +31,9 @@ graphql_template/
 │   ├── core_specs/         # Core configuration and data
 │   │   ├── configuration/  # JSON config files and loaders
 │   │   └── data/          # Data files and loaders
+│   ├── resources/            # Database related folder
+│   │   ├── db/               # migration related files for DBs
+│   │   └── mock_db_jsons/    # mock up jsons that approximate to the actual tables
 │   └── utils/             # Utility modules
 │       ├── custom_logger.py  # Logging configuration
 │       ├── limiter.py        # Rate limiting setup
