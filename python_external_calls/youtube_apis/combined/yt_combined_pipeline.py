@@ -162,6 +162,8 @@ def _run_transcripts(
         # Build filename: <prefix>_<lang>.<ext>  or  <lang>.<ext> when no prefix
         base = f"{output_files_prefix}_{lang}" if output_files_prefix else lang
         filename = f"{base}.{transcript_extension}"
+        if ".." in filename:
+            raise Exception("Invalid file path")
 
         if transcript_extension == "txt":
             content = _format_transcript_txt(transcript)
