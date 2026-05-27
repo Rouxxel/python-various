@@ -72,11 +72,21 @@ namespace cs_various_utils
             ){
             try
             {
-                // Close existing writer if any
+                if (string.IsNullOrWhiteSpace(filePath))
+                    throw new ArgumentException("Invalid file path");
+
+                var baseDir = Path.GetFullPath("logs");
+                Directory.CreateDirectory(baseDir);
+
+                var fullPath = Path.GetFullPath(Path.Combine(baseDir, filePath));
+
+                if (!fullPath.StartsWith(baseDir))
+                    throw new ArgumentException("Path traversal detected");
+
                 _fileWriter?.Dispose();
-                
+
                 _fileWriter = new StreamWriter(
-                    new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.Read))
+                    new FileStream(fullPath, FileMode.Create, FileAccess.Write, FileShare.Read))
                 {
                     AutoFlush = true
                 };

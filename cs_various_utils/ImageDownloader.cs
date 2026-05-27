@@ -125,17 +125,29 @@ namespace cs_various_utils
                     fileName = NormalizeFileName(fileName, effectiveExtension);
                     Console.WriteLine($"--- Starting download: {fileName} ---");
 
-                    if (!string.IsNullOrEmpty(contentType) && !contentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
+                    if (string.IsNullOrWhiteSpace(fileName))
+                        throw new ArgumentException("Invalid file name");
+
+                    if (!string.IsNullOrEmpty(contentType) &&
+                        !contentType.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
                     {
                         Console.WriteLine($"Warning: content-type is '{contentType}'. Proceeding anyway.");
                     }
 
-                    using var stream = await response.Content.ReadAsStreamAsync();
-                    await using var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None);
+                    var baseDir = Path.GetFullPath("downloads");
+                    Directory.CreateDirectory(baseDir);
+
+                    var fullPath = Path.GetFullPath(Path.Combine(baseDir, fileName));
+
+                    if (!fullPath.StartsWith(baseDir))
+                        throw new ArgumentException("Invalid file path (path traversal detected)");
+
+                    await using var stream = await response.Content.ReadAsStreamAsync();
+                    await using var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write, FileShare.None);
+
                     await stream.CopyToAsync(fs);
 
-                    Console.WriteLine($"Success! Image has been saved as: {fileName}");
-                    return;
+                    Console.WriteLine($"Success! Image has been saved as: {fullPath}");
                 }
                 catch (HttpRequestException e) when (attempt < retryCount)
                 {

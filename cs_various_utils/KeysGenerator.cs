@@ -15,6 +15,12 @@ namespace cs_various_utils
             string privatePath = "private_rsa_key.pem",
             string publicPath = "public_rsa_key.pem"
             ){
+            if (string.IsNullOrWhiteSpace(privatePath) || privatePath.Contains(".."))
+                throw new ArgumentException("Invalid file path");
+
+            if (string.IsNullOrWhiteSpace(publicPath) || publicPath.Contains(".."))
+                throw new ArgumentException("Invalid file path");
+
             using var rsa = RSA.Create(2048);
 
             var privDer = rsa.ExportRSAPrivateKey();
