@@ -5,6 +5,10 @@ __pycache__/
 *.pyo
 *.pyd
 
+# specifics
+**/bin/
+**/obj/
+
 # Ignore virtual environment folders
 venv/
 env/
