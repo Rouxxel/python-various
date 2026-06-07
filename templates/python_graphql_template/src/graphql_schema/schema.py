@@ -11,18 +11,19 @@ This module defines the main GraphQL schema combining queries and mutations.
 """
 
 import strawberry
+from strawberry.extensions import DisableIntrospection
+
 from src.resolvers.query import Query
 from src.resolvers.mutation import Mutation
+from src.core_specs.configuration.config_loader import config_loader
+
+_extensions = []
+if not config_loader["graphql"]["introspection"]:
+    _extensions.append(DisableIntrospection())
 
 # Create the main GraphQL schema
 schema = strawberry.Schema(
     query=Query,
     mutation=Mutation,
-    # Enable introspection for development (disable in production if needed)
-    # introspection=True,
-    # Add extensions for better development experience
-    extensions=[
-        # Add query complexity analysis
-        # strawberry.extensions.QueryDepthLimiter(max_depth=10),
-    ]
+    extensions=_extensions,
 )

@@ -18,9 +18,12 @@ from src.types.user import User, UserInput, UserUpdateInput
 from src.types.post import Post, PostInput, PostUpdateInput
 from src.core_specs.data.data_loader import data_loader
 from src.utils.custom_logger import log_handler
+from src.resolvers.specific_resolver_group_2.example_mutation import (
+    CreateExampleItemMutation,
+)
 
 @strawberry.type
-class Mutation:
+class Mutation(CreateExampleItemMutation):
     """Root Mutation type containing all available GraphQL mutations."""
     
     @strawberry.field

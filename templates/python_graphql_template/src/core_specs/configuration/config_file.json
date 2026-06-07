@@ -38,6 +38,14 @@
             "request_limit": 100,
             "unit_of_time_for_limit": "m",
             "endpoint_route": "/health"
+        },
+        "example_endpoint_1": {
+            "field_name": "exampleItems",
+            "description": "List all example items"
+        },
+        "example_endpoint_2": {
+            "field_name": "createExampleItem",
+            "description": "Create a new example item"
         }
     }
 }

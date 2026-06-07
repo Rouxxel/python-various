@@ -66,7 +66,6 @@ app.add_exception_handler(RateLimitExceeded, rate_limit_handler)
 graphql_app = GraphQLRouter(
     schema,
     graphiql=config_loader["graphql"]["graphiql"],
-    introspection=config_loader["graphql"]["introspection"]
 )
 
 # Add rate limiting to GraphQL endpoint

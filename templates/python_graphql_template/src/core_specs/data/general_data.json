@@ -1,4 +1,6 @@
 {
+    "languages": ["en", "es", "fr", "de", "ko", "it", "ru"],
+
     "api_info": {
         "name": "GraphQL API Template",
         "version": "1.0.0",
