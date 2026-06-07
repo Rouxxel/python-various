@@ -7,6 +7,10 @@
     "dir_name": "logs",
     "log_file_name": "ws_bcknd"
   },
+  "email_validation": {
+    "allowed_providers": ["gmail", "outlook", "yahoo", "hotmail", "icloud", "protonmail", "aol", "zoho", "gmx", "mail"],
+    "allowed_tlds": ["com", "org", "net", "co", "io", "edu", "gov"]
+  },
   "network": {
     "uvicorn_app_reference": "main:app",
     "server_port": 8000,
@@ -25,6 +29,16 @@
       "endpoint_prefix": "",
       "endpoint_tag": "websocket",
       "ws_route": "/ws"
+    },
+    "example_ws_endpoint_1": {
+      "endpoint_prefix": "/subsection",
+      "endpoint_tag": "tag_name",
+      "ws_route": "/echo"
+    },
+    "example_ws_endpoint_2": {
+      "endpoint_prefix": "/subsection",
+      "endpoint_tag": "tag_name",
+      "ws_route": "/broadcast"
     }
   }
 }

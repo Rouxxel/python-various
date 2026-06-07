@@ -27,6 +27,8 @@ from src.core_specs.configuration.config_loader import config_loader
 from src.core_specs.data.data_loader import data_loader
 from src.api_endpoints.root_endpoint import router as root_router
 from src.ws_endpoints.ws_root import router as ws_router
+from src.ws_endpoints.specific_ws_group_1.example_echo_ws import router as example_ws_router_1
+from src.ws_endpoints.specific_ws_group_2.example_broadcast_ws import router as example_ws_router_2
 
 
 @asynccontextmanager
@@ -47,6 +49,8 @@ app = FastAPI(
 
 app.include_router(root_router)
 app.include_router(ws_router)
+app.include_router(example_ws_router_1)
+app.include_router(example_ws_router_2)
 
 if __name__ == "__main__":
     port = config_loader["network"]["server_port"]
