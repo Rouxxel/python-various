@@ -33,6 +33,8 @@ from src.core_specs.data.data_loader import data_loader
 
 #Endpoints imports
 from src.api_endpoints.root_endpoint import router as root_router
+from src.api_endpoints.routers.specific_router_group_1.example_router import router as example_router_1
+from src.api_endpoints.routers.specific_router_group_2.example_router import router as example_router_2
 
 """API APP-----------------------------------------------------------"""
 #Lifespan event manager (startup and shutdown)
@@ -62,7 +64,9 @@ app.add_exception_handler(RateLimitExceeded, rate_limit_handler)
 #Root
 app.include_router(root_router)
 
-#Others
+#Example router (see src/api_endpoints/routers/specific_router_group/example_router.py)
+app.include_router(example_router_1)
+app.include_router(example_router_2)
 
 """Start server-----------------------------------------------------------"""
 if __name__ == "__main__":

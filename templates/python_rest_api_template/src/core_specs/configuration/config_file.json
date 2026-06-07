@@ -1,6 +1,6 @@
 {
     "defaults":{
-        "general_data_path":"src/data/general_data.json"
+        "general_data_path":"src/core_specs/data/general_data.json"
     },
     
     "logging":{
@@ -31,18 +31,18 @@
             "endpoint_route": "/"
         },
         
-        "example_endpoint": {
+        "example_endpoint_1": {
             "request_limit": 3,
             "unit_of_time_for_limit": "m",
             "endpoint_prefix": "/subsection",
-            "endpoint_tag": "subsection",
+            "endpoint_tag": "tag_name",
             "endpoint_route": "/endpoint_name"
         },
         "example_endpoint_2": {
             "request_limit": 5,
             "unit_of_time_for_limit": "m",
             "endpoint_prefix": "/subsection",
-            "endpoint_tag": "subsection",
+            "endpoint_tag": "tag_name",
             "endpoint_route": "/endpoint_name"
         }
     }
