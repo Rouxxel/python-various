@@ -283,11 +283,13 @@ public final class ImageConverter {
         List<String> targetFormats = Arrays.asList("jpg"); // supports MULTIPLE outputs
 
         if (singleFile != null && !singleFile.isEmpty()) {
-            processSingleFile(singleFile, targetFormats, 1.0, 85, false);
+            processSingleFile(singleFile, targetFormats, 
+                1.0, 85, false);
         }
 
         if (folderToCrawl != null && !folderToCrawl.isEmpty()) {
-            processDirectory(folderToCrawl, targetFormats, inputFormats, 1.0, 85, false);
+            processDirectory(folderToCrawl, targetFormats, inputFormats, 
+                1.0, 85, false);
         }
 
         System.out.println("\nDone.");
