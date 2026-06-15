@@ -8,6 +8,7 @@ __pycache__/
 # specifics
 **/bin/
 **/obj/
+.env
 
 # Ignore virtual environment folders
 venv/
