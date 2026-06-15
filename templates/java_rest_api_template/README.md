@@ -95,6 +95,9 @@ cd whatever_you_renamed_the_folder_to
 
 # Windows
 gradlew.bat bootRun
+
+# Windows alt
+.\gradlew bootRun
 ```
 
 Or use the helper scripts which also load `.env` and offer dev/prod/Docker modes:
