@@ -7,8 +7,7 @@
  * ### @date 2026
  * #############################################################################
  *
- * Encrypts/decrypts strings with RSA-OAEP (SHA-256), matching the Python
- * template's en_de_crypt.py. Keys are read from environment variables:
+ * Encrypts/decrypts strings with RSA-OAEP (SHA-256). Keys are read from environment variables:
  *
  *   E_PUBLIC_KEY        PEM public key  ("BEGIN PUBLIC KEY",  X.509/SPKI)
  *   E_PRIVATE_KEY       PEM private key ("BEGIN PRIVATE KEY", PKCS#8, unencrypted)

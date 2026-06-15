@@ -8,8 +8,7 @@
  * #############################################################################
  *
  * Generates a public/private RSA key pair and writes them to PEM files. Run
- * once; the private key must never be shared. Equivalent of the Python
- * template's keys_generator.py.
+ * once; the private key must never be shared.
  *
  * Run it standalone to produce the keys, then paste their contents into the
  * E_PRIVATE_KEY / E_PUBLIC_KEY environment variables consumed by EnDeCrypt:

@@ -12,10 +12,9 @@
  * with ${...} placeholders in annotations (e.g. a controller's request path).
  *
  * Why this exists:
- *   In the Python template, routers read their prefix/route straight from
- *   config_loader at import time. Spring annotations are evaluated by the
- *   framework, so to keep paths "config-driven" the values must live in the
- *   Environment. This initializer makes that happen with two prefixes:
+ *   Spring annotations are evaluated by the framework, so to keep paths 
+ *   "config-driven" the values must live in the Environment. This 
+ *   initializer makes that happen with two prefixes:
  *
  *     config.*   <- everything in config_file.json
  *     data.*     <- everything in general_data.json

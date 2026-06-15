@@ -8,8 +8,7 @@
  * #############################################################################
  *
  * Centralizes how exceptions become HTTP responses, so controllers stay clean.
- * This is the combined equivalent of the Python template's request_limiter.py
- * (the 429 handler) plus FastAPI's built-in validation/HTTPException handling.
+ * the 429 handler plus FastAPI's built-in validation/HTTPException handling.
  *
  * Mappings:
  *   RateLimitExceededException        -> 429 Too Many Requests

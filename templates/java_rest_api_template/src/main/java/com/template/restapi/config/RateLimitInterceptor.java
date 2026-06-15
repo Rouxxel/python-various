@@ -16,8 +16,7 @@
  *   4. Throws RateLimitExceededException (-> 429) when the limit is exceeded.
  *
  * Together with RateLimiter (the shared limiter) and the GlobalExceptionHandler
- * (the 429 responder), this reproduces the Python template's limiter.py +
- * request_limiter.py pair.
+ * (the 429 responder).
  */
 package com.template.restapi.config;
 

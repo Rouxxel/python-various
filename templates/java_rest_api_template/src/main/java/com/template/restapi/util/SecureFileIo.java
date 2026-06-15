@@ -7,8 +7,7 @@
  * ### @date 2026
  * #############################################################################
  *
- * Hardened helpers for reading/writing files by path. Equivalent of the Python
- * template's secure_file_io.py. Provides:
+ * Hardened helpers for reading/writing files by path. Provides:
  *   - optional allowed-root confinement (blocks ../ escapes and symlink escapes)
  *   - atomic writes (temp file + move; readers never see a partial file)
  *   - a max-read-size guard

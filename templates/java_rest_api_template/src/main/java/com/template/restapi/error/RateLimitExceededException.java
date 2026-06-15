@@ -8,8 +8,7 @@
  * #############################################################################
  *
  * Thrown by RateLimitInterceptor when a client exceeds its configured request
- * budget. The GlobalExceptionHandler maps it to HTTP 429. Equivalent to
- * SlowAPI's RateLimitExceeded in the Python template.
+ * budget. The GlobalExceptionHandler maps it to HTTP 429.
  */
 package com.template.restapi.error;
 

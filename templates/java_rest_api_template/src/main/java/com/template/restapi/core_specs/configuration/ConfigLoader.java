@@ -11,10 +11,6 @@
  * class-initialization time, and exposes it as a parsed JsonNode tree for the
  * rest of the application.
  *
- * This is the direct equivalent of the Python template's config_loader.py:
- * other modules read their settings from here instead of hard-coding them.
- *
- *   Python:  config_loader["endpoints"]["example_endpoint_1"]["endpoint_route"]
  *   Java:    ConfigLoader.endpoint("example_endpoint_1").get("endpoint_route").asText()
  *
  * Note: CoreSpecsInitializer additionally bridges this same JSON into the

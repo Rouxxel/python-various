@@ -8,8 +8,7 @@
  * #############################################################################
  *
  * Dev utility that recursively deletes throwaway folders (logs, build output,
- * etc.) confined to the project root. Equivalent of the Python template's
- * pycache_n_logs_deleter.py.
+ * etc.) confined to the project root.
  *
  * HOW IT WORKS
  *   1. Climbs up from the working directory until it finds a folder named

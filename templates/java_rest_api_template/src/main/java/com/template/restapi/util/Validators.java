@@ -7,8 +7,7 @@
  * ### @date 2026
  * #############################################################################
  *
- * Validates emails, passwords, tokens, UUIDs, URLs, and phone numbers.
- * Equivalent of the Python template's validators.py. Failures throw a
+ * Validates emails, passwords, tokens, UUIDs, URLs, and phone numbers. Failures throws
  * ValidationException carrying an HTTP-style status code; GlobalExceptionHandler
  * maps it to a 400 response.
  *

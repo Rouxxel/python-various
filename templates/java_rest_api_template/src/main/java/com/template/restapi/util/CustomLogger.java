@@ -7,8 +7,7 @@
  * ### @date 2026
  * #############################################################################
  *
- * Thread-safe custom logger (equivalent of the Python template's
- * custom_logger.py / log_handler). Writes to both the console and a timestamped
+ * Thread-safe custom logger. Writes to both the console and a timestamped
  * log file, with daily rotation and configurable level filtering.
  *
  * Use CustomLogger.info(...) / debug(...) / etc. everywhere instead of

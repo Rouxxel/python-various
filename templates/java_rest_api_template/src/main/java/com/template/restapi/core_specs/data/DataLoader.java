@@ -8,11 +8,9 @@
  * #############################################################################
  *
  * Loads general (non-environment-specific) reference data from
- * general_data.json on the classpath. Direct equivalent of the Python
- * template's data_loader.py.
+ * general_data.json on the classpath
  *
  * Use it for static lookup tables such as supported languages:
- *   Python:  data_loader["languages"]
  *   Java:    DataLoader.get().get("languages")
  */
 package com.template.restapi.core_specs.data;

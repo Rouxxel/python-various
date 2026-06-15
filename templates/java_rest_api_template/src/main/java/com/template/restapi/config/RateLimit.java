@@ -11,7 +11,7 @@
  * under "endpoints" in config_file.json; the interceptor reads that entry's
  * request_limit and unit_of_time_for_limit at runtime.
  *
- * This is the Spring-idiomatic equivalent of the Python decorator:
+ * This is the Spring-idiomatic:
  *   @SlowLimiter.limit(f"{cfg['request_limit']}/{cfg['unit_of_time_for_limit']}")
  *
  * Usage:

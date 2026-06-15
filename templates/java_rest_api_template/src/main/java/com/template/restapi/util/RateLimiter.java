@@ -7,8 +7,7 @@
  * ### @date 2026
  * #############################################################################
  *
- * Shared, in-memory rate limiter. Direct equivalent of the Python template's
- * limiter.py (the shared SlowAPI Limiter instance).
+ * Shared, in-memory rate limiter (the shared SlowAPI Limiter instance).
  *
  * It implements a fixed-window counter keyed by (clientIp + endpointKey):
  * each client gets up to `limit` requests per window; once exceeded, calls
