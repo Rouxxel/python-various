@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Template.RestApi.Entities;
 using Template.RestApi.Repositories;
+using System.Text.Json;
 
 namespace Template.RestApi.Tests;
 
@@ -16,6 +17,24 @@ public sealed class HttpPipelineTests(WebApplicationFactory<Program> factory) : 
         using var content = new StringContent("{\"name\":\"example\"}", System.Text.Encoding.UTF8, "application/json");
         var response = await client.PostAsync("/subsection/items", content);
         Assert.Equal(System.Net.HttpStatusCode.Created, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task ExampleItemEndpointsSupportFullCrudAndValidation()
+    {
+        using var client = factory.CreateClient();
+        using var create = new StringContent("{\"name\":\"crud\",\"description\":\"before\"}", System.Text.Encoding.UTF8, "application/json");
+        var created = await client.PostAsync("/subsection/items", create);
+        Assert.Equal(System.Net.HttpStatusCode.Created, created.StatusCode);
+        var id = JsonDocument.Parse(await created.Content.ReadAsStringAsync()).RootElement.GetProperty("id").GetString();
+        Assert.NotNull(id);
+        Assert.Equal(System.Net.HttpStatusCode.OK, (await client.GetAsync($"/subsection/items/{id}")).StatusCode);
+        using var patch = new StringContent("{\"description\":\"after\"}", System.Text.Encoding.UTF8, "application/json");
+        Assert.Equal(System.Net.HttpStatusCode.OK, (await client.PatchAsync($"/subsection/items/{id}", patch)).StatusCode);
+        Assert.Equal(System.Net.HttpStatusCode.NoContent, (await client.DeleteAsync($"/subsection/items/{id}")).StatusCode);
+        Assert.Equal(System.Net.HttpStatusCode.NotFound, (await client.GetAsync($"/subsection/items/{id}")).StatusCode);
+        using var invalid = new StringContent("{\"name\":\"\"}", System.Text.Encoding.UTF8, "application/json");
+        Assert.Equal(System.Net.HttpStatusCode.BadRequest, (await client.PostAsync("/subsection/items", invalid)).StatusCode);
     }
 
     [Fact]
