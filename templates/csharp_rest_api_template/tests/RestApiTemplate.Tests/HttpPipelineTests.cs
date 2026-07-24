@@ -5,6 +5,15 @@ namespace Template.RestApi.Tests;
 public sealed class HttpPipelineTests(WebApplicationFactory<Program> factory) : IClassFixture<WebApplicationFactory<Program>>
 {
     [Fact]
+    public async Task CreateItemReturnsCreated()
+    {
+        using var client = factory.CreateClient();
+        using var content = new StringContent("{\"name\":\"example\"}", System.Text.Encoding.UTF8, "application/json");
+        var response = await client.PostAsync("/subsection/items", content);
+        Assert.Equal(System.Net.HttpStatusCode.Created, response.StatusCode);
+    }
+
+    [Fact]
     public async Task RootHealthDocsAndNotFoundUseExpectedResponses()
     {
         using var client = factory.CreateClient();

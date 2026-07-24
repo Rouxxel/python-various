@@ -3,7 +3,6 @@ using Template.RestApi.Configuration;
 
 namespace Template.RestApi.Controllers.ExampleGroupTwo;
 
-[Tags("example-status")]
 public sealed class ExampleStatusController : ControllerBase
 {
     [HttpGet]

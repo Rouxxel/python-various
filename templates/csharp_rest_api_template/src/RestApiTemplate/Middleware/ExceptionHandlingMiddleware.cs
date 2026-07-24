@@ -32,7 +32,7 @@ public sealed class ExceptionHandlingMiddleware(RequestDelegate next)
         }
         catch (Exception exception)
         {
-            CustomLogger.Error($"Unhandled request exception: {exception.Message}");
+            CustomLogger.Error($"Unhandled request exception: {exception}");
             await WriteError(context, ErrorResponse.InternalServerError());
         }
     }

@@ -5,7 +5,6 @@ namespace Template.RestApi.Controllers;
 
 [ApiController]
 [Route("")]
-[Tags("root")]
 public sealed class RootController : ControllerBase
 {
     [HttpGet("")]

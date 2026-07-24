@@ -35,7 +35,17 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
         new BadRequestObjectResult(ErrorResponse.BadRequest("One or more validation errors occurred.")));
 builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+    options.TagActionsBy(api =>
+    {
+        var endpointKey = api.ActionDescriptor.RouteValues["controller"] switch
+        {
+            "ExampleItems" => "example_endpoint_1",
+            "ExampleStatus" => "example_endpoint_2",
+            _ => "root_directory_endpoint"
+        };
+        return new[] { coreSpecs.ConfigurationLoader.GetEndpoint(endpointKey).EndpointTag };
+    }));
 builder.Services.AddSingleton<RateLimiter>();
 builder.Services.AddSingleton<IExampleItemRepository, InMemoryExampleItemRepository>();
 builder.Services.AddSingleton<ExampleItemService>();

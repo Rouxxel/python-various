@@ -7,7 +7,6 @@ using Template.RestApi.Utils;
 
 namespace Template.RestApi.Controllers.ExampleGroupOne;
 
-[Tags("example-items")]
 public sealed class ExampleItemsController(ExampleItemService service, DataLoader dataLoader) : ControllerBase
 {
     [HttpGet]
