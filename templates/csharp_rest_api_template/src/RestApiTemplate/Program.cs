@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.OpenApi.Models;
 using Template.RestApi.Configuration;
 using Template.RestApi.Errors;
 using Template.RestApi.Middleware;
@@ -36,6 +37,13 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddHealthChecks();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = Environment.GetEnvironmentVariable("API_TITLE") ?? "C# REST API Template",
+        Version = Environment.GetEnvironmentVariable("API_VERSION") ?? "1.0.0",
+        Description = Environment.GetEnvironmentVariable("API_DESCRIPTION") ?? "A template for building REST APIs with ASP.NET Core"
+    });
     options.TagActionsBy(api =>
     {
         var endpointKey = api.ActionDescriptor.RouteValues["controller"] switch
@@ -45,7 +53,8 @@ builder.Services.AddSwaggerGen(options =>
             _ => "root_directory_endpoint"
         };
         return new[] { coreSpecs.ConfigurationLoader.GetEndpoint(endpointKey).EndpointTag };
-    }));
+    });
+});
 builder.Services.AddSingleton<RateLimiter>();
 builder.Services.AddSingleton<IExampleItemRepository, InMemoryExampleItemRepository>();
 builder.Services.AddSingleton<ExampleItemService>();
