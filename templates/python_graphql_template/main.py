@@ -101,7 +101,7 @@ async def health_check(request: Request):
     """
     log_handler.debug("Health check endpoint called")
     return {
-        "status": "healthy",
+        "status": "healthy and ready to use other endpoints",
         "message": "GraphQL API Template is running",
         "graphql_endpoint": config_loader["graphql"]["endpoint"],
         "graphiql_available": config_loader["graphql"]["graphiql"]
