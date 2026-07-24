@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Template.RestApi.Configuration;
 using Template.RestApi.CoreSpecs.Data;
 using Template.RestApi.DTOs;
+using Template.RestApi.Errors;
 using Template.RestApi.Services;
 using Template.RestApi.Utils;
 
@@ -23,12 +24,17 @@ public sealed class ExampleItemsController(ExampleItemService service, DataLoade
     [RateLimit("example_endpoint_1")]
     public ActionResult<ExampleItemResponse> Create([FromBody] ExampleItemCreate input, [FromQuery] string? contactEmail)
     {
+        if (!ModelState.IsValid) return BadRequest(ErrorResponse.BadRequest("One or more validation errors occurred."));
         if (!string.IsNullOrWhiteSpace(contactEmail)) Validators.ValidateEmailFormat(contactEmail);
         return StatusCode(StatusCodes.Status201Created, service.Create(input));
     }
     [HttpPatch]
     [RateLimit("example_endpoint_1")]
-    public ActionResult<ExampleItemResponse> Update(string id, [FromBody] ExampleItemUpdate input) => Ok(service.Update(id, input));
+    public ActionResult<ExampleItemResponse> Update(string id, [FromBody] ExampleItemUpdate input)
+    {
+        if (!ModelState.IsValid) return BadRequest(ErrorResponse.BadRequest("One or more validation errors occurred."));
+        return Ok(service.Update(id, input));
+    }
     [HttpDelete]
     [RateLimit("example_endpoint_1")]
     public IActionResult Delete(string id) { service.Delete(id); return NoContent(); }
