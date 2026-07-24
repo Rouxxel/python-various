@@ -34,10 +34,11 @@ namespace Template.RestApi.Utils
         public static LogLevel MinimumLogLevel = LogLevel.Debug; // Configurable log level filtering
 
         public static void Setup(
-            string? logDirectory = null, 
-            string? logFileName = null, 
+            string? logDirectory = null,
+            string? logFileName = null,
             LogLevel minLogLevel = LogLevel.Debug
-            ){
+            )
+        {
             lock (_lock)
             {
                 try
@@ -47,15 +48,15 @@ namespace Template.RestApi.Utils
                     MinimumLogLevel = minLogLevel;
 
                     Directory.CreateDirectory(LogDirectory);
-                    
+
                     // Initialize the log file for today
                     _currentLogDate = DateTime.UtcNow.ToString("yyyyMMdd");
                     var timestamp = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
                     _currentLogFile = Path.Combine(LogDirectory, $"{LogFileName}_{timestamp}.log");
-                    
+
                     OpenLogFile(_currentLogFile);
                     _isInitialized = true;
-                    
+
                     Info("PROJECTNAME backend server starting");
                     Warning($"Current working directory: {Directory.GetCurrentDirectory()}, Logs written to '{LogDirectory}'");
                 }
@@ -69,7 +70,8 @@ namespace Template.RestApi.Utils
 
         private static void OpenLogFile(
             string filePath
-            ){
+            )
+        {
             try
             {
                 if (string.IsNullOrWhiteSpace(filePath))
@@ -99,7 +101,8 @@ namespace Template.RestApi.Utils
         }
 
         private static void CheckRotation(
-        ){
+        )
+        {
             // Check if date has changed for daily log rotation
             string todayDate = DateTime.UtcNow.ToString("yyyyMMdd");
             if (todayDate != _currentLogDate)
@@ -113,9 +116,10 @@ namespace Template.RestApi.Utils
         }
 
         private static void Write(
-            LogLevel level, 
+            LogLevel level,
             string message
-            ){
+            )
+        {
             // Filter by log level
             if (level < MinimumLogLevel)
                 return;
@@ -131,13 +135,13 @@ namespace Template.RestApi.Utils
                 lock (_lock)
                 {
                     CheckRotation();
-                    
+
                     var ts = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss.fff");
                     var levelStr = level.ToString().ToUpper();
                     var line = $"[{ts}] [{levelStr}] {message}";
-                    
+
                     Console.WriteLine(line);
-                    
+
                     if (_fileWriter != null)
                     {
                         _fileWriter.WriteLine(line);
@@ -163,7 +167,8 @@ namespace Template.RestApi.Utils
         // Properly closes and disposes the file writer. 
         // Call before application shutdown.
         public static void Shutdown(
-        ){
+        )
+        {
             lock (_lock)
             {
                 try
@@ -186,24 +191,24 @@ namespace Template.RestApi.Utils
     }
 }
 
-    // Example usage (copy into your project's startup or main code):
-    // using cs_various_utils;
-    //
-    // CustomLogger.Setup("logs", "my_app_log", LogLevel.Info);
-    // CustomLogger.Info("Info message");
-    // CustomLogger.Debug("Debug message"); // Won't log if MinimumLogLevel is Info
-    //
-    // CustomLogger.Warning($"Warning message: {someValue}");
-    // CustomLogger.Error($"Error message: {someValue}");
-    //
-    // // Shutdown before application exit:
-    // CustomLogger.Shutdown();
-    //
-    // Notes:
-    // - `Setup()` must be called before logging to initialize the log file.
-    // - `MinimumLogLevel` controls which messages are written to file and console.
-    // - Log rotation is handled by date changes; a new file is created when the UTC date changes.
-    // - Failures writing to the log file are handled gracefully and printed to stderr.
-    // - The logger is thread-safe via internal locking.
-    //
-    // Available Log Levels: Debug, Info, Warning, Error, Critical
+// Example usage (copy into your project's startup or main code):
+// using cs_various_utils;
+//
+// CustomLogger.Setup("logs", "my_app_log", LogLevel.Info);
+// CustomLogger.Info("Info message");
+// CustomLogger.Debug("Debug message"); // Won't log if MinimumLogLevel is Info
+//
+// CustomLogger.Warning($"Warning message: {someValue}");
+// CustomLogger.Error($"Error message: {someValue}");
+//
+// // Shutdown before application exit:
+// CustomLogger.Shutdown();
+//
+// Notes:
+// - `Setup()` must be called before logging to initialize the log file.
+// - `MinimumLogLevel` controls which messages are written to file and console.
+// - Log rotation is handled by date changes; a new file is created when the UTC date changes.
+// - Failures writing to the log file are handled gracefully and printed to stderr.
+// - The logger is thread-safe via internal locking.
+//
+// Available Log Levels: Debug, Info, Warning, Error, Critical

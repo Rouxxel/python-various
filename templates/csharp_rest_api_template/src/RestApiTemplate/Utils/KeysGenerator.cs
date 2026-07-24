@@ -14,7 +14,8 @@ namespace Template.RestApi.Utils
         public static void GenerateRsaKeys(
             string privatePath = "private_rsa_key.pem",
             string publicPath = "public_rsa_key.pem"
-            ){
+            )
+        {
             if (string.IsNullOrWhiteSpace(privatePath) || privatePath.Contains(".."))
                 throw new ArgumentException("Invalid file path");
 
@@ -36,9 +37,10 @@ namespace Template.RestApi.Utils
 
         //Private method only should be used internally by the latter
         private static string PemEncode(
-            string label, 
+            string label,
             byte[] der
-            ){
+            )
+        {
             var b64 = Convert.ToBase64String(der);
             var sb = new StringBuilder();
             sb.AppendLine($"-----BEGIN {label}-----");

@@ -88,7 +88,7 @@ app.MapControllerRoute("example-items-get", $"{itemPath}/{{id}}", new { controll
 app.MapControllerRoute("example-items-update", $"{itemPath}/{{id}}", new { controller = "ExampleItems", action = "Update" });
 app.MapControllerRoute("example-items-delete", $"{itemPath}/{{id}}", new { controller = "ExampleItems", action = "Delete" });
 var statusEndpoint = coreSpecs.ConfigurationLoader.GetEndpoint("example_endpoint_2");
-app.MapControllerRoute("example-status", $"{statusEndpoint.EndpointPrefix.Trim('/')}/{statusEndpoint.EndpointRoute.Trim('/')}" , new { controller = "ExampleStatus", action = "Get" });
+app.MapControllerRoute("example-status", $"{statusEndpoint.EndpointPrefix.Trim('/')}/{statusEndpoint.EndpointRoute.Trim('/')}", new { controller = "ExampleStatus", action = "Get" });
 app.MapGet("/health", async (HealthCheckService healthChecks) =>
 {
     var result = await healthChecks.CheckHealthAsync();

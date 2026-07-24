@@ -13,7 +13,8 @@ namespace Template.RestApi.Utils
         public static string FindProjectRootByName(
             string startPath,
             string? targetName = null
-            ){
+            )
+        {
             var current = Path.GetFullPath(startPath);
             if (File.Exists(current)) current = Path.GetDirectoryName(current);
             var targetLower = targetName?.Trim().ToLower();
@@ -28,9 +29,10 @@ namespace Template.RestApi.Utils
         }
 
         public static void RemoveLogFolders(
-            string rootDir, 
+            string rootDir,
             string[] foldersToRemove
-            ){
+            )
+        {
             var targets = (foldersToRemove == null || foldersToRemove.Length == 0)
                 ? new[] { "bin", "obj", "logs" }
                 : foldersToRemove;
