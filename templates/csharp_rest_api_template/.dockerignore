@@ -1,0 +1,15 @@
+.git
+.gitignore
+.vs
+.vscode
+**/bin
+**/obj
+**/TestResults
+coverage
+logs
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+README.md
