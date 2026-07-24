@@ -1,6 +1,7 @@
 using Template.RestApi.Configuration;
 using Template.RestApi.CoreSpecs.Configuration;
 using Template.RestApi.Errors;
+using Template.RestApi.Utils;
 
 namespace Template.RestApi.Middleware;
 
@@ -25,5 +26,6 @@ public sealed class RateLimitMiddleware(RequestDelegate next)
         }
 
         await next(context);
+        CustomLogger.Debug($"{context.Request.Method} {context.Request.Path} -> {context.Response.StatusCode}");
     }
 }

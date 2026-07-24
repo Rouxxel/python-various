@@ -47,6 +47,7 @@ namespace Template.RestApi.Utils
                     if (!string.IsNullOrEmpty(logFileName)) LogFileName = logFileName;
                     MinimumLogLevel = minLogLevel;
 
+                    LogDirectory = Path.GetFullPath(LogDirectory);
                     Directory.CreateDirectory(LogDirectory);
 
                     // Initialize the log file for today
@@ -54,8 +55,11 @@ namespace Template.RestApi.Utils
                     var timestamp = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
                     _currentLogFile = Path.Combine(LogDirectory, $"{LogFileName}_{timestamp}.log");
 
-                    OpenLogFile(_currentLogFile);
-                    _isInitialized = true;
+                    _isInitialized = OpenLogFile(_currentLogFile);
+                    if (!_isInitialized)
+                    {
+                        Console.Error.WriteLine("Logger will continue with console-only output.");
+                    }
 
                     Info("PROJECTNAME backend server starting");
                     Warning($"Current working directory: {Directory.GetCurrentDirectory()}, Logs written to '{LogDirectory}'");
@@ -68,7 +72,7 @@ namespace Template.RestApi.Utils
             }
         }
 
-        private static void OpenLogFile(
+        private static bool OpenLogFile(
             string filePath
             )
         {
@@ -78,9 +82,10 @@ namespace Template.RestApi.Utils
                     throw new ArgumentException("Invalid file path");
 
                 var baseDir = Path.GetFullPath(LogDirectory);
-                Directory.CreateDirectory(baseDir);
-
                 var fullPath = Path.GetFullPath(filePath);
+                var parentDirectory = Path.GetDirectoryName(fullPath)
+                    ?? throw new ArgumentException("Log file path has no parent directory.");
+                Directory.CreateDirectory(parentDirectory);
 
                 if (!fullPath.StartsWith(baseDir, StringComparison.OrdinalIgnoreCase))
                     throw new ArgumentException("Path traversal detected");
@@ -92,11 +97,13 @@ namespace Template.RestApi.Utils
                 {
                     AutoFlush = true
                 };
+                return true;
             }
             catch (Exception ex)
             {
                 Console.Error.WriteLine($"Failed to open log file '{filePath}': {ex.Message}");
                 _fileWriter = null;
+                return false;
             }
         }
 
@@ -109,7 +116,7 @@ namespace Template.RestApi.Utils
             {
                 var timestamp = DateTime.UtcNow.ToString("yyyyMMdd_HHmmss");
                 var newLogFile = Path.Combine(LogDirectory, $"{LogFileName}_{timestamp}.log");
-                OpenLogFile(newLogFile);
+                _isInitialized = OpenLogFile(newLogFile);
                 _currentLogDate = todayDate;
                 _currentLogFile = newLogFile;
             }
