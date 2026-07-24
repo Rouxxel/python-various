@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="libphonenumber-csharp" Version="9.0.35" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
 </Project>
