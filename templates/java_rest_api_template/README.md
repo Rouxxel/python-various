@@ -200,8 +200,11 @@ List<String> languages = DataLoader.stringList("languages");
 ### Environment variables (`.env`)
 
 ```bash
-# Used by docker-compose to publish the port (the actual bound port comes from config_file.json)
-SERVER_PORT=8080
+# Server configuration
+SERVER_PORT=8080          # Used by docker-compose to publish the port
+HOST=0.0.0.0              # Application host binding
+RELOAD=false              # Hot reload toggle
+WORKERS=1                 # Number of worker processes
 
 # API metadata (read by application.properties)
 API_TITLE=Java REST API Template
@@ -212,6 +215,18 @@ API_DESCRIPTION=A template for building REST APIs with Spring Boot
 E_PUBLIC_KEY=your_public_key_pem_here
 E_PRIVATE_KEY=your_private_key_pem_here
 E_PRIVATE_PASSWORD=optional_unused_with_bundled_keygen
+
+# Logging
+LOG_LEVEL=info            # Logging level (debug/info/warning/error/critical)
+
+# Database (uncomment if using database)
+# POSTGRES_DB=api_db
+# POSTGRES_USER=api_user
+# POSTGRES_PASSWORD=api_password
+# DATABASE_URL=jdbc:postgresql://postgres:5432/api_db
+
+# Redis (uncomment if using Redis for rate limiting)
+# REDIS_URL=redis://redis:6379/0
 ```
 
 > The bound server port/host come from `config_file.json` (`network.*`), which `CoreSpecsInitializer` maps onto Spring's `server.port` / `server.address`. `SERVER_PORT` in `.env` is only used by `docker-compose` for port publishing.
