@@ -155,7 +155,29 @@ The suite covers CoreSpecs loading, utility configuration and path protection, r
 
 ## Environment variables
 
-`.env` is used by Docker Compose and local tooling. `HOST_PORT` publishes the container port; `API_TITLE`, `API_VERSION`, and `API_DESCRIPTION` set OpenAPI metadata. The actual bound application host/port remain controlled by `CoreSpecs.network`.
+`.env` is used by Docker Compose and local tooling. Available variables:
+
+| Variable | Description |
+|---|---|
+| `ASPNETCORE_ENVIRONMENT` | ASP.NET Core environment (Development, Production) |
+| `HOST_PORT` | Container port mapping (default: 8080) |
+| `HOST` | Application host binding (default: 0.0.0.0) |
+| `RELOAD` | Hot reload toggle (default: false) |
+| `WORKERS` | Number of worker processes (default: 1) |
+| `E_PRIVATE_KEY` | RSA private key for encryption (replace in production) |
+| `E_PRIVATE_PASSWORD` | RSA private key password (replace in production) |
+| `E_PUBLIC_KEY` | RSA public key for encryption (replace in production) |
+| `POSTGRES_DB` | PostgreSQL database name (uncomment if using database) |
+| `POSTGRES_USER` | PostgreSQL username (uncomment if using database) |
+| `POSTGRES_PASSWORD` | PostgreSQL password (uncomment if using database) |
+| `DATABASE_URL` | PostgreSQL connection string (uncomment if using database) |
+| `REDIS_URL` | Redis connection string (uncomment if using Redis) |
+| `LOG_LEVEL` | Logging level (default: info) |
+| `API_TITLE` | OpenAPI title (default: Csharp REST API Template) |
+| `API_VERSION` | OpenAPI version (default: 1.0.0) |
+| `API_DESCRIPTION` | OpenAPI description |
+
+The actual bound application host/port remain controlled by `CoreSpecs.network`.
 
 ## License
 

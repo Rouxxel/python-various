@@ -22,3 +22,14 @@ dotnet run --project src/RestApiTemplate -- --generate-rsa-keys
 
 The generated PEM files are ignored by Git. Do not use this command to create
 or store production secrets on a developer workstation.
+
+## Environment variables for utilities
+
+The following environment variables configure utility behavior:
+
+- `E_PRIVATE_KEY`: Path to or content of RSA private key
+- `E_PRIVATE_PASSWORD`: Password for encrypted private key
+- `E_PUBLIC_KEY`: Path to or content of RSA public key
+- `LOG_LEVEL`: Controls logging verbosity for CustomLogger
+
+These are loaded from `.env` and used by `KeysGenerator` and `CustomLogger`.

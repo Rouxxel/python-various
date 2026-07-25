@@ -40,7 +40,7 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = Environment.GetEnvironmentVariable("API_TITLE") ?? "C# REST API Template",
+        Title = Environment.GetEnvironmentVariable("API_TITLE") ?? "Csharp REST API Template",
         Version = Environment.GetEnvironmentVariable("API_VERSION") ?? "1.0.0",
         Description = Environment.GetEnvironmentVariable("API_DESCRIPTION") ?? "A template for building REST APIs with ASP.NET Core"
     });
