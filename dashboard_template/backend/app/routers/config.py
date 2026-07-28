@@ -3,12 +3,16 @@
 from fastapi import APIRouter
 
 from app.config import settings
+from app.core_specs.configuration.config_loader import config_loader
 from app.services.providers import get_provider_status
 
-router = APIRouter(prefix="/config", tags=["config"])
+_features_cfg = config_loader["endpoints"]["config_features"]
+_env_cfg = config_loader["endpoints"]["config_env"]
+
+router = APIRouter(prefix=_features_cfg["router_prefix"], tags=[_features_cfg["endpoint_tag"]])
 
 
-@router.get("/features")
+@router.get(_features_cfg["endpoint_route"])
 async def get_features() -> dict:
     """Get enabled features and current data mode."""
     return {
@@ -27,7 +31,7 @@ async def get_features() -> dict:
     }
 
 
-@router.get("/env")
+@router.get(_env_cfg["endpoint_route"])
 async def get_env_config() -> dict:
     """Sanitized environment configuration for the frontend."""
     return {
