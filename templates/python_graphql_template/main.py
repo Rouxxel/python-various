@@ -33,6 +33,7 @@ from src.graphql_schema.schema import schema
 # Configuration imports
 from src.core_specs.configuration.config_loader import config_loader
 from src.core_specs.data.data_loader import data_loader
+from src.resources.cache.redis_client import close_redis, get_redis_status
 
 """API APP-----------------------------------------------------------"""
 # Lifespan event manager (startup and shutdown)
@@ -44,6 +45,7 @@ async def lifespan(app: FastAPI):
     if config_loader["graphql"]["graphiql"]:
         log_handler.info(f"GraphiQL interface available at: http://localhost:{port}{config_loader['graphql']['endpoint']}")
     yield
+    close_redis()
     log_handler.info("GraphQL API Template server shutting down")
 
 # Create FastAPI app
@@ -101,10 +103,11 @@ async def health_check(request: Request):
     """
     log_handler.debug("Health check endpoint called")
     return {
-        "status": "healthy and ready to use other endpoints",
+        "status": "ok",
         "message": "GraphQL API Template is running",
+        "redis": get_redis_status(),
         "graphql_endpoint": config_loader["graphql"]["endpoint"],
-        "graphiql_available": config_loader["graphql"]["graphiql"]
+        "graphiql_available": config_loader["graphql"]["graphiql"],
     }
 
 """Start server-----------------------------------------------------------"""
