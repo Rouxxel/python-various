@@ -31,6 +31,9 @@ from src.utils.limiter import limiter
 from src.core_specs.configuration.config_loader import config_loader
 from src.core_specs.data.data_loader import data_loader
 
+#Resources imports
+from src.resources.cache.redis_client import close_redis
+
 #Endpoints imports
 from src.api_endpoints.root_endpoint import router as root_router
 from src.api_endpoints.routers.specific_router_group_1.example_router import router as example_router_1
@@ -43,6 +46,7 @@ async def lifespan(app: FastAPI):
     port = config_loader["network"]["server_port"]
     log_handler.info(f"REST API Template server starting on port {port}")
     yield
+    close_redis()
     log_handler.info("REST API Template server shutting down")
 
 #Create FastAPI app
