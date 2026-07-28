@@ -1,4 +1,10 @@
-"""Dashboard application configuration via environment variables."""
+"""Dashboard application configuration via environment variables.
+
+Structural settings (logging paths, network, route prefixes, mock file map) live in
+``app/core_specs/configuration/config_file.json`` and are loaded by ``config_loader``.
+
+Secrets, provider credentials, and feature flags stay here in ``backend/.env``.
+"""
 
 import os
 from dataclasses import dataclass
