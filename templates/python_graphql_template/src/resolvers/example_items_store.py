@@ -9,7 +9,13 @@ from typing import Dict
 #Other files imports
 from src.types.example_item import ExampleItem
 
-_items_store: Dict[str, ExampleItem] = {}
+_items_store: Dict[str, ExampleItem] = {
+    "demo-001": ExampleItem(
+        id="demo-001",
+        name="Demo item",
+        description="Seeded item for the Redis cache example",
+    ),
+}
 
 
 def get_items_store() -> Dict[str, ExampleItem]:
