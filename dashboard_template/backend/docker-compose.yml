@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: analytics-dashboard-backend
+    ports:
+      - "8001:8001"
+    environment:
+      API_KEY: ${API_KEY:-change-me-local-dev}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      DASHBOARD_DATA_MODE: ${DASHBOARD_DATA_MODE:-mock}
+      DASHBOARD_BACKEND_HOST: 0.0.0.0
+      DASHBOARD_BACKEND_PORT: 8001
+      FEATURE_SUPABASE: ${FEATURE_SUPABASE:-false}
+      FEATURE_VERCEL: ${FEATURE_VERCEL:-false}
+      FEATURE_HOST_HEALTH: ${FEATURE_HOST_HEALTH:-false}
+      HOSTING_PROVIDER: ${HOSTING_PROVIDER:-none}
+      FEATURE_COSTS_MODULE: ${FEATURE_COSTS_MODULE:-false}
+      FEATURE_STORAGE_METRICS: ${FEATURE_STORAGE_METRICS:-false}
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s

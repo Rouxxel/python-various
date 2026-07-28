@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# Tests and tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+tests/
+
+# Environment and secrets (mount or inject at runtime)
+.env
+.env.*
+!.env.example
+!.env.mock.example
+
+# Git and editors
+.git/
+.gitignore
+.idea/
+.vscode/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Docs (not needed in image)
+README.md
+../docs/
