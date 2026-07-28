@@ -43,7 +43,7 @@
             "unit_of_time_for_limit": "m",
             "endpoint_prefix": "/subsection",
             "endpoint_tag": "tag_name",
-            "endpoint_route": "/endpoint_name"
+            "endpoint_route": "/items/{item_id}"
         }
     }
 }

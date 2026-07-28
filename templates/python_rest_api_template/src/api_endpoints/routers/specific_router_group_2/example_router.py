@@ -17,34 +17,20 @@ in folders and not a single endless file.
 Demonstrates:
     - ``config_loader`` for prefix, tag, route, and per-endpoint rate limits
     - Pydantic models for request/response bodies (``src/models/``)
-    - ``validators`` for input checks
-    - ``data_loader`` for static reference data
     - ``log_handler`` for structured logging
     - ``limiter`` (SlowAPI) for rate limiting
+    - Optional Redis cache via ``example_item_service`` (not direct Redis imports)
 """
 
-#Native imports
-import uuid
-from typing import Dict, List, Optional
-
 #Third-party imports
-from fastapi import APIRouter, Body, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request
 
 #Other files imports
 from src.utils.custom_logger import log_handler
 from src.utils.limiter import limiter as SlowLimiter
 from src.core_specs.configuration.config_loader import config_loader
-from src.core_specs.data.data_loader import data_loader
-from src.utils.validators import validate_email_format
-from src.models.models_example import (
-    ExampleItem,
-    ExampleItemCreate,
-    ExampleItemResponse,
-)
-
-"""VARIABLES-----------------------------------------------------------"""
-#In-memory store for demo purposes; replace with a real data source in production.
-_items_store: Dict[str, ExampleItem] = {}
+from src.resources.example_item_service import get_example_item_by_id
+from src.models.models_example import ExampleItemResponse
 
 """API ROUTER-----------------------------------------------------------"""
 router = APIRouter(
@@ -58,18 +44,22 @@ router = APIRouter(
     f"{config_loader['endpoints']['example_endpoint_2']['request_limit']}/"
     f"{config_loader['endpoints']['example_endpoint_2']['unit_of_time_for_limit']}"
 )
-async def list_example_items(request: Request) -> List[ExampleItemResponse]:
+async def get_example_item(request: Request, item_id: str) -> ExampleItemResponse:
     """
-    List all example items.
+    Get a single example item by ID (optional Redis cache via service layer).
 
     Parameters:
         request (Request): Incoming HTTP request (required by the rate limiter).
+        item_id (str): Unique item identifier.
 
     Returns:
-        list[ExampleItemResponse]: All stored example items.
+        ExampleItemResponse: The requested item.
+
+    Raises:
+        HTTPException: 404 if the item does not exist.
     """
-    log_handler.debug(
-        "Listing example items (supported languages: %s)",
-        data_loader.get("languages", []),
-    )
-    return list(_items_store.values())
+    log_handler.debug("Fetching example item %s", item_id)
+    item = get_example_item_by_id(item_id)
+    if item is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return item
