@@ -19,9 +19,12 @@ from src.types.post import Post
 from src.core_specs.data.data_loader import data_loader
 from src.utils.custom_logger import log_handler
 from src.resolvers.specific_resolver_group_1.example_query import ExampleItemsQuery
+from src.resolvers.specific_resolver_group_1.example_item_by_id_query import (
+    ExampleItemByIdQuery,
+)
 
 @strawberry.type
-class Query(ExampleItemsQuery):
+class Query(ExampleItemsQuery, ExampleItemByIdQuery):
     """Root Query type containing all available GraphQL queries."""
     
     @strawberry.field
