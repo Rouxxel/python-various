@@ -1,33 +1,43 @@
 # Mock Data
 
-This directory contains mock data files for development and testing without external services.
+JSON payloads for **mock mode** (`DASHBOARD_DATA_MODE=mock`). No external services required.
+
+## Configuration
+
+File names and directory are centralized in `app/core_specs/configuration/config_file.json`:
+
+```json
+{
+  "defaults": { "mock_data_path": "app/mock_data" },
+  "mock_data": {
+    "overview": "overview.json",
+    "users": "users.json"
+  }
+}
+```
+
+`MockDataSource` loads files via `app/utils/secure_file_io.read_json` (path-confined reads).
 
 ## Files
 
-- `overview.json` - Overview page metrics and charts
-- `users.json` - User analytics data
-- `sessions.json` - Session analytics data
-- `activity.json` - Activity/events data
-- `infrastructure.json` - Infrastructure and hosting metrics
-- `costs.json` - Cost tracking data
-- `ai_metrics.json` - AI/ML metrics
+| File | Used by |
+|------|---------|
+| `overview.json` | `/api/overview` |
+| `users.json` | `/api/users` |
+| `sessions.json` | `/api/sessions` |
+| `activity.json` | `/api/activity` |
+| `infrastructure.json` | `/api/infrastructure` |
+| `costs.json` | `/api/costs` |
+| `ai_metrics.json` | `/api/ai` |
 
-## Usage
+## Adding mock data for a new endpoint
 
-Mock data is automatically loaded when `DASHBOARD_DATA_MODE=mock` in backend/.env.
-
-## Extending
-
-To add mock data for a new endpoint:
-
-1. Create a new JSON file in this directory
-2. Structure it to match the Pydantic response model
-3. Add a loading method in `MockDataSource` class in `data_source.py`
-4. Test with mock mode enabled
+1. Add a JSON file in this directory.
+2. Register the mapping under `"mock_data"` in `config_file.json`.
+3. Add a loader method on `MockDataSource` in `app/services/data_source.py`.
+4. Match the shape expected by the frontend types in `frontend/src/lib/api.ts`.
 
 ## Notes
 
-- Mock data should demonstrate realistic scenarios
-- Include edge cases (zero values, empty states)
-- Match the exact structure expected by frontend types
-- Update this README when adding new files
+- Include realistic values and empty-state examples where useful.
+- Keep structures aligned with live-mode builders in `app/services/live/`.

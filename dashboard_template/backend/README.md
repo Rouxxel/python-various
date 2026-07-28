@@ -2,6 +2,43 @@
 
 FastAPI backend for the analytics dashboard template. Supports mock mode (zero external services) and live mode with optional provider integrations.
 
+## Project structure
+
+```
+backend/
+├── app/
+│   ├── core_specs/
+│   │   └── configuration/
+│   │       ├── config_file.json    # Logging, network, routes, mock paths
+│   │       └── config_loader.py    # Loads JSON → config_loader dict
+│   ├── routers/                    # API route handlers (paths from config)
+│   ├── services/
+│   │   ├── data_source.py          # Mock vs live abstraction
+│   │   ├── live/                   # Live data builders
+│   │   ├── providers/              # Supabase, Vercel, Datadog, etc.
+│   │   ├── hosting/                # Render/Railway health + wake
+│   │   └── costs/
+│   ├── mock_data/                  # JSON payloads for mock mode
+│   ├── utils/
+│   │   ├── custom_logger.py        # log_handler (from python_various_utils pattern)
+│   │   └── secure_file_io.py       # Safe JSON/file reads for mock data
+│   ├── config.py                   # Secrets + feature flags from .env
+│   ├── main.py                     # Dev entry (reload)
+│   └── server.py                   # Production entry
+├── logs/                           # Created at runtime
+├── tests/
+├── docker-compose.yml
+├── Dockerfile
+└── pyproject.toml
+```
+
+### Configuration split
+
+| Source | Purpose |
+|--------|---------|
+| `config_file.json` + `config_loader` | App title, port defaults, log paths, API route prefixes, mock file map |
+| `backend/.env` + `app.config.settings` | API keys, Supabase/Vercel credentials, feature flags, `DASHBOARD_DATA_MODE` |
+
 ## API Endpoints
 
 The backend provides the following API endpoints:
@@ -338,9 +375,9 @@ uv sync
 uv run python -m app.main
 ```
 
-The API will be available at `http://localhost:8000`
+The API will be available at `http://localhost:8001`
 
-API documentation: `http://localhost:8000/docs`
+API documentation: `http://localhost:8001/docs`
 
 ## Production
 
