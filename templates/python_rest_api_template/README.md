@@ -10,7 +10,7 @@ A production-ready FastAPI template for building scalable REST APIs with Docker 
 - **Logging**: Comprehensive logging system with file and console output
 - **Security**: Non-root user in Docker, input validation, encryption utilities
 - **Configuration**: JSON-based configuration management via `config_loader`
-- **Health Checks**: Built-in health check endpoints
+- **Health Checks**: Built-in health check endpoints (includes optional Redis status)
 - **Development Ready**: Hot reload support for development
 
 ## Project Structure
@@ -32,7 +32,10 @@ python_rest_api_template/
 │   │       └── data_loader.py            # Loads general_data.json → data_loader
 │   ├── models/
 │   │   └── models_example.py           # Pydantic model pattern (Base/Create/Update/Response)
-│   ├── resources/                  # Database-related assets (placeholder)
+│   ├── resources/                  # Database and cache assets
+│   │   ├── cache/                      # Optional Redis cache layer
+│   │   │   ├── redis_client.py         # Connection + enable flag
+│   │   │   └── redis_service.py        # cache_get / cache_set / cache_delete
 │   │   ├── db/                         # Migration files (add when needed)
 │   │   └── mock_db_jsons/              # Mock JSON tables (add when needed)
 │   └── utils/
@@ -124,6 +127,13 @@ LOG_LEVEL=info
 API_TITLE=REST API Template
 API_VERSION=1.0.0
 API_DESCRIPTION=A template for building REST APIs with FastAPI
+
+# Redis (optional — default off; app runs normally without it)
+REDIS_ENABLED=false
+REDIS_HOST=localhost       # use "redis" when running via docker-compose
+REDIS_PORT=6379
+REDIS_PASSWORD=
+REDIS_DB=0
 ```
 
 ### JSON Configuration (`config_file.json` + `config_loader`)
@@ -191,6 +201,9 @@ Use `src/api_endpoints/routers/specific_router_group/example_router.py` as the c
 5. **Logging** — `log_handler` for debug/info messages
 6. **Rate limiting** — `@SlowLimiter.limit(...)` on every route
 
+See `src/api_endpoints/routers/specific_router_group_2/example_router.py` and
+`src/resources/example_item_service.py` for optional Redis caching via the service layer.
+
 **Steps to add a new endpoint group:**
 
 1. Add entries under `endpoints` in `config_file.json`.
@@ -206,10 +219,9 @@ Use `src/api_endpoints/routers/specific_router_group/example_router.py` as the c
 
 | Method | Path | Description |
 |---|---|---|
-| `GET` | `/` | Health check |
-| `GET` | `/subsection/items` | List example items |
-| `POST` | `/subsection/items` | Create an example item |
-| `GET` | `/subsection/items/{item_id}` | Get a single item by ID |
+| `GET` | `/` | Health check (includes Redis status when configured) |
+| `GET` | `/subsection/endpoint_name` | List example items |
+| `GET` | `/subsection/items/{item_id}` | Get item by ID (optional Redis cache demo) |
 
 ## Models (`src/models/`)
 
@@ -224,6 +236,57 @@ Use `src/api_endpoints/routers/specific_router_group/example_router.py` as the c
 | `*Response` | API response shape (decoupled from storage) |
 
 Rename or replace this file per project; keep the split.
+
+## Optional Redis Cache (`src/resources/cache/`)
+
+Redis is an **optional** cache layer. The application starts and serves requests normally when Redis is disabled or unreachable. PostgreSQL (when added) remains the source of truth; Redis is only for temporary cached data.
+
+| Module | Role |
+|---|---|
+| `redis_client.py` | Reads env config, connects when `REDIS_ENABLED=true`, exposes `get_redis_status()` |
+| `redis_service.py` | `cache_get`, `cache_set`, `cache_delete` — use these in services, not in routers directly against Redis |
+
+**Enable locally:**
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=localhost
+```
+
+**Enable with Docker Compose** (Redis service is included in `docker-compose.yml`):
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=redis
+```
+
+**Health check response** (`GET /`):
+
+| Redis state | `"redis"` value |
+|---|---|
+| Disabled (`REDIS_ENABLED=false`) | `"disabled"` |
+| Enabled and connected | `"connected"` |
+| Enabled but unreachable | `"unavailable"` |
+
+The API stays `"status": "ok"` even when Redis is unavailable.
+
+**Usage in business logic** (see `src/resources/example_item_service.py`):
+
+```python
+from src.resources.cache.redis_service import cache_get, cache_set
+
+async def get_user_profile(user_id: str):
+    cache_key = f"user:{user_id}"
+
+    cached_user = cache_get(cache_key)
+    if cached_user:
+        return cached_user
+
+    user = database.get_user(user_id)  # your persistence layer
+
+    cache_set(cache_key, user, expiration_seconds=600)
+    return user
+```
 
 ## Utilities (`src/utils/`)
 
@@ -263,8 +326,8 @@ Rename or replace this file per project; keep the split.
 
 ### Docker Compose
 - **Production**: Optimized for deployment
-- **Services**: Ready for Redis, PostgreSQL integration (commented in compose file)
-- **Volumes**: Persistent log storage
+- **Services**: Optional Redis cache (enabled via env); PostgreSQL stub commented for extension
+- **Volumes**: Persistent log storage and Redis data
 
 ## Development
 
