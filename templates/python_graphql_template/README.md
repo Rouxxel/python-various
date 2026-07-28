@@ -11,7 +11,8 @@ A production-ready GraphQL API template built with FastAPI and Strawberry GraphQ
 - **Comprehensive Logging**: File and console logging with configurable levels
 - **Security**: Non-root user in Docker, input validation, encryption utilities
 - **Configuration**: JSON-based configuration management via `config_loader`
-- **Health Checks**: Built-in health check endpoint
+- **Health Checks**: Built-in health check endpoint (includes optional Redis status)
+- **Optional Redis**: Cache layer for resolver/service data (off by default)
 - **Development Ready**: Hot reload support and GraphiQL interface
 - **Type Safety**: Full type safety with Python type hints and Strawberry
 
@@ -27,7 +28,8 @@ python_graphql_template/
 │   │   ├── mutation.py             # Root Mutation (inherits example mixins)
 │   │   ├── example_items_store.py  # Shared in-memory store for examples
 │   │   ├── specific_resolver_group_1/
-│   │   │   └── example_query.py    # Reference query — copy this pattern
+│   │   │   ├── example_query.py        # Reference list query
+│   │   │   └── example_item_by_id_query.py  # Reference cached get-by-id query
 │   │   └── specific_resolver_group_2/
 │   │       └── example_mutation.py # Reference mutation — copy this pattern
 │   ├── types/                      # Strawberry GraphQL type definitions
@@ -43,7 +45,11 @@ python_graphql_template/
 │   │   └── data/
 │   │       ├── general_data.json         # Static reference + sample data
 │   │       └── data_loader.py            # Loads general_data.json → data_loader
-│   ├── resources/                  # Database-related assets (placeholder)
+│   ├── resources/                  # Cache and database assets
+│   │   ├── cache/                      # Optional Redis cache layer
+│   │   │   ├── redis_client.py         # Connection + enable flag
+│   │   │   └── redis_service.py        # cache_get / cache_set / cache_delete
+│   │   ├── example_item_service.py     # Demo cache for exampleItem query
 │   │   ├── db/                         # Migration files (add when needed)
 │   │   └── mock_db_jsons/              # Mock JSON tables (add when needed)
 │   └── utils/
@@ -145,6 +151,13 @@ API_DESCRIPTION=A template for building GraphQL APIs
 GRAPHQL_ENDPOINT=/graphql
 GRAPHIQL_ENABLED=true
 INTROSPECTION_ENABLED=true
+
+# Redis (optional — default off; app runs normally without it)
+REDIS_ENABLED=false
+REDIS_HOST=localhost       # use "redis" when running via docker-compose
+REDIS_PORT=6379
+REDIS_PASSWORD=
+REDIS_DB=0
 ```
 
 ### JSON Configuration (`config_file.json` + `config_loader`)
@@ -203,9 +216,15 @@ Use the two example resolver files as the canonical reference:
 | File | Role | Config key |
 |---|---|---|
 | `specific_resolver_group_1/example_query.py` | List example items (query) | `example_endpoint_1` |
+| `specific_resolver_group_1/example_item_by_id_query.py` | Get item by ID with optional cache | `example_endpoint_3` |
 | `specific_resolver_group_2/example_mutation.py` | Create example item (mutation) | `example_endpoint_2` |
 
 Each file contains **one field only**. Add further fields in separate files within the same group folder.
+
+6. **Rate limiting** — applied to `/graphql` in `main.py`
+
+See `src/resolvers/specific_resolver_group_1/example_item_by_id_query.py` and
+`src/resources/example_item_service.py` for optional Redis caching via the service layer.
 
 **Steps to add a new resolver:**
 
@@ -227,6 +246,15 @@ Each file contains **one field only**. Add further fields in separate files with
 # Template example — list items
 query {
   exampleItems {
+    id
+    name
+    description
+  }
+}
+
+# Template example — get item by ID (optional Redis cache demo)
+query {
+  exampleItem(id: "demo-001") {
     id
     name
     description
@@ -300,6 +328,56 @@ class User:
 
 `models_example.py` shows the Pydantic split for REST-style payloads or internal validation. GraphQL resolvers use Strawberry types in `src/types/` instead, but the same Base / Create / Update / Response naming applies when you add Pydantic models for other layers.
 
+## Optional Redis Cache (`src/resources/cache/`)
+
+Redis is an **optional** cache layer. The application starts and serves GraphQL when Redis is disabled or unreachable. PostgreSQL (when added) remains the source of truth; Redis is only for temporary cached data.
+
+| Module | Role |
+|---|---|
+| `redis_client.py` | Reads env config, connects when `REDIS_ENABLED=true`, exposes `get_redis_status()` |
+| `redis_service.py` | `cache_get`, `cache_set`, `cache_delete` — use in services, not in resolvers directly |
+| `example_item_service.py` | Demo: `get_example_item_by_id` with optional cache |
+
+**Enable locally:**
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=localhost
+```
+
+**Enable with Docker Compose** (Redis service is included in `docker-compose.yml`):
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=redis
+```
+
+**Health check response** (`GET /health`):
+
+| Redis state | `"redis"` value |
+|---|---|
+| Disabled (`REDIS_ENABLED=false`) | `"disabled"` |
+| Enabled and connected | `"connected"` |
+| Enabled but unreachable | `"unavailable"` |
+
+The API stays `"status": "ok"` even when Redis is unavailable.
+
+**Usage in a service** (see `example_item_service.py`):
+
+```python
+from src.resources.cache.redis_service import cache_get, cache_set
+
+def get_entity(entity_id: str):
+    cached = cache_get(f"entity:{entity_id}")
+    if cached:
+        return cached
+    entity = database.get(entity_id)
+    cache_set(f"entity:{entity_id}", entity, expiration_seconds=600)
+    return entity
+```
+
+Resolvers should call service functions — never import `redis_client` in resolver files.
+
 ## Utilities (`src/utils/`)
 
 | Module | When to use |
@@ -338,8 +416,8 @@ class User:
 
 ### Docker Compose
 - **Production**: Optimized for deployment
-- **Services**: Ready for Redis, PostgreSQL integration (commented in compose file)
-- **Volumes**: Persistent log storage
+- **Services**: Optional Redis cache (enabled via env); PostgreSQL stub commented for extension
+- **Volumes**: Persistent log storage and Redis data
 
 ## Development
 
