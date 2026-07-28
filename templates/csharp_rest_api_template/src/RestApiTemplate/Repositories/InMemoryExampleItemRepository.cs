@@ -6,6 +6,14 @@ namespace Template.RestApi.Repositories;
 public sealed class InMemoryExampleItemRepository : IExampleItemRepository
 {
     private readonly ConcurrentDictionary<string, ExampleItem> _items = new();
+
+    public InMemoryExampleItemRepository()
+    {
+        _items["demo-001"] = new ExampleItem(
+            "demo-001",
+            "Demo item",
+            "Seeded item for the Redis cache example");
+    }
     public IReadOnlyList<ExampleItem> FindAll() => _items.Values.ToList();
     public ExampleItem? FindById(string id) => _items.GetValueOrDefault(id);
     public void Save(ExampleItem item) => _items[item.Id] = item;

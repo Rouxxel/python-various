@@ -5,6 +5,7 @@ using Template.RestApi.Configuration;
 using Template.RestApi.Errors;
 using Template.RestApi.Middleware;
 using Template.RestApi.Repositories;
+using Template.RestApi.Resources.Cache;
 using Template.RestApi.Services;
 using Template.RestApi.Utils;
 
@@ -56,11 +57,17 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 builder.Services.AddSingleton<RateLimiter>();
+builder.Services.AddSingleton<RedisClient>();
+builder.Services.AddSingleton<RedisCacheService>();
 builder.Services.AddSingleton<IExampleItemRepository, InMemoryExampleItemRepository>();
 builder.Services.AddSingleton<ExampleItemService>();
 
 var app = builder.Build();
-app.Lifetime.ApplicationStopping.Register(CustomLogger.Shutdown);
+app.Lifetime.ApplicationStopping.Register(() =>
+{
+    app.Services.GetRequiredService<RedisClient>().Dispose();
+    CustomLogger.Shutdown();
+});
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
@@ -89,10 +96,14 @@ app.MapControllerRoute("example-items-update", $"{itemPath}/{{id}}", new { contr
 app.MapControllerRoute("example-items-delete", $"{itemPath}/{{id}}", new { controller = "ExampleItems", action = "Delete" });
 var statusEndpoint = coreSpecs.ConfigurationLoader.GetEndpoint("example_endpoint_2");
 app.MapControllerRoute("example-status", $"{statusEndpoint.EndpointPrefix.Trim('/')}/{statusEndpoint.EndpointRoute.Trim('/')}", new { controller = "ExampleStatus", action = "Get" });
-app.MapGet("/health", async (HealthCheckService healthChecks) =>
+app.MapGet("/health", async (HealthCheckService healthChecks, RedisClient redisClient) =>
 {
     var result = await healthChecks.CheckHealthAsync();
-    return Results.Json(new { status = result.Status.ToString().ToLowerInvariant() });
+    return Results.Json(new
+    {
+        status = result.Status.ToString().ToLowerInvariant(),
+        redis = redisClient.GetStatus(),
+    });
 });
 
 app.Run();
