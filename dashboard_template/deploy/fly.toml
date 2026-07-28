@@ -1,0 +1,78 @@
+# Fly.io Configuration - https://fly.io/docs/reference/configuration/
+#
+# Deploy: fly launch && fly deploy
+#
+# This is a stub configuration. Fly.io support is community-contributed.
+# See docs/PROVIDERS.md for more information.
+#
+# ENVIRONMENT VARIABLES:
+# ======================
+# Minimum (mock mode only):
+#   - API_KEY: Your secret API key
+#   - FRONTEND_URL: Your frontend URL
+#
+# Full (live data with all features):
+#   - All minimum vars above
+#   - SUPABASE_URL: Supabase project URL
+#   - SUPABASE_SERVICE_ROLE_KEY: Supabase service role key
+#   - VERCEL_PROJECT_ID: Vercel project ID (optional)
+#   - VERCEL_TOKEN: Vercel API token (optional)
+#   - COSTS_UNIT_PRICE: Price per unit (optional)
+#   - COSTS_UNIT_NAME: Unit name (optional)
+
+app = "analytics-dashboard-backend"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PYTHON_VERSION = "3.11"
+  DASHBOARD_BACKEND_HOST = "0.0.0.0"
+  DASHBOARD_DATA_MODE = "mock"
+  
+  # === REQUIRED (all modes) ===
+  API_KEY = "${API_KEY}"
+  FRONTEND_URL = "${FRONTEND_URL}"
+  
+  # === DATABASE (optional, required for live mode) ===
+  FEATURE_SUPABASE = "false"
+  SUPABASE_URL = "${SUPABASE_URL}"
+  SUPABASE_SERVICE_ROLE_KEY = "${SUPABASE_SERVICE_ROLE_KEY}"
+  
+  # === VERCEL INTEGRATION (optional) ===
+  FEATURE_VERCEL = "false"
+  VERCEL_PROJECT_ID = "${VERCEL_PROJECT_ID}"
+  VERCEL_TOKEN = "${VERCEL_TOKEN}"
+  
+  # === HOSTING HEALTH (optional) ===
+  FEATURE_HOST_HEALTH = "false"
+  HOSTING_PROVIDER = "fly"
+  
+  # === COSTS MODULE (optional) ===
+  FEATURE_COSTS_MODULE = "false"
+  COSTS_UNIT_PRICE = "${COSTS_UNIT_PRICE}"
+  COSTS_UNIT_NAME = "${COSTS_UNIT_NAME}"
+  
+  # === STORAGE METRICS (optional) ===
+  FEATURE_STORAGE_METRICS = "false"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[http_service.checks]]
+  interval = "15s"
+  timeout = "10s"
+  grace_period = "5s"
+  method = "GET"
+  path = "/api/health"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256

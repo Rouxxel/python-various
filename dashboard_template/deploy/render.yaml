@@ -1,0 +1,99 @@
+# Render Blueprint - https://render.com/docs/blueprint-spec
+#
+# Deploy: connect this repo in Render and apply the blueprint, or create a Web
+# Service manually with rootDir=backend and startCommand from backend/README.md.
+#
+# After deploy, set VITE_DASHBOARD_API_URL on the frontend to this service URL.
+#
+# ENVIRONMENT VARIABLES:
+# ======================
+# Minimum (mock mode only):
+#   - API_KEY: Your secret API key
+#   - FRONTEND_URL: Your frontend URL (e.g., https://your-frontend.vercel.app)
+#
+# Full (live data with all features):
+#   - All minimum vars above
+#   - SUPABASE_URL: Supabase project URL
+#   - SUPABASE_SERVICE_ROLE_KEY: Supabase service role key
+#   - VERCEL_PROJECT_ID: Vercel project ID (for deployments/analytics)
+#   - VERCEL_TOKEN: Vercel API token
+#   - COSTS_UNIT_PRICE: Price per unit for cost tracking
+#   - COSTS_UNIT_NAME: Unit name for cost tracking (e.g., "request", "token")
+
+services:
+  - type: web
+    name: analytics-dashboard-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install uv && uv sync --frozen --no-dev
+    startCommand: uv run python -m app.server
+    healthCheckPath: /api/health
+    envVars:
+      # Python configuration
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: DASHBOARD_BACKEND_HOST
+        value: "0.0.0.0"
+      
+      # === REQUIRED (all modes) ===
+      - key: API_KEY
+        sync: false
+        description: Secret API key for authentication
+      - key: FRONTEND_URL
+        sync: false
+        description: Frontend URL for CORS (e.g., https://your-app.vercel.app)
+      
+      # === DATA MODE ===
+      - key: DASHBOARD_DATA_MODE
+        value: "mock"
+        description: "mock" for demo, "live" for production with real data
+      
+      # === DATABASE (optional, required for live mode) ===
+      - key: FEATURE_SUPABASE
+        value: "false"
+        description: Enable Supabase database integration
+      - key: SUPABASE_URL
+        sync: false
+        description: Supabase project URL (required if FEATURE_SUPABASE=true)
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+        description: Supabase service role key (required if FEATURE_SUPABASE=true)
+      
+      # === VERCEL INTEGRATION (optional) ===
+      - key: FEATURE_VERCEL
+        value: "false"
+        description: Enable Vercel deployments and web analytics
+      - key: VERCEL_PROJECT_ID
+        sync: false
+        description: Vercel project ID (required if FEATURE_VERCEL=true)
+      - key: VERCEL_TOKEN
+        sync: false
+        description: Vercel API token (required if FEATURE_VERCEL=true)
+      
+      # === HOSTING HEALTH (optional) ===
+      - key: FEATURE_HOST_HEALTH
+        value: "false"
+        description: Enable hosting provider health checks
+      - key: HOSTING_PROVIDER
+        value: "render"
+        description: Hosting provider name (render, railway, custom)
+      - key: RENDER_SERVICE_URL
+        sync: false
+        description: Render service URL for health checks (auto-filled by Render)
+      
+      # === COSTS MODULE (optional) ===
+      - key: FEATURE_COSTS_MODULE
+        value: "false"
+        description: Enable cost tracking module
+      - key: COSTS_UNIT_PRICE
+        sync: false
+        description: Price per unit (required if FEATURE_COSTS_MODULE=true)
+      - key: COSTS_UNIT_NAME
+        sync: false
+        description: Unit name (e.g., "request", "token", required if FEATURE_COSTS_MODULE=true)
+      
+      # === STORAGE METRICS (optional) ===
+      - key: FEATURE_STORAGE_METRICS
+        value: "false"
+        description: Enable storage bucket metrics

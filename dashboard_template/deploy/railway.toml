@@ -1,0 +1,73 @@
+# Railway Configuration - https://docs.railway.app/reference/ railway.toml
+#
+# Deploy: railway login && railway init && railway up
+#
+# After deploy, set VITE_DASHBOARD_API_URL on the frontend to this service URL.
+#
+# ENVIRONMENT VARIABLES:
+# ======================
+# Minimum (mock mode only):
+#   - API_KEY: Your secret API key
+#   - FRONTEND_URL: Your frontend URL (e.g., https://your-frontend.vercel.app)
+#
+# Full (live data with all features):
+#   - All minimum vars above
+#   - SUPABASE_URL: Supabase project URL
+#   - SUPABASE_SERVICE_ROLE_KEY: Supabase service role key
+#   - VERCEL_PROJECT_ID: Vercel project ID (for deployments/analytics)
+#   - VERCEL_TOKEN: Vercel API token
+#   - COSTS_UNIT_PRICE: Price per unit for cost tracking
+#   - COSTS_UNIT_NAME: Unit name for cost tracking (e.g., "request", "token")
+
+[build]
+builder = "NIXPACKS"
+buildCommand = "pip install uv && uv sync --frozen --no-dev"
+
+[deploy]
+healthcheckPath = "/api/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
+
+# PORT binding: Railway automatically sets PORT environment variable
+# The backend reads from DASHBOARD_BACKEND_HOST and PORT environment variables
+# Entry point: app.server:app (same as Render)
+
+[[services]]
+name = "analytics-dashboard-backend"
+source = "."
+command = "uv run python -m app.server"
+
+[env]
+PYTHON_VERSION = "3.11"
+DASHBOARD_BACKEND_HOST = "0.0.0.0"
+
+# === REQUIRED (all modes) ===
+API_KEY = "${API_KEY}"
+FRONTEND_URL = "${FRONTEND_URL}"
+
+# === DATA MODE ===
+DASHBOARD_DATA_MODE = "mock"  # "mock" for demo, "live" for production
+
+# === DATABASE (optional, required for live mode) ===
+FEATURE_SUPABASE = "false"
+SUPABASE_URL = "${SUPABASE_URL}"
+SUPABASE_SERVICE_ROLE_KEY = "${SUPABASE_SERVICE_ROLE_KEY}"
+
+# === VERCEL INTEGRATION (optional) ===
+FEATURE_VERCEL = "false"
+VERCEL_PROJECT_ID = "${VERCEL_PROJECT_ID}"
+VERCEL_TOKEN = "${VERCEL_TOKEN}"
+
+# === HOSTING HEALTH (optional) ===
+FEATURE_HOST_HEALTH = "false"
+HOSTING_PROVIDER = "railway"
+RAILWAY_SERVICE_URL = "${RAILWAY_PUBLIC_DOMAIN}"
+
+# === COSTS MODULE (optional) ===
+FEATURE_COSTS_MODULE = "false"
+COSTS_UNIT_PRICE = "${COSTS_UNIT_PRICE}"
+COSTS_UNIT_NAME = "${COSTS_UNIT_NAME}"
+
+# === STORAGE METRICS (optional) ===
+FEATURE_STORAGE_METRICS = "false"
