@@ -1,0 +1,85 @@
+{
+  "defaults": {
+    "mock_data_path": "app/mock_data"
+  },
+  "logging": {
+    "logging_level": "info",
+    "dir_name": "logs",
+    "log_file_name": "dashboard_bcknd"
+  },
+  "network": {
+    "uvicorn_app_reference": "app.main:app",
+    "server_port": 8001,
+    "host": "127.0.0.1",
+    "reload": true,
+    "workers": 1,
+    "proxy_headers": true
+  },
+  "app": {
+    "title": "Analytics Dashboard",
+    "version": "1.0.0",
+    "api_prefix": "/api"
+  },
+  "endpoints": {
+    "health": {
+      "router_prefix": "",
+      "endpoint_tag": "health",
+      "endpoint_route": "/health"
+    },
+    "config_features": {
+      "router_prefix": "/config",
+      "endpoint_tag": "config",
+      "endpoint_route": "/features"
+    },
+    "config_env": {
+      "router_prefix": "/config",
+      "endpoint_tag": "config",
+      "endpoint_route": "/env"
+    },
+    "overview": {
+      "router_prefix": "/overview",
+      "endpoint_tag": "overview",
+      "endpoint_route": ""
+    },
+    "users": {
+      "router_prefix": "/users",
+      "endpoint_tag": "users",
+      "endpoint_route": ""
+    },
+    "sessions": {
+      "router_prefix": "/sessions",
+      "endpoint_tag": "sessions",
+      "endpoint_route": ""
+    },
+    "activity": {
+      "router_prefix": "/activity",
+      "endpoint_tag": "activity",
+      "endpoint_route": ""
+    },
+    "ai": {
+      "router_prefix": "/ai",
+      "endpoint_tag": "ai",
+      "endpoint_route": ""
+    },
+    "infrastructure": {
+      "router_prefix": "/infrastructure",
+      "endpoint_tag": "infrastructure",
+      "endpoint_route": "",
+      "wake_route": "/wake-host"
+    },
+    "costs": {
+      "router_prefix": "/costs",
+      "endpoint_tag": "costs",
+      "endpoint_route": ""
+    }
+  },
+  "mock_data": {
+    "overview": "overview.json",
+    "users": "users.json",
+    "sessions": "sessions.json",
+    "activity": "activity.json",
+    "infrastructure": "infrastructure.json",
+    "costs": "costs.json",
+    "ai_metrics": "ai_metrics.json"
+  }
+}
