@@ -1,0 +1,21 @@
+{
+  "host_health": {
+    "status": "healthy",
+    "response_time": 150,
+    "uptime": 99.9
+  },
+  "deployments": [],
+  "storage": [],
+  "database": {
+    "tables": [
+      { "name": "users", "row_count": 1250 },
+      { "name": "sessions", "row_count": 2500 },
+      { "name": "events", "row_count": 15000 }
+    ]
+  },
+  "notes": [
+    "Vercel analytics not configured. Set FEATURE_VERCEL=true and add VERCEL_PROJECT_ID to enable.",
+    "Supabase storage not configured. Add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to enable.",
+    "Host health check using mock data. Configure hosting provider URL for live monitoring."
+  ]
+}
