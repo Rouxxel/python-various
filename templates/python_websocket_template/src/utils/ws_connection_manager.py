@@ -15,10 +15,9 @@ the shared ``limiter`` in the REST template) so every endpoint that needs to
 fan a message out to all connected clients reuses the same registry. Import
 ``connection_manager`` wherever you need it; do NOT instantiate your own.
 
-For a single-process deployment the in-memory ``set`` below is enough. If you
-run multiple workers/replicas, connections live in different processes and an
-in-memory set will not reach them - back broadcasts with Redis pub/sub (or a
-similar message broker) instead.
+For a single-process deployment the in-memory ``set`` below is enough. For
+multiple workers/replicas, use ``ws_broadcast_service.broadcast`` which optionally
+fans out via Redis pub/sub (see ``src/resources/ws_broadcast_service.py``).
 """
 
 #Native imports
@@ -39,7 +38,7 @@ class ConnectionManager:
         connect: Accept a socket and register it.
         disconnect: Remove a socket from the registry.
         send_personal: Send JSON to one specific client.
-        broadcast: Send JSON to every connected client.
+        broadcast_local: Send JSON to every connected client on this process.
     """
 
     def __init__(self) -> None:
@@ -81,9 +80,12 @@ class ConnectionManager:
         """
         await websocket.send_json(message)
 
-    async def broadcast(self, message: dict) -> None:
+    async def broadcast_local(self, message: dict) -> None:
         """
-        Send a JSON message to every connected client.
+        Send a JSON message to every connected client on this process.
+
+        For cross-instance fan-out, call ``ws_broadcast_service.broadcast``
+        instead of this method directly from WebSocket handlers.
 
         Dead connections that raise on send are dropped so one stale socket
         cannot block delivery to the rest.
