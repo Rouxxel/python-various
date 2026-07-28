@@ -33,6 +33,15 @@ public class ExampleItemRepository {
 
     private final ConcurrentHashMap<String, ExampleItem> store = new ConcurrentHashMap<>();
 
+    public ExampleItemRepository() {
+        store.put(
+                "demo-001",
+                new ExampleItem(
+                        "demo-001",
+                        "Demo item",
+                        "Seeded item for the Redis cache example"));
+    }
+
     public List<ExampleItem> findAll() {
         return new ArrayList<>(store.values());
     }

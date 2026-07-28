@@ -23,6 +23,7 @@ import com.template.restapi.dto.ExampleItemUpdate;
 import com.template.restapi.entity.ExampleItem;
 import com.template.restapi.error.ResourceNotFoundException;
 import com.template.restapi.repository.ExampleItemRepository;
+import com.template.restapi.resources.cache.RedisCacheService;
 import com.template.restapi.util.CustomLogger;
 
 import org.springframework.stereotype.Service;
@@ -30,10 +31,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class ExampleItemService {
 
-    private final ExampleItemRepository repository;
+    private static final String CACHE_KEY_PREFIX = "example_item:";
+    private static final int CACHE_TTL_SECONDS = 600;
 
-    public ExampleItemService(ExampleItemRepository repository) {
+    private final ExampleItemRepository repository;
+    private final RedisCacheService cacheService;
+
+    public ExampleItemService(ExampleItemRepository repository, RedisCacheService cacheService) {
         this.repository = repository;
+        this.cacheService = cacheService;
     }
 
     public List<ExampleItemResponse> listAll() {
@@ -44,10 +50,21 @@ public class ExampleItemService {
     }
 
     public ExampleItemResponse getById(String id) {
+        String cacheKey = CACHE_KEY_PREFIX + id;
+
+        var cached = cacheService.cacheGet(cacheKey, ExampleItemResponse.class);
+        if (cached.isPresent()) {
+            CustomLogger.debug("Cache hit for example item " + id);
+            return cached.get();
+        }
+
         ExampleItem item = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Example item with id '" + id + "' not found."));
-        return ExampleItemResponse.from(item);
+        ExampleItemResponse response = ExampleItemResponse.from(item);
+        cacheService.cacheSet(cacheKey, response, CACHE_TTL_SECONDS);
+        CustomLogger.debug("Cache miss for example item " + id);
+        return response;
     }
 
     public ExampleItemResponse create(ExampleItemCreate body) {
@@ -71,6 +88,7 @@ public class ExampleItemService {
             item.setDescription(body.description());
         }
         repository.save(item);
+        cacheService.cacheDelete(CACHE_KEY_PREFIX + id);
         CustomLogger.info("Updated example item with id '" + id + "'");
         return ExampleItemResponse.from(item);
     }
@@ -79,6 +97,7 @@ public class ExampleItemService {
         if (!repository.deleteById(id)) {
             throw new ResourceNotFoundException("Example item with id '" + id + "' not found.");
         }
+        cacheService.cacheDelete(CACHE_KEY_PREFIX + id);
         CustomLogger.info("Deleted example item with id '" + id + "'");
     }
 }
