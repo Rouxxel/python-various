@@ -3,14 +3,15 @@
 from fastapi import APIRouter, Request
 
 from app.config import settings
+from app.core_specs.configuration.config_loader import config_loader
 from app.services.data_source import get_data_source
 from app.services.hosting import get_hosting_service
 
-router = APIRouter(prefix="/infrastructure", tags=["infrastructure"])
+_cfg = config_loader["endpoints"]["infrastructure"]
+router = APIRouter(prefix=_cfg["router_prefix"], tags=[_cfg["endpoint_tag"]])
 
 
 def _service_url_for_provider() -> str:
-    """Resolve the health-check URL for the configured hosting provider."""
     urls = {
         "render": settings.render_service_url,
         "railway": settings.railway_service_url,
@@ -20,7 +21,7 @@ def _service_url_for_provider() -> str:
     return urls.get(settings.hosting_provider, "")
 
 
-@router.get("")
+@router.get(_cfg["endpoint_route"])
 async def get_infrastructure(request: Request) -> dict:
     """Get infrastructure metrics."""
     env = getattr(request.state, "dashboard_environment", "test")
@@ -33,7 +34,7 @@ async def get_infrastructure(request: Request) -> dict:
     return get_data_source().get_infrastructure()
 
 
-@router.post("/wake-host")
+@router.post(_cfg["wake_route"])
 async def wake_host() -> dict:
     """Wake a sleeping hosting service (e.g. Render free tier)."""
     if not settings.feature_host_health:

@@ -9,7 +9,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.logging_config import setup_logging
+from app.core_specs.configuration.config_loader import config_loader
 from app.middleware import (
     CorrelationIdMiddleware,
     DashboardEnvironmentMiddleware,
@@ -20,27 +20,39 @@ from app.routers import (
     ai,
     config,
     costs,
+    health,
     infrastructure,
     overview,
     sessions,
     users,
 )
-from app.services.providers import get_provider_status
+from app.utils.custom_logger import log_handler, shutdown_logger
 
-setup_logging(settings.log_level)
+_app_cfg = config_loader["app"]
+_network = config_loader["network"]
+API_PREFIX = _app_cfg["api_prefix"]
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Manage application lifecycle: shared HTTP client."""
+    log_handler.info(
+        "Dashboard backend starting (mode=%s, port=%s)",
+        settings.dashboard_data_mode,
+        settings.dashboard_backend_port,
+    )
     app.state.http_client = httpx.AsyncClient(timeout=httpx.Timeout(35.0))
     yield
     await app.state.http_client.aclose()
+    shutdown_logger()
 
 
-app = FastAPI(title="Analytics Dashboard", version="1.0.0", lifespan=lifespan)
+app = FastAPI(
+    title=_app_cfg["title"],
+    version=_app_cfg["version"],
+    lifespan=lifespan,
+)
 
-# Add middleware (LIFO order)
 app.add_middleware(RequestLoggingMiddleware)
 app.add_middleware(DashboardEnvironmentMiddleware)
 app.add_middleware(CorrelationIdMiddleware)
@@ -51,25 +63,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routers (paths match frontend api.ts)
-app.include_router(config.router, prefix="/api")
-app.include_router(overview.router, prefix="/api")
-app.include_router(users.router, prefix="/api")
-app.include_router(sessions.router, prefix="/api")
-app.include_router(activity.router, prefix="/api")
-app.include_router(ai.router, prefix="/api")
-app.include_router(infrastructure.router, prefix="/api")
-app.include_router(costs.router, prefix="/api")
-
-
-@app.get("/api/health")
-async def health() -> dict:
-    """Health check endpoint."""
-    return {
-        "status": "ok",
-        "data_mode": settings.dashboard_data_mode,
-        "providers": get_provider_status(),
-    }
+app.include_router(health.router, prefix=API_PREFIX)
+app.include_router(config.router, prefix=API_PREFIX)
+app.include_router(overview.router, prefix=API_PREFIX)
+app.include_router(users.router, prefix=API_PREFIX)
+app.include_router(sessions.router, prefix=API_PREFIX)
+app.include_router(activity.router, prefix=API_PREFIX)
+app.include_router(ai.router, prefix=API_PREFIX)
+app.include_router(infrastructure.router, prefix=API_PREFIX)
+app.include_router(costs.router, prefix=API_PREFIX)
 
 
 if __name__ == "__main__":
@@ -77,9 +79,11 @@ if __name__ == "__main__":
     if os.getenv("PORT"):
         host = "0.0.0.0"
     uvicorn.run(
-        "app.main:app",
+        _network["uvicorn_app_reference"],
         host=host,
         port=settings.dashboard_backend_port,
-        reload=True,
+        reload=_network["reload"],
+        workers=_network["workers"],
+        proxy_headers=_network["proxy_headers"],
         log_level=settings.log_level.lower(),
     )

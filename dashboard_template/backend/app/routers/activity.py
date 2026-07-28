@@ -4,12 +4,14 @@ from datetime import datetime
 
 from fastapi import APIRouter, Query
 
+from app.core_specs.configuration.config_loader import config_loader
 from app.services.data_source import get_data_source
 
-router = APIRouter(prefix="/activity", tags=["activity"])
+_cfg = config_loader["endpoints"]["activity"]
+router = APIRouter(prefix=_cfg["router_prefix"], tags=[_cfg["endpoint_tag"]])
 
 
-@router.get("")
+@router.get(_cfg["endpoint_route"])
 async def get_activity(
     from_date: str = Query(..., description="Start date (ISO format)"),
     to_date: str = Query(..., description="End date (ISO format)"),

@@ -1,6 +1,5 @@
 """HTTP middleware for the dashboard backend."""
 
-import logging
 import uuid
 from typing import Literal
 
@@ -9,8 +8,7 @@ from starlette.requests import Request
 from starlette.responses import Response
 
 from app.config import settings
-
-logger = logging.getLogger(__name__)
+from app.utils.custom_logger import log_handler
 
 DashboardEnvironment = Literal["test", "prod"]
 
@@ -43,7 +41,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
     """Log incoming requests at debug level."""
 
     async def dispatch(self, request: Request, call_next) -> Response:
-        logger.debug(
+        log_handler.debug(
             "%s %s env=%s",
             request.method,
             request.url.path,
