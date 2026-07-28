@@ -23,6 +23,16 @@ services:
   #     POSTGRES_USER: template
   #     POSTGRES_PASSWORD: change-me
 
-  # Redis extension point for multi-instance rate limiting:
-  # redis:
-  #   image: redis:7-alpine
+  # Optional cache — enable REDIS_ENABLED=true in .env to use
+  redis:
+    image: redis:7-alpine
+    container_name: csharp_rest_api_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+volumes:
+  redis_data:

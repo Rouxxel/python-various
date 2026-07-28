@@ -10,6 +10,7 @@ A production-ready **ASP.NET Core 8** REST API template with config-driven endpo
 - Uniform JSON errors for 400, 404, 429, and 500 responses.
 - Create/Update/Response DTO separation, service/repository layers, and a thread-safe in-memory example store.
 - Configured custom file/console logger, validators, secure file I/O, RSA key generation, Docker, and xUnit tests.
+- Optional Redis cache layer for services (off by default; rate limiting stays in-memory).
 
 ## Quick start
 
@@ -53,6 +54,7 @@ src/RestApiTemplate/
 ├── DTOs/ Entities/      # API contracts and persisted representation
 ├── Errors/ Middleware/  # Uniform JSON errors and rate limiting
 ├── Repositories/        # Persistence abstraction + in-memory reference store
+├── Resources/Cache/     # Optional Redis cache (RedisClient, RedisCacheService)
 ├── Services/            # Business logic
 ├── Utils/               # Adapted helpers from cs_various_utils
 └── Resources/CoreSpecs/ # config_file.json and general_data.json
@@ -91,11 +93,11 @@ The template uses the endpoint key in three places: `Program.cs` builds the conv
 
 | Method | Path | Description |
 |---|---|---|
-| GET | `/` | Root health response |
-| GET | `/health` | ASP.NET health-check response |
+| GET | `/` | Root health response (includes Redis status when configured) |
+| GET | `/health` | ASP.NET health-check response (includes Redis status) |
 | GET | `/subsection/items` | List example items |
 | POST | `/subsection/items` | Create an item; optional `contactEmail` query value |
-| GET | `/subsection/items/{id}` | Get one item |
+| GET | `/subsection/items/{id}` | Get one item (optional Redis cache demo) |
 | PATCH | `/subsection/items/{id}` | Partial update |
 | DELETE | `/subsection/items/{id}` | Delete an item |
 | GET | `/subsection/status` | Second endpoint-group example |
@@ -113,8 +115,57 @@ The template uses the endpoint key in three places: `Program.cs` builds the conv
 
 - `DTOs`: request and response contracts; do not expose storage models directly.
 - `Entities`: full persisted shape including server-controlled IDs.
-- `Services`: business rules, ID generation, mapping, and not-found behavior.
+- `Services`: business rules, ID generation, mapping, not-found behavior, and optional cache (see `ExampleItemService.GetById`).
 - `Repositories`: swap `InMemoryExampleItemRepository` for EF Core, `SecureFileIo`, or another store.
+
+## Optional Redis cache (`Resources/Cache/`)
+
+Redis is **optional**. The application starts and serves requests when Redis is disabled or unreachable. The repository (or your future database) remains the source of truth; Redis is only for temporary cached data. **Rate limiting stays in-memory** unless you separately replace `RateLimiter` with a distributed store.
+
+| Class | Role |
+|---|---|
+| `RedisClient` | Reads env config, connects when `REDIS_ENABLED=true`, exposes `GetStatus()` |
+| `RedisCacheService` | `CacheGet`, `CacheSet`, `CacheDelete` — inject in services, not controllers |
+
+**Enable locally:**
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=localhost
+```
+
+**Enable with Docker Compose** (Redis service is included in `docker-compose.yml`):
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=redis
+```
+
+**Health check** (`GET /` or `GET /health`):
+
+| Redis state | `"redis"` value |
+|---|---|
+| Disabled | `"disabled"` |
+| Connected | `"connected"` |
+| Enabled but unreachable | `"unavailable"` |
+
+**Usage in a service** (see `ExampleItemService.GetById`):
+
+```csharp
+public sealed class YourService(RedisCacheService cacheService)
+{
+    public YourResponse GetById(string id)
+    {
+        var cached = cacheService.CacheGet<YourResponse>($"entity:{id}");
+        if (cached is not null) return cached;
+        var response = LoadFromStore(id);
+        cacheService.CacheSet($"entity:{id}", response, expirationSeconds: 600);
+        return response;
+    }
+}
+```
+
+Controllers should call services — never inject `RedisClient` directly.
 
 The `Utils/` files are copied and namespace-adapted from the repository's `cs_various_utils/` folder. `UtilityStartup` configures `CustomLogger`, `Validators`, and `SecureFileIo` from CoreSpecs. Application code uses `CustomLogger`; ASP.NET Core framework diagnostics retain their built-in logger.
 
@@ -130,7 +181,7 @@ The generated PEM files are ignored. The supplied C# utilities do not include an
 
 ## Errors, logging, and scaling
 
-Errors use `{ status, error, detail }`. The rate limiter is correct for a single instance; replace its in-memory counter with Redis or a distributed limiter for multiple instances. Replace the example repository with EF Core/JPA-style persistence and add migrations under `Resources/Db/Migrations` when needed.
+Errors use `{ status, error, detail }`. The in-memory rate limiter is correct for a single instance; for multi-instance rate limits, replace `RateLimiter` with a Redis-backed counter separately from the optional cache layer in `Resources/Cache/`. Replace the example repository with EF Core and add migrations under `Resources/Db/Migrations` when needed.
 
 At startup, `CustomLogger.Setup` creates `logs/<log_file_name>_<timestamp>.log`, writes startup entries, and receives application messages. `ApplicationStopping` flushes and closes the writer. Configure it with the `logging` CoreSpecs section; never commit logs or secrets.
 
@@ -141,7 +192,7 @@ Copy-Item .env.example .env
 docker compose up --build
 ```
 
-Compose publishes `${HOST_PORT:-8080}:8080` and mounts `./logs`. The image builds/tests/publishes with the .NET 8 SDK, runs as a non-root user, and checks `/health`. The compose file includes commented PostgreSQL and Redis extension points.
+Compose publishes `${HOST_PORT:-8080}:8080` and mounts `./logs`. The image builds/tests/publishes with the .NET 8 SDK, runs as a non-root user, and checks `/health`. Optional Redis for caching is included in `docker-compose.yml`; PostgreSQL remains a commented extension point.
 
 ## Tests and release checks
 
@@ -171,7 +222,11 @@ The suite covers CoreSpecs loading, utility configuration and path protection, r
 | `POSTGRES_USER` | PostgreSQL username (uncomment if using database) |
 | `POSTGRES_PASSWORD` | PostgreSQL password (uncomment if using database) |
 | `DATABASE_URL` | PostgreSQL connection string (uncomment if using database) |
-| `REDIS_URL` | Redis connection string (uncomment if using Redis) |
+| `REDIS_ENABLED` | Enable optional Redis cache (`true` / `false`, default `false`) |
+| `REDIS_HOST` | Redis host (`localhost` locally, `redis` in Docker Compose) |
+| `REDIS_PORT` | Redis port (default `6379`) |
+| `REDIS_PASSWORD` | Redis password (optional) |
+| `REDIS_DB` | Redis database index (default `0`) |
 | `LOG_LEVEL` | Logging level (default: info) |
 | `API_TITLE` | OpenAPI title (default: Csharp REST API Template) |
 | `API_VERSION` | OpenAPI version (default: 1.0.0) |
