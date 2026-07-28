@@ -15,7 +15,8 @@ The concepts map one-to-one; the structure follows idiomatic Java backend conven
 - **Secure file I/O**: hardened atomic read/write with path confinement (`SecureFileIo`).
 - **Docker**: multi-stage `Dockerfile` (non-root user) + `docker-compose.yml`.
 - **OpenAPI / Swagger UI**: interactive docs out of the box.
-- **Health checks**: root endpoint + Spring Actuator.
+- **Health checks**: root endpoint (includes optional Redis status) + Spring Actuator.
+- **Optional Redis**: cache layer for services (off by default; rate limiting stays in-memory).
 
 ## Project Structure
 
@@ -41,8 +42,11 @@ java_rest_api_template/
 │   │   │   │   │   └── ExampleItemsController.java   # Reference controller — copy this pattern (full CRUD)
 │   │   │   │   └── example_group_two/
 │   │   │   │       └── ExampleStatusController.java  # Second group (own folder, own config entry)
-│   │   │   ├── service/ExampleItemService.java   # Business logic
+│   │   │   ├── service/ExampleItemService.java   # Business logic (optional Redis cache demo)
 │   │   │   ├── repository/ExampleItemRepository.java # Persistence (in-memory; swap for JPA/file)
+│   │   │   ├── resources/cache/                  # Optional Redis cache layer
+│   │   │   │   ├── RedisClient.java                  # Connection + enable flag
+│   │   │   │   └── RedisCacheService.java            # cacheGet / cacheSet / cacheDelete
 │   │   │   ├── entity/ExampleItem.java           # Persisted record
 │   │   │   ├── dto/                              # Request/response shapes (Pydantic models equivalent)
 │   │   │   │   ├── ExampleItemCreate.java            # POST body
@@ -225,8 +229,12 @@ LOG_LEVEL=info            # Logging level (debug/info/warning/error/critical)
 # POSTGRES_PASSWORD=api_password
 # DATABASE_URL=jdbc:postgresql://postgres:5432/api_db
 
-# Redis (uncomment if using Redis for rate limiting)
-# REDIS_URL=redis://redis:6379/0
+# Redis (optional — default off; app runs normally without it)
+REDIS_ENABLED=false
+REDIS_HOST=localhost       # use "redis" when running via docker-compose
+REDIS_PORT=6379
+REDIS_PASSWORD=
+REDIS_DB=0
 ```
 
 > The bound server port/host come from `config_file.json` (`network.*`), which `CoreSpecsInitializer` maps onto Spring's `server.port` / `server.address`. `SERVER_PORT` in `.env` is only used by `docker-compose` for port publishing.
@@ -242,6 +250,8 @@ Use `controller/example_group_one/ExampleItemsController.java` as the canonical 
 5. **Static data** — reads `languages` from `DataLoader`.
 6. **Logging** — `CustomLogger` for debug/info messages.
 
+See `ExampleItemService.getById` for optional Redis caching via `RedisCacheService`.
+
 **Steps to add a new endpoint group:**
 
 1. Add an entry under `endpoints` in `config_file.json`.
@@ -255,10 +265,10 @@ Spring auto-discovers the new `@RestController` via component scanning — there
 
 | Method | Path | Description |
 |---|---|---|
-| `GET` | `/` | Health check |
+| `GET` | `/` | Health check (includes Redis status when configured) |
 | `GET` | `/subsection/items` | List example items |
 | `POST` | `/subsection/items` | Create an example item (optional `?contactEmail=`) |
-| `GET` | `/subsection/items/{id}` | Get a single item by ID |
+| `GET` | `/subsection/items/{id}` | Get a single item by ID (optional Redis cache demo) |
 | `PATCH` | `/subsection/items/{id}` | Partially update an item |
 | `DELETE` | `/subsection/items/{id}` | Delete an item |
 | `GET` | `/subsection/status` | Second-group status endpoint |
@@ -273,6 +283,60 @@ Spring auto-discovers the new `@RestController` via component scanning — there
 | `entity/*` | The full persisted record incl. `id`
 
 Rename or replace these per project; keep the split.
+
+## Optional Redis Cache (`resources/cache/`)
+
+Redis is an **optional** cache layer. The application starts and serves requests when Redis is disabled or unreachable. The in-memory repository (or your future database) remains the source of truth; Redis is only for temporary cached data. **Rate limiting stays in-memory** unless you separately swap `RateLimiter` for a Redis-backed store.
+
+| Class | Role |
+|---|---|
+| `RedisClient` | Reads env config, connects when `REDIS_ENABLED=true`, exposes `getStatus()` |
+| `RedisCacheService` | `cacheGet`, `cacheSet`, `cacheDelete` — inject this in services, not controllers |
+
+**Enable locally:**
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=localhost
+```
+
+**Enable with Docker Compose** (Redis service is included in `docker-compose.yml`):
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=redis
+```
+
+**Health check response** (`GET /`):
+
+| Redis state | `"redis"` value |
+|---|---|
+| Disabled (`REDIS_ENABLED=false`) | `"disabled"` |
+| Enabled and connected | `"connected"` |
+| Enabled but unreachable | `"unavailable"` |
+
+The API stays `"status": "ok"` even when Redis is unavailable.
+
+**Usage in a service** (see `ExampleItemService.getById`):
+
+```java
+@Service
+public class YourService {
+    private final RedisCacheService cacheService;
+
+    public YourResponse getById(String id) {
+        Optional<YourResponse> cached = cacheService.cacheGet("entity:" + id, YourResponse.class);
+        if (cached.isPresent()) {
+            return cached.get();
+        }
+        YourResponse response = loadFromDatabase(id);
+        cacheService.cacheSet("entity:" + id, response, 600);
+        return response;
+    }
+}
+```
+
+Controllers should call services — never inject `RedisClient` directly.
 
 ## Utilities (`util/`)
 
@@ -331,7 +395,7 @@ The store is in-memory, which is correct for a single instance. For multi-instan
 
 ### Docker Compose
 - Publishes `${SERVER_PORT:-8080}:8080`, persists `./logs`.
-- Commented-out `postgres` / `redis` services ready to enable.
+- Optional Redis cache service (enabled via env); PostgreSQL stub commented for extension.
 
 ## Development
 
@@ -353,7 +417,7 @@ Edit `build.gradle` `dependencies { ... }` and re-run `./gradlew build`. Spring'
 
 ## Scaling / Production notes
 
-- **Rate limiter**: swap the in-memory store in `RateLimiter` for Redis (e.g. Bucket4j + Redis) for multi-instance correctness.
+- **Rate limiter**: the template ships an in-memory store (correct for a single instance). For multi-instance rate limits, swap `RateLimiter` for a Redis-backed counter (e.g. Bucket4j + Redis) — separate from the optional cache layer in `resources/cache/`.
 - **Persistence**: replace `ExampleItemRepository` with `JpaRepository<ExampleItem, String>` (add `spring-boot-starter-data-jpa` + a driver), or back it with `SecureFileIo` record helpers against `resources/db/mock_db_jsons/`.
 - **Migrations**: add Flyway/Liquibase and put scripts in `src/main/resources/db/`.
 - Compatible with AWS ECS/Fargate, Google Cloud Run, Azure Container Instances, Heroku, DigitalOcean App Platform, and similar.
