@@ -1,0 +1,24 @@
+{
+  "total_cost": 450.00,
+  "cost_by_category": {
+    "api_calls": 200.00,
+    "storage": 50.00,
+    "bandwidth": 100.00,
+    "compute": 100.00
+  },
+  "unit_economics": {
+    "cost_per_user": 0.36,
+    "cost_per_session": 0.18,
+    "cost_per_event": 0.03
+  },
+  "projections": [
+    { "month": "2024-01", "projected": 450.00, "actual": 420.00 },
+    { "month": "2024-02", "projected": 480.00, "actual": null },
+    { "month": "2024-03", "projected": 510.00, "actual": null },
+    { "month": "2024-04", "projected": 540.00, "actual": null }
+  ],
+  "notes": [
+    "Costs module not configured. Set FEATURE_COSTS_MODULE=true and add pricing variables to enable.",
+    "Generic pricing model. Configure COSTS_UNIT_PRICE and COSTS_UNIT_NAME for custom calculations."
+  ]
+}
