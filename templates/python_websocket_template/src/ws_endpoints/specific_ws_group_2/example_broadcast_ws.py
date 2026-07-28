@@ -15,8 +15,9 @@ should be in their own file but within this same folder, in order to have a
 more organized code in folders and not a single endless file.
 
 Demonstrates the multi-connection pattern that ``example_echo_ws.py`` does not:
-    - ``connection_manager`` (shared ``ConnectionManager``) to track every live
-      client and fan a single message out to all of them
+    - ``ws_broadcast_service`` for room-wide delivery (optional Redis pub/sub)
+    - ``example_room_service`` for optional cache of the last room message
+    - ``connection_manager`` to register clients and send personal messages
     - Pydantic models to validate inbound frames (``ChatMessageIn``)
     - A single typed outgoing envelope (``WsMessageOut``) for every reply
     - ``config_loader`` for prefix, tag, and the WebSocket route path
@@ -38,6 +39,11 @@ from pydantic import ValidationError
 from src.utils.custom_logger import log_handler
 from src.core_specs.configuration.config_loader import config_loader
 from src.utils.ws_connection_manager import connection_manager
+from src.resources.ws_broadcast_service import broadcast as broadcast_message
+from src.resources.example_room_service import (
+    cache_last_room_message,
+    get_cached_last_room_message,
+)
 from src.models.ws_messages_example import ChatMessageIn, WsMessageOut
 
 """WS ROUTER-----------------------------------------------------------"""
@@ -61,6 +67,11 @@ async def example_broadcast_ws(websocket: WebSocket):
         websocket (WebSocket): The incoming client connection.
     """
     await connection_manager.connect(websocket)
+
+    cached_message = get_cached_last_room_message()
+    if cached_message is not None:
+        await connection_manager.send_personal(cached_message, websocket)
+
     try:
         while True:
             raw = await websocket.receive_text()
@@ -78,10 +89,12 @@ async def example_broadcast_ws(websocket: WebSocket):
                 type="chat",
                 data={"username": payload.username, "text": payload.text},
             )
-            await connection_manager.broadcast(message.model_dump())
+            payload_dict = message.model_dump()
+            cache_last_room_message(payload_dict)
+            await broadcast_message(payload_dict)
     except WebSocketDisconnect:
         connection_manager.disconnect(websocket)
         #Let the remaining clients know someone left.
-        await connection_manager.broadcast(
+        await broadcast_message(
             WsMessageOut(type="system", data={"detail": "a client disconnected"}).model_dump()
         )
