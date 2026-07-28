@@ -46,6 +46,10 @@
         "example_endpoint_2": {
             "field_name": "createExampleItem",
             "description": "Create a new example item"
+        },
+        "example_endpoint_3": {
+            "field_name": "exampleItem",
+            "description": "Get a single example item by ID (optional Redis cache demo)"
         }
     }
 }
