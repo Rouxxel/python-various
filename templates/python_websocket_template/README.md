@@ -7,10 +7,11 @@ A production-ready FastAPI template for building WebSocket backends with Docker 
 - **FastAPI + WebSocket**: Native WebSocket support with FastAPI
 - **Docker Support**: Multi-stage Dockerfile and docker-compose for easy deployment
 - **Logging**: File and console logging with configurable levels
-- **Health Check**: HTTP GET `/` for readiness (e.g. Docker health checks)
+- **Health Check**: HTTP GET `/` for readiness (includes optional Redis status)
 - **Configuration**: JSON-based configuration management via `config_loader`
 - **Input Validation**: Pydantic message envelopes + `validators.py` helpers
-- **Connection Management**: Shared `ConnectionManager` for broadcasting to many clients
+- **Connection Management**: Shared local connection registry per process
+- **Optional Redis**: Cache helpers and pub/sub for multi-instance broadcasts
 - **Security**: Non-root user in Docker, input validation, encryption utilities
 - **Development Ready**: Hot reload via start scripts
 
@@ -37,12 +38,18 @@ python_websocket_template/
 │   ├── models/
 │   │   ├── models_example.py           # Pydantic model pattern (Base/Create/Update/Response)
 │   │   └── ws_messages_example.py      # WebSocket message envelope models
-│   ├── resources/                  # Database-related assets (placeholder)
+│   ├── resources/                  # Cache, broadcast, and DB assets
+│   │   ├── cache/                      # Optional Redis cache + pub/sub
+│   │   │   ├── redis_client.py         # Connection + enable flag
+│   │   │   ├── redis_service.py        # cache_get / cache_set / cache_delete
+│   │   │   └── redis_pubsub_service.py # Cross-instance broadcast channel
+│   │   ├── ws_broadcast_service.py     # Room-wide fan-out (uses pub/sub when enabled)
+│   │   ├── example_room_service.py     # Demo cache for last chat message
 │   │   ├── db/                         # Migration files (add when needed)
 │   │   └── mock_db_jsons/              # Mock JSON tables (add when needed)
 │   └── utils/
 │       ├── custom_logger.py        # Logging configuration (log_handler)
-│       ├── ws_connection_manager.py # Shared ConnectionManager (broadcast support)
+│       ├── ws_connection_manager.py # Local connection registry (per process)
 │       ├── validators.py           # Email, password, phone, token, UUID validators
 │       ├── en_de_crypt.py          # RSA encrypt/decrypt (requires .env keys)
 │       ├── keys_generator.py       # One-off script to generate RSA key pairs
@@ -130,6 +137,14 @@ E_PUBLIC_KEY=your_public_key_here
 API_TITLE=WebSocket Template
 API_VERSION=1.0.0
 API_DESCRIPTION=A template for building WebSocket backends with FastAPI
+
+# Redis (optional — default off; app runs normally without it)
+REDIS_ENABLED=false
+REDIS_HOST=localhost       # use "redis" when running via docker-compose
+REDIS_PORT=6379
+REDIS_PASSWORD=
+REDIS_DB=0
+REDIS_WS_BROADCAST_CHANNEL=ws:broadcast
 ```
 
 ### JSON Configuration (`config_file.json` + `config_loader`)
@@ -233,27 +248,78 @@ Keeping one outgoing shape with a `type` discriminator lets the client branch on
 | Module | When to use |
 |---|---|
 | `custom_logger.py` | `log_handler` — use everywhere instead of `print` |
-| `ws_connection_manager.py` | Shared `connection_manager` — register connections and broadcast to all clients |
+| `ws_connection_manager.py` | Local `connection_manager` — register connections and send to one client |
 | `validators.py` | `validate_email_format`, `validate_password_format`, `validate_phone_format`, token/UUID checks |
 | `en_de_crypt.py` | `encrypt_in` / `decrypt_out` for RSA-encrypted message fields |
 | `keys_generator.py` | Run once to generate `E_PRIVATE_KEY` / `E_PUBLIC_KEY` for `.env` |
 | `secure_file_io.py` | Safe atomic file reads/writes with path confinement |
 | `pycache_n_logs_deleter.py` | Dev cleanup script — set `ROOT_FOLDER` before running |
 
-### Connection Manager
+### Connection Manager and Broadcast Service
 
-`ws_connection_manager.py` exposes a single shared `connection_manager` instance (the WebSocket analogue of a shared limiter). Import it; do not instantiate your own.
+`ws_connection_manager.py` tracks **local** WebSocket connections on this process. For room-wide delivery (especially across replicas), use `ws_broadcast_service` instead of calling Redis or pub/sub directly from handlers.
 
 ```python
 from src.utils.ws_connection_manager import connection_manager
+from src.resources.ws_broadcast_service import broadcast
 
-await connection_manager.connect(websocket)        # accept + register
-await connection_manager.broadcast({"type": "x"})   # send to everyone
-await connection_manager.send_personal(msg, ws)     # send to one client
-connection_manager.disconnect(websocket)            # unregister on disconnect
+await connection_manager.connect(websocket)              # accept + register locally
+await broadcast({"type": "chat", "data": {...}})         # all clients (pub/sub when enabled)
+await connection_manager.send_personal(msg, websocket)   # one client on this process
+connection_manager.disconnect(websocket)                 # unregister on disconnect
 ```
 
-The in-memory registry is sufficient for a single process. For multiple workers/replicas, back broadcasts with Redis pub/sub (or a similar broker) since connections live in different processes.
+| Deployment | Broadcast path |
+|---|---|
+| Single process, Redis off | In-memory `broadcast_local` only |
+| Multiple replicas, Redis on | Publish to `REDIS_WS_BROADCAST_CHANNEL`; each instance delivers locally |
+
+See `src/ws_endpoints/specific_ws_group_2/example_broadcast_ws.py` and
+`src/resources/example_room_service.py` for cache + broadcast examples.
+
+## Optional Redis Cache and Pub/Sub (`src/resources/cache/`)
+
+Redis is **optional**. The server starts and serves WebSockets when Redis is disabled or unreachable.
+
+| Module | Role |
+|---|---|
+| `redis_client.py` | Reads env config, connects when `REDIS_ENABLED=true`, exposes `get_redis_status()` |
+| `redis_service.py` | `cache_get`, `cache_set`, `cache_delete` for temporary cached data |
+| `redis_pubsub_service.py` | Shared broadcast channel for multi-instance fan-out |
+| `ws_broadcast_service.py` | Endpoints call `broadcast()` here — never import `redis_client` in handlers |
+
+**Enable locally:**
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=localhost
+```
+
+**Enable with Docker Compose** (Redis service is included in `docker-compose.yml`):
+
+```bash
+REDIS_ENABLED=true
+REDIS_HOST=redis
+```
+
+**Health check response** (`GET /`):
+
+| Redis state | `"redis"` value |
+|---|---|
+| Disabled | `"disabled"` |
+| Connected | `"connected"` |
+| Enabled but unreachable | `"unavailable"` |
+
+The API stays `"status": "ok"` even when Redis is unavailable.
+
+**Cache usage** (see `example_room_service.py`):
+
+```python
+from src.resources.cache.redis_service import cache_get, cache_set
+
+cache_set("ws:room:default:last_message", message, expiration_seconds=3600)
+cached = cache_get("ws:room:default:last_message")
+```
 
 ## Testing the WebSockets
 
@@ -318,8 +384,8 @@ Invalid frames receive an `{"type":"error", ...}` envelope instead of dropping t
 
 ### Docker Compose
 - **Production**: Optimized for deployment
-- **Services**: Ready for Redis, PostgreSQL integration (commented in compose file)
-- **Volumes**: Persistent log storage
+- **Services**: Optional Redis for cache and cross-instance broadcasts
+- **Volumes**: Persistent log storage and Redis data
 
 ## Development
 
@@ -341,7 +407,7 @@ pip freeze > requirements.txt
 ## Deployment
 
 1. Update environment variables for production.
-2. For multiple replicas, move broadcast state to Redis pub/sub (see Connection Manager note).
+2. For multiple replicas, set `REDIS_ENABLED=true` and point `REDIS_HOST` at your Redis service (pub/sub is wired in `ws_broadcast_service`).
 3. Build: `docker build -t your-ws-api:latest .`
 4. Deploy: `docker-compose up -d`
 
