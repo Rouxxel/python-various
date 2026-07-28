@@ -18,6 +18,7 @@ package com.template.restapi.controller;
 import java.util.Map;
 
 import com.template.restapi.config.RateLimit;
+import com.template.restapi.resources.cache.RedisClient;
 import com.template.restapi.util.CustomLogger;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,10 +32,19 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "root")
 public class RootController {
 
+    private final RedisClient redisClient;
+
+    public RootController(RedisClient redisClient) {
+        this.redisClient = redisClient;
+    }
+
     @RateLimit("root_directory_endpoint")
     @GetMapping("${config.endpoints.root_directory_endpoint.endpoint_route}")
     public Map<String, String> root() {
         CustomLogger.debug("Backend running successfully");
-        return Map.of("message", "Backend running successfully, ready to use other endpoints");
+        return Map.of(
+                "status", "ok",
+                "message", "Backend running successfully, ready to use other endpoints",
+                "redis", redisClient.getStatus());
     }
 }

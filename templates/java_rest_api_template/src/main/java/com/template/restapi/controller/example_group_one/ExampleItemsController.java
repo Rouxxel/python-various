@@ -21,6 +21,7 @@
  *   - optional input checks via util/Validators
  *   - static reference data via DataLoader
  *   - structured logging via CustomLogger
+ *   - optional Redis cache via ExampleItemService (not direct Redis imports)
  *
  * The path prefix and route come from config_file.json ->
  * endpoints.example_endpoint_1; the rate limit for every handler is enforced by
