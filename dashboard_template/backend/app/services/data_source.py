@@ -2,9 +2,18 @@
 
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import Literal
+from pathlib import Path
 
 from app.config import settings
+from app.core_specs.configuration.config_loader import config_loader
+from app.utils.custom_logger import log_handler
+from app.utils.secure_file_io import read_json, set_allowed_root
+
+_BACKEND_DIR = Path(__file__).resolve().parents[2]
+_MOCK_DATA_DIR = _BACKEND_DIR / config_loader["defaults"]["mock_data_path"]
+_MOCK_FILES = config_loader["mock_data"]
+
+set_allowed_root(_BACKEND_DIR)
 
 
 class DataSource(ABC):
@@ -12,88 +21,75 @@ class DataSource(ABC):
 
     @abstractmethod
     def get_overview(self, from_date: datetime, to_date: datetime) -> dict:
-        """Get overview metrics."""
         pass
 
     @abstractmethod
     def get_users(self, from_date: datetime, to_date: datetime) -> dict:
-        """Get user analytics."""
         pass
 
     @abstractmethod
     def get_sessions(self, from_date: datetime, to_date: datetime) -> dict:
-        """Get session analytics."""
         pass
 
     @abstractmethod
     def get_activity(self, from_date: datetime, to_date: datetime) -> dict:
-        """Get activity/events."""
         pass
 
     @abstractmethod
     def get_infrastructure(self) -> dict:
-        """Get infrastructure metrics."""
         pass
 
     @abstractmethod
     def get_costs(self, from_date: datetime, to_date: datetime) -> dict:
-        """Get cost analytics."""
         pass
 
     @abstractmethod
     def get_ai_metrics(self, from_date: datetime, to_date: datetime) -> dict:
-        """Get AI/ML metrics."""
         pass
 
 
 class MockDataSource(DataSource):
     """Mock data source for development without external services."""
 
-    def __init__(self):
-        self._mock_data_dir = None
-
-    def _load_mock_json(self, filename: str) -> dict:
-        """Load mock data from JSON file."""
-        import json
-        from pathlib import Path
-
-        if self._mock_data_dir is None:
-            self._mock_data_dir = Path(__file__).parent.parent / "mock_data"
-
-        path = self._mock_data_dir / filename
-        if not path.exists():
+    def _load_mock_json(self, key: str) -> dict:
+        filename = _MOCK_FILES[key]
+        path = _MOCK_DATA_DIR / filename
+        try:
+            data = read_json(path, default={"error": f"Mock file not found: {filename}"})
+            return data if isinstance(data, dict) else {"data": data}
+        except FileNotFoundError:
+            log_handler.warning("Mock file missing: %s", path)
             return {"error": f"Mock file not found: {filename}"}
-
-        with open(path) as f:
-            return json.load(f)
+        except Exception as exc:
+            log_handler.error("Failed to load mock file %s: %s", path, exc)
+            return {"error": str(exc)}
 
     def get_overview(self, from_date: datetime, to_date: datetime) -> dict:
-        return self._load_mock_json("overview.json")
+        return self._load_mock_json("overview")
 
     def get_users(self, from_date: datetime, to_date: datetime) -> dict:
-        return self._load_mock_json("users.json")
+        return self._load_mock_json("users")
 
     def get_sessions(self, from_date: datetime, to_date: datetime) -> dict:
-        return self._load_mock_json("sessions.json")
+        return self._load_mock_json("sessions")
 
     def get_activity(self, from_date: datetime, to_date: datetime) -> dict:
-        return self._load_mock_json("activity.json")
+        return self._load_mock_json("activity")
 
     def get_infrastructure(self) -> dict:
-        return self._load_mock_json("infrastructure.json")
+        return self._load_mock_json("infrastructure")
 
     def get_costs(self, from_date: datetime, to_date: datetime) -> dict:
-        return self._load_mock_json("costs.json")
+        return self._load_mock_json("costs")
 
     def get_ai_metrics(self, from_date: datetime, to_date: datetime) -> dict:
-        return self._load_mock_json("ai_metrics.json")
+        return self._load_mock_json("ai_metrics")
 
 
 class LiveDataSource(DataSource):
     """Live data source that queries actual providers."""
 
     def __init__(self):
-        # Import live data builders here to avoid circular imports
         from app.services.live import placeholder_analytics
 
         self._analytics = placeholder_analytics
@@ -121,8 +117,7 @@ class LiveDataSource(DataSource):
 
 
 def get_data_source() -> DataSource:
-    """Factory function to get the appropriate data source based on settings."""
+    """Return mock or live data source based on ``DASHBOARD_DATA_MODE``."""
     if settings.dashboard_data_mode == "mock":
         return MockDataSource()
-    else:
-        return LiveDataSource()
+    return LiveDataSource()
