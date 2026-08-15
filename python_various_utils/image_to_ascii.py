@@ -8,21 +8,25 @@ editor or terminal.
 
 Pipeline (step by step):
 
-    image.png → [Load & Grayscale] → [Resize] → [Map pixels to chars] → image.txt
+    image.png → [Load & Grayscale] → [Compute Width] → [Resize] → [Map pixels to chars] → image.txt
 
     1. Load & Grayscale: Open the image and convert to single-channel brightness (0-255).
-    2. Resize: Shrink to target character width, applying aspect ratio correction
-       (terminal chars are ~2x taller than wide, so height is scaled by ~0.55).
-    3. Map pixels to chars: Each pixel brightness maps to a character in the ramp.
+    2. Compute Width: Read the image's native pixel width and apply the resolution
+       percentage (1-500). 100 = image width in chars, 50 = half, 200 = double.
+    3. Resize: Shrink/expand to computed character width, applying aspect ratio
+       correction (terminal chars are ~2x taller than wide, so height is scaled by ~0.55).
+    4. Map pixels to chars: Each pixel brightness maps to a character in the ramp.
        Dense characters (@, #, %) represent dark pixels, light characters (., space)
-       represent bright pixels.
-    4. Write output: Join character rows with newlines and save as .txt file.
+       represent bright pixels. The ramp is auto-selected based on effective width
+       (extended 70-level ramp for width >= 150, standard 10-level otherwise).
+    5. Write output: Join character rows with newlines and save as .txt file.
 
 This module provides:
 
 - Conversion of images to ASCII art .txt files
-- Configurable output width (characters per line)
-- Two character ramps: standard (10 levels) and extended (70 levels)
+- Resolution-based width: automatically derives output width from image dimensions
+- Resolution percentage (1-500): controls detail level relative to the source image
+- Auto ramp selection: extended (70 levels) for high-res, standard (10 levels) for low-res
 - Aspect ratio correction for terminal display
 - Inverted mode for dark terminal backgrounds
 - Single-file and recursive directory processing modes
@@ -51,8 +55,15 @@ CHAR_RAMP_STANDARD = "@%#*+=-:. "
 # Extended ramp with more granularity (70 levels)
 CHAR_RAMP_EXTENDED = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
 
-# Default output width in characters
-DEFAULT_WIDTH = 120
+# Default resolution percentage (100 = image's native pixel width in characters)
+DEFAULT_RESOLUTION = 100
+
+# Min/max resolution bounds
+MIN_RESOLUTION = 1
+MAX_RESOLUTION = 500
+
+# Threshold: use extended ramp when effective width >= this value
+AUTO_RAMP_THRESHOLD = 150
 
 # Aspect ratio correction (terminal chars are ~2x taller than wide)
 ASPECT_RATIO_CORRECTION = 0.55
@@ -70,6 +81,36 @@ def load_and_prepare_image(path: Path) -> Image.Image:
     """
     img = Image.open(path)
     return img.convert("L")
+
+
+# =========================
+# RESOLUTION LOGIC
+# =========================
+
+def compute_width_from_resolution(image_width: int, resolution: int) -> int:
+    """
+    Compute the output character width from the image's native width and a
+    resolution percentage.
+
+    resolution=100 means 1 pixel = 1 character (native width).
+    resolution=50 means half the characters. resolution=200 means double.
+    Clamped to [MIN_RESOLUTION, MAX_RESOLUTION].
+    """
+    resolution = max(MIN_RESOLUTION, min(MAX_RESOLUTION, resolution))
+    width = int(image_width * (resolution / 100))
+    return max(1, width)
+
+
+def select_char_ramp(effective_width: int) -> str:
+    """
+    Auto-select character ramp based on effective output width.
+
+    Uses the extended 70-level ramp for higher detail outputs (width >= 150),
+    and the standard 10-level ramp for smaller outputs.
+    """
+    if effective_width >= AUTO_RAMP_THRESHOLD:
+        return CHAR_RAMP_EXTENDED
+    return CHAR_RAMP_STANDARD
 
 
 # =========================
@@ -149,30 +190,49 @@ def write_output(lines: list[str], output_path: Path) -> None:
 def convert_to_ascii(
     image_path: Path,
     output_path: Path = None,
-    width: int = DEFAULT_WIDTH,
-    char_ramp: str = CHAR_RAMP_STANDARD,
+    resolution: int = DEFAULT_RESOLUTION,
+    char_ramp: str = None,
     aspect_ratio_correction: float = ASPECT_RATIO_CORRECTION,
     invert: bool = False
 ) -> Path:
     """
-    Full pipeline: load → grayscale → resize → map → write.
+    Full pipeline: load → grayscale → compute width → resize → map → write.
+
+    Resolution controls output detail as a percentage of the image's native width:
+      - 100 = 1 pixel per character (native width)
+      - 50 = half detail
+      - 200 = double detail (capped at 500)
+
+    If char_ramp is None, it's auto-selected based on effective width:
+      - width >= 150 chars → extended ramp (70 levels)
+      - width < 150 chars → standard ramp (10 levels)
 
     If output_path is None, writes to the same directory with .txt extension.
     Returns the path to the output file.
     """
-    if width < 1:
-        raise ValueError("Width must be a positive integer.")
-
-    if not char_ramp:
-        raise ValueError("Character ramp must be a non-empty string.")
+    resolution = max(MIN_RESOLUTION, min(MAX_RESOLUTION, resolution))
 
     if output_path is None:
         output_path = image_path.with_suffix(".txt")
 
     img = load_and_prepare_image(image_path)
-    img = resize_for_terminal(img, width, aspect_ratio_correction)
+
+    # Compute width from image dimensions and resolution percentage
+    effective_width = compute_width_from_resolution(img.width, resolution)
+
+    # Auto-select ramp if not explicitly provided
+    if char_ramp is None:
+        char_ramp = select_char_ramp(effective_width)
+
+    if not char_ramp:
+        raise ValueError("Character ramp must be a non-empty string.")
+
+    img = resize_for_terminal(img, effective_width, aspect_ratio_correction)
     lines = map_pixels_to_chars(img, char_ramp, invert)
     write_output(lines, output_path)
+
+    print(f"  Resolution: {resolution}% | Width: {effective_width} chars | "
+          f"Ramp: {'extended' if len(char_ramp) > 10 else 'standard'}")
 
     return output_path
 
@@ -183,8 +243,8 @@ def convert_to_ascii(
 
 def process_single_file(
     file: str,
-    width: int = DEFAULT_WIDTH,
-    char_ramp: str = CHAR_RAMP_STANDARD,
+    resolution: int = DEFAULT_RESOLUTION,
+    char_ramp: str = None,
     aspect_ratio_correction: float = ASPECT_RATIO_CORRECTION,
     invert: bool = False
 ) -> None:
@@ -192,6 +252,7 @@ def process_single_file(
     Process one image file and convert to ASCII art .txt.
 
     Validates file exists and has a supported extension.
+    Resolution is a percentage (1-500) of the image's native pixel width.
     """
     path = Path(file)
 
@@ -200,11 +261,15 @@ def process_single_file(
 
     ext = path.suffix.lower().replace(".", "")
     if ext not in INPUT_FORMATS:
-        raise ValueError(f"Unsupported format: .{ext}. Supported: {INPUT_FORMATS}")
+        raise ValueError(
+            f"Unsupported format: .{ext}. Supported: {INPUT_FORMATS}"
+        )
 
     try:
-        out = convert_to_ascii(path, width=width, char_ramp=char_ramp,
-                               aspect_ratio_correction=aspect_ratio_correction, invert=invert)
+        out = convert_to_ascii(
+            path, resolution=resolution, char_ramp=char_ramp,
+            aspect_ratio_correction=aspect_ratio_correction, invert=invert
+        )
         print(f"Converted: {path} -> {out}")
     except Exception as e:
         print(f"Failed: {path} -> {e}")
@@ -217,8 +282,8 @@ def process_single_file(
 def process_directory(
     root: str,
     source_formats: list[str] = None,
-    width: int = DEFAULT_WIDTH,
-    char_ramp: str = CHAR_RAMP_STANDARD,
+    resolution: int = DEFAULT_RESOLUTION,
+    char_ramp: str = None,
     aspect_ratio_correction: float = ASPECT_RATIO_CORRECTION,
     invert: bool = False
 ) -> None:
@@ -226,6 +291,7 @@ def process_directory(
     Recursively scan a directory and convert all matching images to ASCII .txt files.
 
     Only files matching source_formats are processed.
+    Resolution is applied per-image based on each image's native width.
     Failed conversions print an error but don't halt processing.
     """
     if source_formats is None:
@@ -240,8 +306,11 @@ def process_directory(
     for file in root_path.rglob("*"):
         if file.suffix.lower().replace(".", "") in source_formats:
             try:
-                out = convert_to_ascii(file, width=width, char_ramp=char_ramp,
-                                       aspect_ratio_correction=aspect_ratio_correction, invert=invert)
+                out = convert_to_ascii(
+                    file, resolution=resolution, char_ramp=char_ramp,
+                    aspect_ratio_correction=aspect_ratio_correction,
+                    invert=invert
+                )
                 print(f"Converted: {file} -> {out}")
                 count += 1
             except Exception as e:
@@ -260,36 +329,33 @@ if __name__ == "__main__":
     # CONFIG (USER-FACING)
     # =========================
 
-    folder_to_crawl = None      # e.g. "my_images"
-    single_file = "logo (16).png"          # e.g. "photo.png"
+    folder_to_crawl = None              # e.g. "my_images"
+    single_file = "logo (16).png"       # e.g. "photo.png"
 
-    output_width = 120          # characters per line
-    use_extended_ramp = False   # True for 70-level detail, False for 10-level
-    invert_brightness = False   # True for dark terminal backgrounds
+    resolution = 100                    # percentage of image width (1-500)
+                                        # 100 = native, 50 = half, 200 = double
+    invert_brightness = False           # True for dark terminal backgrounds
 
     # =========================
     # RUN
     # =========================
 
-    ramp = CHAR_RAMP_EXTENDED if use_extended_ramp else CHAR_RAMP_STANDARD
-
     if single_file:
         process_single_file(
             file=single_file,
-            width=output_width,
-            char_ramp=ramp,
+            resolution=resolution,
             invert=invert_brightness
         )
 
     if folder_to_crawl:
         process_directory(
             root=folder_to_crawl,
-            width=output_width,
-            char_ramp=ramp,
+            resolution=resolution,
             invert=invert_brightness
         )
 
     if not single_file and not folder_to_crawl:
-        print("No input configured. Set 'single_file' or 'folder_to_crawl' in the CONFIG section.")
+        print("No input configured. Set 'single_file' or 'folder_to_crawl' "
+              "in the CONFIG section.")
 
     print("\nDone.")
