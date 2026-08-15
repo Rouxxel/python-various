@@ -190,22 +190,26 @@ def write_output(lines: list[str], output_path: Path) -> None:
 def convert_to_ascii(
     image_path: Path,
     output_path: Path = None,
+    output_width: int = None,
     resolution: int = DEFAULT_RESOLUTION,
     char_ramp: str = None,
+    use_extended_ramp: bool = None,
     aspect_ratio_correction: float = ASPECT_RATIO_CORRECTION,
     invert: bool = False
 ) -> Path:
     """
     Full pipeline: load → grayscale → compute width → resize → map → write.
 
-    Resolution controls output detail as a percentage of the image's native width:
-      - 100 = 1 pixel per character (native width)
-      - 50 = half detail
-      - 200 = double detail (capped at 500)
+    Width priority:
+      - If output_width is set (not None): use that exact character width.
+      - If output_width is None: derive from image width * (resolution / 100).
 
-    If char_ramp is None, it's auto-selected based on effective width:
-      - width >= 150 chars → extended ramp (70 levels)
-      - width < 150 chars → standard ramp (10 levels)
+    Ramp priority:
+      - If use_extended_ramp is True: force extended ramp (70 levels).
+      - If use_extended_ramp is False: force standard ramp (10 levels).
+      - If use_extended_ramp is None: auto-select based on effective width
+        (extended if width >= 150, standard otherwise).
+      - If char_ramp is explicitly provided, it overrides everything above.
 
     If output_path is None, writes to the same directory with .txt extension.
     Returns the path to the output file.
@@ -217,12 +221,22 @@ def convert_to_ascii(
 
     img = load_and_prepare_image(image_path)
 
-    # Compute width from image dimensions and resolution percentage
-    effective_width = compute_width_from_resolution(img.width, resolution)
+    # Determine effective width
+    if output_width is not None:
+        if output_width < 1:
+            raise ValueError("output_width must be a positive integer.")
+        effective_width = output_width
+    else:
+        effective_width = compute_width_from_resolution(img.width, resolution)
 
-    # Auto-select ramp if not explicitly provided
+    # Determine character ramp
     if char_ramp is None:
-        char_ramp = select_char_ramp(effective_width)
+        if use_extended_ramp is True:
+            char_ramp = CHAR_RAMP_EXTENDED
+        elif use_extended_ramp is False:
+            char_ramp = CHAR_RAMP_STANDARD
+        else:
+            char_ramp = select_char_ramp(effective_width)
 
     if not char_ramp:
         raise ValueError("Character ramp must be a non-empty string.")
@@ -231,8 +245,10 @@ def convert_to_ascii(
     lines = map_pixels_to_chars(img, char_ramp, invert)
     write_output(lines, output_path)
 
-    print(f"  Resolution: {resolution}% | Width: {effective_width} chars | "
-          f"Ramp: {'extended' if len(char_ramp) > 10 else 'standard'}")
+    ramp_label = "extended" if len(char_ramp) > 10 else "standard"
+    width_source = "manual" if output_width else f"{resolution}%"
+    print(f"  Width: {effective_width} chars ({width_source}) | "
+          f"Ramp: {ramp_label}")
 
     return output_path
 
@@ -243,8 +259,9 @@ def convert_to_ascii(
 
 def process_single_file(
     file: str,
+    output_width: int = None,
     resolution: int = DEFAULT_RESOLUTION,
-    char_ramp: str = None,
+    use_extended_ramp: bool = None,
     aspect_ratio_correction: float = ASPECT_RATIO_CORRECTION,
     invert: bool = False
 ) -> None:
@@ -252,7 +269,7 @@ def process_single_file(
     Process one image file and convert to ASCII art .txt.
 
     Validates file exists and has a supported extension.
-    Resolution is a percentage (1-500) of the image's native pixel width.
+    If output_width is None, derives width from image size * resolution%.
     """
     path = Path(file)
 
@@ -267,7 +284,8 @@ def process_single_file(
 
     try:
         out = convert_to_ascii(
-            path, resolution=resolution, char_ramp=char_ramp,
+            path, output_width=output_width, resolution=resolution,
+            use_extended_ramp=use_extended_ramp,
             aspect_ratio_correction=aspect_ratio_correction, invert=invert
         )
         print(f"Converted: {path} -> {out}")
@@ -282,8 +300,9 @@ def process_single_file(
 def process_directory(
     root: str,
     source_formats: list[str] = None,
+    output_width: int = None,
     resolution: int = DEFAULT_RESOLUTION,
-    char_ramp: str = None,
+    use_extended_ramp: bool = None,
     aspect_ratio_correction: float = ASPECT_RATIO_CORRECTION,
     invert: bool = False
 ) -> None:
@@ -291,7 +310,8 @@ def process_directory(
     Recursively scan a directory and convert all matching images to ASCII .txt files.
 
     Only files matching source_formats are processed.
-    Resolution is applied per-image based on each image's native width.
+    If output_width is None, each image's width is derived from its own
+    native size * resolution%.
     Failed conversions print an error but don't halt processing.
     """
     if source_formats is None:
@@ -307,7 +327,9 @@ def process_directory(
         if file.suffix.lower().replace(".", "") in source_formats:
             try:
                 out = convert_to_ascii(
-                    file, resolution=resolution, char_ramp=char_ramp,
+                    file, output_width=output_width,
+                    resolution=resolution,
+                    use_extended_ramp=use_extended_ramp,
                     aspect_ratio_correction=aspect_ratio_correction,
                     invert=invert
                 )
@@ -330,10 +352,16 @@ if __name__ == "__main__":
     # =========================
 
     folder_to_crawl = None              # e.g. "my_images"
-    single_file = "logo (16).png"       # e.g. "photo.png"
+    single_file = "sdf.png"             # e.g. "photo.png"
 
-    resolution = 100                    # percentage of image width (1-500)
+    output_width = None                 # explicit char width (overrides resolution)
+                                        # set to None to auto-derive from image size
+    resolution = 150                    # percentage of image width (1-500)
+                                        # only used when output_width is None
                                         # 100 = native, 50 = half, 200 = double
+    use_extended_ramp = True            # True = force extended (70 levels)
+                                        # False = force standard (10 levels)
+                                        # None = auto-select based on width
     invert_brightness = False           # True for dark terminal backgrounds
 
     # =========================
@@ -343,14 +371,18 @@ if __name__ == "__main__":
     if single_file:
         process_single_file(
             file=single_file,
+            output_width=output_width,
             resolution=resolution,
+            use_extended_ramp=use_extended_ramp,
             invert=invert_brightness
         )
 
     if folder_to_crawl:
         process_directory(
             root=folder_to_crawl,
+            output_width=output_width,
             resolution=resolution,
+            use_extended_ramp=use_extended_ramp,
             invert=invert_brightness
         )
 
