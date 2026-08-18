@@ -75,6 +75,7 @@ Copy this file into any project (e.g. repo root or `docs/security/`). Pair with 
 - [ ] File uploads: size limits, MIME + magic-byte check, malware scan if applicable
 - [ ] Mass assignment prevented (explicit DTOs; ignore unknown JSON fields)
 - [ ] SSRF: no fetching arbitrary user-supplied URLs without allow-list
+- [ ] Prompt/text inputs: control characters stripped, length enforced, whitespace normalized
 
 ### Data protection & logging
 
@@ -102,6 +103,7 @@ Copy this file into any project (e.g. repo root or `docs/security/`). Pair with 
 - [ ] Cloud IAM least privilege; scoped API keys per service
 - [ ] Startup validation fails if required secrets or security settings missing
 - [ ] Container/process runs non-root where possible
+- [ ] Trivy/container scans: separate OS-level CVEs (upstream, often unfixable) from library CVEs (yours to fix)
 
 ---
 
@@ -141,6 +143,7 @@ Copy this file into any project (e.g. repo root or `docs/security/`). Pair with 
 - [ ] Dependency pinning; SBOM or audit trail
 - [ ] Container images minimal; non-root; read-only root FS where possible
 - [ ] No secrets baked into image layers
+- [ ] Container scan scope: use `vuln-type: library` to avoid failing on unpatched OS packages you can't control; track OS CVEs separately
 - [ ] Origin not directly reachable (firewall to gateway only)
 - [ ] DNS/subdomain inventory; no dangling records (subdomain takeover)
 - [ ] WAF or bot protection for public APIs at scale

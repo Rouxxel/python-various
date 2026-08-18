@@ -25,6 +25,10 @@ Every serious project should automate at least:
 | **Deploy readiness** | Production build succeeds with CI env vars |
 
 Workflows run on GitHub’s runners (`ubuntu-24.04` is a good default). They block bad merges when configured as required checks on `main`.
+| ESLint v9+: using .eslintrc.* | Use eslint.config.js flat config (v9+ ignores legacy) |
+| Trivy failing on OS-level CVEs | Use uln-type: library to scope to your deps only |
+| load_dotenv() between imports | Causes E402 linter errors; use # noqa: E402 on imports after it |
+| Hardcoded URL grep too strict | Allowlist known production domains in the negative lookahead |
 
 ---
 

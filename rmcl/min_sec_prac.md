@@ -253,6 +253,47 @@ if (file.size > MAX_BYTES) throw payloadTooLarge();
 // Also verify magic bytes server-side; store outside web root
 ```
 
+### Magic byte verification (Python / FastAPI)
+
+```python
+MAGIC_BYTES = {
+    "image/jpeg": b"\xff\xd8\xff",
+    "image/png": b"\x89PNG\r\n\x1a\n",
+    "image/webp": (b"RIFF", b"WEBP"),  # bytes 0-3 + bytes 8-11
+}
+
+def validate_magic_bytes(file_bytes: bytes, claimed_type: str) -> None:
+    if not file_bytes:
+        raise HTTPException(400, "File is empty.")
+    sig = MAGIC_BYTES.get(claimed_type)
+    if sig is None:
+        raise HTTPException(400, "Unsupported file type.")
+    # Check leading bytes match — generic error on mismatch
+    if not file_bytes.startswith(sig if isinstance(sig, bytes) else sig[0]):
+        raise HTTPException(400, "File content does not match declared type.")
+```
+
+### Prompt / text input sanitization (Python)
+
+```python
+import re, unicodedata
+
+def sanitize_prompt(prompt: str, max_length: int = 400) -> str:
+    # Strip control characters (keep \n \r \t space)
+    cleaned = "".join(
+        ch for ch in prompt
+        if ch in (' ', '\n', '\r', '\t') or not unicodedata.category(ch).startswith('C')
+    )
+    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+    if not cleaned:
+        raise HTTPException(400, "Prompt must not be empty.")
+    if len(cleaned) > max_length:
+        raise HTTPException(400, "Prompt exceeds maximum allowed length.")
+    return cleaned
+```
+
+Key: error messages never reveal the configured limit or sanitization logic.
+
 ---
 
 ## 5. Sessions, cookies & CSRF
@@ -391,6 +432,25 @@ deploy:
 - Read-only root filesystem + tmp mount
 - Internal services not published on public ports
 - TLS terminated at gateway; origin firewall allows gateway only
+
+### Container scan scoping
+
+Container scanners (Trivy, Grype) report both **OS-level** and **library-level** CVEs. OS CVEs in base images (perl, curl, ncurses) are upstream Debian/Alpine issues you often can't fix. Best practice:
+
+```yaml
+# Scan only your installed libraries (Python, Node, etc.)
+- uses: aquasecurity/trivy-action@v0.36.0
+  with:
+    image-ref: my-app:ci
+    severity: "CRITICAL,HIGH"
+    exit-code: "1"
+    vuln-type: "library"   # skip OS packages
+    scanners: "vuln"       # skip secret scanner (gitleaks handles it)
+```
+
+- Use `vuln-type: library` to gate CI on things you control
+- Run a separate periodic scan with `vuln-type: os` for visibility (don't gate merges on it)
+- When OS CVEs have a fixed version, bump your base image tag
 
 ---
 
