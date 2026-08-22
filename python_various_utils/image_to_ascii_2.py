@@ -38,6 +38,8 @@ Scale by resolution (% of image width, default 100)::
 
     python image_to_ascii_2.py --file photo.png --resolution 50
 
+//-------------------------------------------------------------------------------------
+
 Zoomable HTML viewer (open ``photo.html`` in a browser; use the slider to resize)::
 
     python image_to_ascii_2.py --file photo.png --width 120 --format html
@@ -53,6 +55,8 @@ Terminal colors (``photo.ansi.txt`` — view with Windows Terminal, iTerm, etc.)
 Colored HTML + PNG + plain txt + ANSI in one run::
 
     python image_to_ascii_2.py --file photo.png --width 80 --format all --color
+
+//-------------------------------------------------------------------------------------
 
 Dark terminal / inverted brightness::
 
