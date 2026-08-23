@@ -93,7 +93,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps
 INPUT_FORMATS = ["png", "jpg", "jpeg", "webp", "bmp", "gif", "tiff", "tif"]
 
 CHAR_RAMP_STANDARD = "@%#*+=-:. "
-CHAR_RAMP_EXTENDED = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
+CHAR_RAMP_EXTENDED = "█$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
 
 DEFAULT_RESOLUTION = 100
 MIN_RESOLUTION = 1
