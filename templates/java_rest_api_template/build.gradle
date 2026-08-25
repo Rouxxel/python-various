@@ -52,6 +52,9 @@ dependencies {
     // --- Optional Redis cache (used only when REDIS_ENABLED=true) ---
     implementation 'redis.clients:jedis:5.2.0'
 
+    // --- Ed25519 public-key derivation for util/KeysGeneratorDtrmnstc ---
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78.1'
+
     // --- Tests ---
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
