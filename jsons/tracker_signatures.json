@@ -1,0 +1,45 @@
+[
+  {
+    "id": "apple_find_my_separated",
+    "label": "AirTag-class",
+    "findMyTracker": true,
+    "manufacturer": {
+      "companyId": "004C",
+      "payloadTypeByte": 18
+    },
+    "comment": "Apple manufacturer 0x004C, continuity type 0x12 (offline finding / separated)."
+  },
+  {
+    "id": "samsung_smarttag_service",
+    "label": "Samsung SmartTag-class",
+    "serviceUuid16": "FD5A",
+    "comment": "Galaxy SmartTag offline-finding service; prefer over bare Samsung company id."
+  },
+  {
+    "id": "tile_active",
+    "label": "Tile-class",
+    "serviceUuid16": "FEED"
+  },
+  {
+    "id": "tile_preactivation",
+    "label": "Tile-class",
+    "serviceUuid16": "FEEC"
+  },
+  {
+    "id": "tile_legacy",
+    "label": "Tile-class",
+    "serviceUuid16": "FE84"
+  },
+  {
+    "id": "google_fmdn_service",
+    "label": "Find My Device-class",
+    "serviceUuid16": "FEAA",
+    "comment": "Google FMDN uses Eddystone UUID 0xFEAA; frame-type 0x41 separated needs service data (not on DeviceRecord yet)."
+  },
+  {
+    "id": "dult_unified",
+    "label": "DULT-class",
+    "serviceUuid16": "FCB2",
+    "comment": "Bluetooth DULT unified detection specification."
+  }
+]
