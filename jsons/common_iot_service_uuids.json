@@ -1,0 +1,664 @@
+[
+    {
+        "id": "gap",
+        "label": "GAP",
+        "serviceUuid16": "1800",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.gap"
+    },
+    {
+        "id": "gatt",
+        "label": "GATT",
+        "serviceUuid16": "1801",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.gatt"
+    },
+    {
+        "id": "immediate_alert",
+        "label": "Immediate Alert",
+        "serviceUuid16": "1802",
+        "category": "alert",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.immediate_alert"
+    },
+    {
+        "id": "link_loss",
+        "label": "Link Loss",
+        "serviceUuid16": "1803",
+        "category": "alert",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.link_loss"
+    },
+    {
+        "id": "tx_power",
+        "label": "Tx Power",
+        "serviceUuid16": "1804",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.tx_power"
+    },
+    {
+        "id": "current_time",
+        "label": "Current Time",
+        "serviceUuid16": "1805",
+        "category": "time",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.current_time"
+    },
+    {
+        "id": "reference_time_update",
+        "label": "Reference Time Update",
+        "serviceUuid16": "1806",
+        "category": "time",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.reference_time_update"
+    },
+    {
+        "id": "next_dst_change",
+        "label": "Next DST Change",
+        "serviceUuid16": "1807",
+        "category": "time",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.next_dst_change"
+    },
+    {
+        "id": "glucose",
+        "label": "Glucose",
+        "serviceUuid16": "1808",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.glucose"
+    },
+    {
+        "id": "health_thermometer",
+        "label": "Health Thermometer",
+        "serviceUuid16": "1809",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.health_thermometer"
+    },
+    {
+        "id": "device_information",
+        "label": "Device Information",
+        "serviceUuid16": "180A",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.device_information"
+    },
+    {
+        "id": "heart_rate",
+        "label": "Heart Rate",
+        "serviceUuid16": "180D",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.heart_rate"
+    },
+    {
+        "id": "phone_alert_status",
+        "label": "Phone Alert Status",
+        "serviceUuid16": "180E",
+        "category": "alert",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.phone_alert_status"
+    },
+    {
+        "id": "battery_service",
+        "label": "Battery",
+        "serviceUuid16": "180F",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.battery_service"
+    },
+    {
+        "id": "blood_pressure",
+        "label": "Blood Pressure",
+        "serviceUuid16": "1810",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.blood_pressure"
+    },
+    {
+        "id": "alert_notification",
+        "label": "Alert Notification",
+        "serviceUuid16": "1811",
+        "category": "alert",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.alert_notification"
+    },
+    {
+        "id": "human_interface_device",
+        "label": "Human Interface Device",
+        "serviceUuid16": "1812",
+        "category": "input",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.human_interface_device"
+    },
+    {
+        "id": "scan_parameters",
+        "label": "Scan Parameters",
+        "serviceUuid16": "1813",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.scan_parameters"
+    },
+    {
+        "id": "running_speed_and_cadence",
+        "label": "Running Speed and Cadence",
+        "serviceUuid16": "1814",
+        "category": "fitness",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.running_speed_and_cadence"
+    },
+    {
+        "id": "automation_io",
+        "label": "Automation IO",
+        "serviceUuid16": "1815",
+        "category": "home",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.automation_io"
+    },
+    {
+        "id": "cycling_speed_and_cadence",
+        "label": "Cycling Speed and Cadence",
+        "serviceUuid16": "1816",
+        "category": "fitness",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.cycling_speed_and_cadence"
+    },
+    {
+        "id": "cycling_power",
+        "label": "Cycling Power",
+        "serviceUuid16": "1818",
+        "category": "fitness",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.cycling_power"
+    },
+    {
+        "id": "location_and_navigation",
+        "label": "Location and Navigation",
+        "serviceUuid16": "1819",
+        "category": "location",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.location_and_navigation"
+    },
+    {
+        "id": "environmental_sensing",
+        "label": "Environmental Sensing",
+        "serviceUuid16": "181A",
+        "category": "sensor",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.environmental_sensing"
+    },
+    {
+        "id": "body_composition",
+        "label": "Body Composition",
+        "serviceUuid16": "181B",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.body_composition"
+    },
+    {
+        "id": "user_data",
+        "label": "User Data",
+        "serviceUuid16": "181C",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.user_data"
+    },
+    {
+        "id": "weight_scale",
+        "label": "Weight Scale",
+        "serviceUuid16": "181D",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.weight_scale"
+    },
+    {
+        "id": "bond_management",
+        "label": "Bond Management",
+        "serviceUuid16": "181E",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.bond_management"
+    },
+    {
+        "id": "continuous_glucose_monitoring",
+        "label": "Continuous Glucose Monitoring",
+        "serviceUuid16": "181F",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.continuous_glucose_monitoring"
+    },
+    {
+        "id": "internet_protocol_support",
+        "label": "Internet Protocol Support",
+        "serviceUuid16": "1820",
+        "category": "data",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.internet_protocol_support"
+    },
+    {
+        "id": "indoor_positioning",
+        "label": "Indoor Positioning",
+        "serviceUuid16": "1821",
+        "category": "location",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.indoor_positioning"
+    },
+    {
+        "id": "pulse_oximeter",
+        "label": "Pulse Oximeter",
+        "serviceUuid16": "1822",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.pulse_oximeter"
+    },
+    {
+        "id": "http_proxy",
+        "label": "HTTP Proxy",
+        "serviceUuid16": "1823",
+        "category": "data",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.http_proxy"
+    },
+    {
+        "id": "transport_discovery",
+        "label": "Transport Discovery",
+        "serviceUuid16": "1824",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.transport_discovery"
+    },
+    {
+        "id": "object_transfer",
+        "label": "Object Transfer",
+        "serviceUuid16": "1825",
+        "category": "data",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.object_transfer"
+    },
+    {
+        "id": "fitness_machine",
+        "label": "Fitness Machine",
+        "serviceUuid16": "1826",
+        "category": "fitness",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.fitness_machine"
+    },
+    {
+        "id": "mesh_provisioning",
+        "label": "Mesh Provisioning",
+        "serviceUuid16": "1827",
+        "category": "mesh",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.mesh_provisioning"
+    },
+    {
+        "id": "mesh_proxy",
+        "label": "Mesh Proxy",
+        "serviceUuid16": "1828",
+        "category": "mesh",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.mesh_proxy"
+    },
+    {
+        "id": "reconnection_configuration",
+        "label": "Reconnection Configuration",
+        "serviceUuid16": "1829",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.reconnection_configuration"
+    },
+    {
+        "id": "insulin_delivery",
+        "label": "Insulin Delivery",
+        "serviceUuid16": "183A",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.insulin_delivery"
+    },
+    {
+        "id": "binary_sensor",
+        "label": "Binary Sensor",
+        "serviceUuid16": "183B",
+        "category": "sensor",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.binary_sensor"
+    },
+    {
+        "id": "emergency_configuration",
+        "label": "Emergency Configuration",
+        "serviceUuid16": "183C",
+        "category": "standard",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.emergency_configuration"
+    },
+    {
+        "id": "authorization_control",
+        "label": "Authorization Control",
+        "serviceUuid16": "183D",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.authorization_control"
+    },
+    {
+        "id": "physical_activity_monitor",
+        "label": "Physical Activity Monitor",
+        "serviceUuid16": "183E",
+        "category": "fitness",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.physical_activity_monitor"
+    },
+    {
+        "id": "elapsed_time",
+        "label": "Elapsed Time",
+        "serviceUuid16": "183F",
+        "category": "time",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.elapsed_time"
+    },
+    {
+        "id": "generic_health_sensor",
+        "label": "Generic Health Sensor",
+        "serviceUuid16": "1840",
+        "category": "health",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.generic_health_sensor"
+    },
+    {
+        "id": "audio_input_control",
+        "label": "Audio Input Control",
+        "serviceUuid16": "1843",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.audio_input_control"
+    },
+    {
+        "id": "volume_control",
+        "label": "Volume Control",
+        "serviceUuid16": "1844",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.volume_control"
+    },
+    {
+        "id": "volume_offset",
+        "label": "Volume Offset Control",
+        "serviceUuid16": "1845",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.volume_offset"
+    },
+    {
+        "id": "coordinated_set_identification",
+        "label": "Coordinated Set Identification",
+        "serviceUuid16": "1846",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.coordinated_set_identification"
+    },
+    {
+        "id": "device_time",
+        "label": "Device Time",
+        "serviceUuid16": "1847",
+        "category": "time",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.device_time"
+    },
+    {
+        "id": "media_control",
+        "label": "Media Control",
+        "serviceUuid16": "1848",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.media_control"
+    },
+    {
+        "id": "generic_media_control",
+        "label": "Generic Media Control",
+        "serviceUuid16": "1849",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.generic_media_control"
+    },
+    {
+        "id": "constant_tone_extension",
+        "label": "Constant Tone Extension",
+        "serviceUuid16": "184A",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.constant_tone_extension"
+    },
+    {
+        "id": "telephone_bearer",
+        "label": "Telephone Bearer",
+        "serviceUuid16": "184B",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.telephone_bearer"
+    },
+    {
+        "id": "generic_telephone_bearer",
+        "label": "Generic Telephone Bearer",
+        "serviceUuid16": "184C",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.generic_telephone_bearer"
+    },
+    {
+        "id": "microphone_control",
+        "label": "Microphone Control",
+        "serviceUuid16": "184D",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.microphone_control"
+    },
+    {
+        "id": "audio_stream_control",
+        "label": "Audio Stream Control",
+        "serviceUuid16": "184E",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.audio_stream_control"
+    },
+    {
+        "id": "broadcast_audio_scan",
+        "label": "Broadcast Audio Scan",
+        "serviceUuid16": "184F",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.broadcast_audio_scan"
+    },
+    {
+        "id": "published_audio_capabilities",
+        "label": "Published Audio Capabilities",
+        "serviceUuid16": "1850",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.published_audio_capabilities"
+    },
+    {
+        "id": "basic_audio_announcement",
+        "label": "Basic Audio Announcement",
+        "serviceUuid16": "1851",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.basic_audio_announcement"
+    },
+    {
+        "id": "broadcast_audio_announcement",
+        "label": "Broadcast Audio Announcement",
+        "serviceUuid16": "1852",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.broadcast_audio_announcement"
+    },
+    {
+        "id": "common_audio",
+        "label": "Common Audio",
+        "serviceUuid16": "1853",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.common_audio"
+    },
+    {
+        "id": "hearing_access",
+        "label": "Hearing Access",
+        "serviceUuid16": "1854",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.hearing_access"
+    },
+    {
+        "id": "telephony_and_media_audio",
+        "label": "Telephony and Media Audio",
+        "serviceUuid16": "1855",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.telephony_and_media_audio"
+    },
+    {
+        "id": "public_broadcast_announcement",
+        "label": "Public Broadcast Announcement",
+        "serviceUuid16": "1856",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.public_broadcast_announcement"
+    },
+    {
+        "id": "electronic_shelf_label",
+        "label": "Electronic Shelf Label",
+        "serviceUuid16": "1857",
+        "category": "home",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.electronic_shelf_label"
+    },
+    {
+        "id": "gaming_audio",
+        "label": "Gaming Audio",
+        "serviceUuid16": "1858",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.gaming_audio"
+    },
+    {
+        "id": "mesh_proxy_solicitation",
+        "label": "Mesh Proxy Solicitation",
+        "serviceUuid16": "1859",
+        "category": "mesh",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.mesh_proxy_solicitation"
+    },
+    {
+        "id": "industrial_measurement_device",
+        "label": "Industrial Measurement Device",
+        "serviceUuid16": "185A",
+        "category": "sensor",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.industrial_measurement_device"
+    },
+    {
+        "id": "ranging",
+        "label": "Ranging",
+        "serviceUuid16": "185B",
+        "category": "location",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.ranging"
+    },
+    {
+        "id": "hid_iso",
+        "label": "HID ISO",
+        "serviceUuid16": "185C",
+        "category": "input",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.hid_iso"
+    },
+    {
+        "id": "cookware",
+        "label": "Cookware",
+        "serviceUuid16": "185D",
+        "category": "home",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.cookware"
+    },
+    {
+        "id": "voice_assistant",
+        "label": "Voice Assistant",
+        "serviceUuid16": "185E",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.voice_assistant"
+    },
+    {
+        "id": "generic_voice_assistant",
+        "label": "Generic Voice Assistant",
+        "serviceUuid16": "185F",
+        "category": "audio",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.generic_voice_assistant"
+    },
+    {
+        "id": "tire_pressure_monitoring_system",
+        "label": "Tire Pressure Monitoring System",
+        "serviceUuid16": "1860",
+        "category": "automotive",
+        "source": "bluetooth_sig",
+        "sig_id": "org.bluetooth.service.tire_pressure_monitoring_system"
+    },
+    {
+        "id": "eddystone",
+        "label": "Eddystone",
+        "serviceUuid16": "FEAA",
+        "category": "beacon",
+        "source": "community",
+        "member": "Google LLC",
+        "comment": "SIG member UUID assigned to Google LLC; widely used for Eddystone beacon frames. Not a SIG-defined GATT service."
+    },
+    {
+        "id": "google_fast_pair",
+        "label": "Google Fast Pair",
+        "serviceUuid16": "FE2C",
+        "category": "vendor",
+        "source": "community",
+        "member": "Google LLC",
+        "comment": "SIG member UUID assigned to Google LLC; used by the Fast Pair protocol. Not a SIG-defined GATT service."
+    },
+    {
+        "id": "xiaomi_member_uuid",
+        "label": "Xiaomi member UUID",
+        "serviceUuid16": "FE95",
+        "category": "vendor",
+        "source": "community",
+        "member": "Xiaomi Inc.",
+        "comment": "SIG member UUID assigned to Xiaomi Inc. Often seen on Mi Home / IoT devices, but usage is vendor-defined rather than a SIG GATT service."
+    },
+    {
+        "id": "signify_member_uuid",
+        "label": "Signify member UUID",
+        "serviceUuid16": "FE0F",
+        "category": "vendor",
+        "source": "community",
+        "member": "Signify Netherlands B.V. (formerly Philips Lighting B.V.)",
+        "comment": "SIG member UUID assigned to Signify; commonly seen on Philips Hue devices. Usage is vendor-defined rather than a SIG GATT service."
+    },
+    {
+        "id": "nordic_uart_service",
+        "label": "Nordic UART Service (NUS)",
+        "serviceUuid128": "6E400001-B5A3-F393-E0A9-E50E24DCCA9E",
+        "category": "vendor",
+        "source": "community",
+        "member": "Nordic Semiconductor",
+        "comment": "Nordic UART Service uses custom 128-bit UUIDs, not a 16-bit SIG service. Base service UUID shown; TX/RX characteristics use 6E400002-... and 6E400003-...."
+    },
+    {
+        "id": "ti_sensortag_serial",
+        "label": "TI SensorTag serial-like service",
+        "serviceUuid16": "FFE0",
+        "category": "vendor",
+        "source": "community",
+        "member": "Texas Instruments",
+        "comment": "Commonly associated with TI SensorTag and similar serial-over-BLE examples. Not the Nordic UART Service and not a SIG-defined GATT service."
+    }
+]
