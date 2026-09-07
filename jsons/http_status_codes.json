@@ -1,0 +1,317 @@
+{
+    "100": {
+        "name": "Continue",
+        "category": "informational",
+        "retry_strategy": "none"
+    },
+    "101": {
+        "name": "Switching Protocols",
+        "category": "informational",
+        "retry_strategy": "none"
+    },
+    "102": {
+        "name": "Processing",
+        "category": "informational",
+        "retry_strategy": "none"
+    },
+    "103": {
+        "name": "Early Hints",
+        "category": "informational",
+        "retry_strategy": "none"
+    },
+    "200": {
+        "name": "OK",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "201": {
+        "name": "Created",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "202": {
+        "name": "Accepted",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "203": {
+        "name": "Non-Authoritative Information",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "204": {
+        "name": "No Content",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "205": {
+        "name": "Reset Content",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "206": {
+        "name": "Partial Content",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "207": {
+        "name": "Multi-Status",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "208": {
+        "name": "Already Reported",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "226": {
+        "name": "IM Used",
+        "category": "success",
+        "retry_strategy": "none"
+    },
+    "300": {
+        "name": "Multiple Choices",
+        "category": "redirection",
+        "retry_strategy": "none"
+    },
+    "301": {
+        "name": "Moved Permanently",
+        "category": "redirection",
+        "retry_strategy": "none"
+    },
+    "302": {
+        "name": "Found",
+        "category": "redirection",
+        "retry_strategy": "none"
+    },
+    "303": {
+        "name": "See Other",
+        "category": "redirection",
+        "retry_strategy": "none"
+    },
+    "304": {
+        "name": "Not Modified",
+        "category": "redirection",
+        "retry_strategy": "none"
+    },
+    "305": {
+        "name": "Use Proxy",
+        "category": "redirection",
+        "retry_strategy": "none"
+    },
+    "306": {
+        "name": "Switch Proxy",
+        "category": "redirection",
+        "retry_strategy": "none"
+    },
+    "307": {
+        "name": "Temporary Redirect",
+        "category": "redirection",
+        "retry_strategy": "none"
+    },
+    "308": {
+        "name": "Permanent Redirect",
+        "category": "redirection",
+        "retry_strategy": "none"
+    },
+    "400": {
+        "name": "Bad Request",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "401": {
+        "name": "Unauthorized",
+        "category": "client_error",
+        "retry_strategy": "after_auth"
+    },
+    "402": {
+        "name": "Payment Required",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "403": {
+        "name": "Forbidden",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "404": {
+        "name": "Not Found",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "405": {
+        "name": "Method Not Allowed",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "406": {
+        "name": "Not Acceptable",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "407": {
+        "name": "Proxy Authentication Required",
+        "category": "client_error",
+        "retry_strategy": "after_auth"
+    },
+    "408": {
+        "name": "Request Timeout",
+        "category": "client_error",
+        "retry_strategy": "backoff"
+    },
+    "409": {
+        "name": "Conflict",
+        "category": "client_error",
+        "retry_strategy": "conditional"
+    },
+    "410": {
+        "name": "Gone",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "411": {
+        "name": "Length Required",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "412": {
+        "name": "Precondition Failed",
+        "category": "client_error",
+        "retry_strategy": "conditional"
+    },
+    "413": {
+        "name": "Payload Too Large",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "414": {
+        "name": "URI Too Long",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "415": {
+        "name": "Unsupported Media Type",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "416": {
+        "name": "Range Not Satisfiable",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "417": {
+        "name": "Expectation Failed",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "418": {
+        "name": "I'm a teapot",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "421": {
+        "name": "Misdirected Request",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "422": {
+        "name": "Unprocessable Entity",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "423": {
+        "name": "Locked",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "424": {
+        "name": "Failed Dependency",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "425": {
+        "name": "Too Early",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "426": {
+        "name": "Upgrade Required",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "428": {
+        "name": "Precondition Required",
+        "category": "client_error",
+        "retry_strategy": "conditional"
+    },
+    "429": {
+        "name": "Too Many Requests",
+        "category": "client_error",
+        "retry_strategy": "retry_after"
+    },
+    "431": {
+        "name": "Request Header Fields Too Large",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "451": {
+        "name": "Unavailable For Legal Reasons",
+        "category": "client_error",
+        "retry_strategy": "none"
+    },
+    "500": {
+        "name": "Internal Server Error",
+        "category": "server_error",
+        "retry_strategy": "backoff"
+    },
+    "501": {
+        "name": "Not Implemented",
+        "category": "server_error",
+        "retry_strategy": "none"
+    },
+    "502": {
+        "name": "Bad Gateway",
+        "category": "server_error",
+        "retry_strategy": "backoff"
+    },
+    "503": {
+        "name": "Service Unavailable",
+        "category": "server_error",
+        "retry_strategy": "backoff"
+    },
+    "504": {
+        "name": "Gateway Timeout",
+        "category": "server_error",
+        "retry_strategy": "backoff"
+    },
+    "505": {
+        "name": "HTTP Version Not Supported",
+        "category": "server_error",
+        "retry_strategy": "none"
+    },
+    "506": {
+        "name": "Variant Also Negotiates",
+        "category": "server_error",
+        "retry_strategy": "none"
+    },
+    "507": {
+        "name": "Insufficient Storage",
+        "category": "server_error",
+        "retry_strategy": "backoff"
+    },
+    "508": {
+        "name": "Loop Detected",
+        "category": "server_error",
+        "retry_strategy": "none"
+    },
+    "510": {
+        "name": "Not Extended",
+        "category": "server_error",
+        "retry_strategy": "none"
+    },
+    "511": {
+        "name": "Network Authentication Required",
+        "category": "server_error",
+        "retry_strategy": "after_auth"
+    }
+}
