@@ -1,0 +1,62 @@
+{
+    "sans": {
+        "label": "System sans-serif",
+        "stack": [
+            "system-ui",
+            "-apple-system",
+            "BlinkMacSystemFont",
+            "Segoe UI",
+            "Roboto",
+            "Helvetica Neue",
+            "Arial",
+            "Noto Sans",
+            "Liberation Sans",
+            "sans-serif"
+        ]
+    },
+    "serif": {
+        "label": "System serif",
+        "stack": [
+            "ui-serif",
+            "Georgia",
+            "Cambria",
+            "Times New Roman",
+            "Times",
+            "serif"
+        ]
+    },
+    "mono": {
+        "label": "System monospace",
+        "stack": [
+            "ui-monospace",
+            "SFMono-Regular",
+            "Menlo",
+            "Monaco",
+            "Consolas",
+            "Liberation Mono",
+            "Courier New",
+            "monospace"
+        ]
+    },
+    "sans_ui": {
+        "label": "Cross-platform UI sans",
+        "stack": [
+            "Inter",
+            "system-ui",
+            "-apple-system",
+            "Segoe UI",
+            "Roboto",
+            "sans-serif"
+        ]
+    },
+    "mono_code": {
+        "label": "Code / terminal",
+        "stack": [
+            "JetBrains Mono",
+            "Fira Code",
+            "SFMono-Regular",
+            "Consolas",
+            "monospace"
+        ]
+    }
+}
