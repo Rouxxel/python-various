@@ -1,0 +1,958 @@
+{
+    "ADP": {
+        "name": "Andorran Peseta",
+        "symbol": "ADP",
+        "country": "ANDORRA",
+        "withdrawal_date": "2003-07",
+        "numeric": "020"
+    },
+    "AFA": {
+        "name": "Afghani",
+        "symbol": "AFA",
+        "country": "AFGHANISTAN",
+        "withdrawal_date": "2003-01",
+        "numeric": "004"
+    },
+    "ALK": {
+        "name": "Old Lek",
+        "symbol": "ALK",
+        "country": "ALBANIA",
+        "withdrawal_date": "1989-12",
+        "numeric": "008"
+    },
+    "ANG": {
+        "name": "Netherlands Antillean Guilder",
+        "symbol": "ANG",
+        "country": "CURAÇAO",
+        "withdrawal_date": "2025-03",
+        "numeric": "532"
+    },
+    "AOK": {
+        "name": "Kwanza",
+        "symbol": "AOK",
+        "country": "ANGOLA",
+        "withdrawal_date": "1991-03",
+        "numeric": "024"
+    },
+    "AON": {
+        "name": "New Kwanza",
+        "symbol": "AON",
+        "country": "ANGOLA",
+        "withdrawal_date": "2000-02",
+        "numeric": "024"
+    },
+    "AOR": {
+        "name": "Kwanza Reajustado",
+        "symbol": "AOR",
+        "country": "ANGOLA",
+        "withdrawal_date": "2000-02",
+        "numeric": "982"
+    },
+    "ARA": {
+        "name": "Austral",
+        "symbol": "ARA",
+        "country": "ARGENTINA",
+        "withdrawal_date": "1992-01",
+        "numeric": "032"
+    },
+    "ARP": {
+        "name": "Peso Argentino",
+        "symbol": "ARP",
+        "country": "ARGENTINA",
+        "withdrawal_date": "1985-07",
+        "numeric": "032"
+    },
+    "ARY": {
+        "name": "Peso",
+        "symbol": "ARY",
+        "country": "ARGENTINA",
+        "withdrawal_date": "1989 to 1990",
+        "numeric": "032"
+    },
+    "ATS": {
+        "name": "Schilling",
+        "symbol": "ATS",
+        "country": "AUSTRIA",
+        "withdrawal_date": "2002-03",
+        "numeric": "040"
+    },
+    "AYM": {
+        "name": "Azerbaijan Manat",
+        "symbol": "AYM",
+        "country": "AZERBAIJAN",
+        "withdrawal_date": "2005-10",
+        "numeric": "945"
+    },
+    "AZM": {
+        "name": "Azerbaijanian Manat",
+        "symbol": "AZM",
+        "country": "AZERBAIJAN",
+        "withdrawal_date": "2005-12",
+        "numeric": "031"
+    },
+    "BAD": {
+        "name": "Dinar",
+        "symbol": "BAD",
+        "country": "BOSNIA AND HERZEGOVINA",
+        "withdrawal_date": "1998-07",
+        "numeric": "070"
+    },
+    "BEC": {
+        "name": "Convertible Franc",
+        "symbol": "BEC",
+        "country": "BELGIUM",
+        "withdrawal_date": "1990-03",
+        "numeric": "993"
+    },
+    "BEF": {
+        "name": "Belgian Franc",
+        "symbol": "BEF",
+        "country": "BELGIUM",
+        "withdrawal_date": "2002-03",
+        "numeric": "056"
+    },
+    "BEL": {
+        "name": "Financial Franc",
+        "symbol": "BEL",
+        "country": "BELGIUM",
+        "withdrawal_date": "1990-03",
+        "numeric": "992"
+    },
+    "BGJ": {
+        "name": "Lev A/52",
+        "symbol": "BGJ",
+        "country": "BULGARIA",
+        "withdrawal_date": "1989 to 1990",
+        "numeric": "100"
+    },
+    "BGK": {
+        "name": "Lev A/62",
+        "symbol": "BGK",
+        "country": "BULGARIA",
+        "withdrawal_date": "1989 to 1990",
+        "numeric": "100"
+    },
+    "BGL": {
+        "name": "Lev",
+        "symbol": "BGL",
+        "country": "BULGARIA",
+        "withdrawal_date": "2003-11",
+        "numeric": "100"
+    },
+    "BGN": {
+        "name": "Bulgarian Lev",
+        "symbol": "BGN",
+        "country": "BULGARIA",
+        "withdrawal_date": "2026-01",
+        "numeric": "975"
+    },
+    "BOP": {
+        "name": "Peso boliviano",
+        "symbol": "BOP",
+        "country": "BOLIVIA",
+        "withdrawal_date": "1987-02",
+        "numeric": "068"
+    },
+    "BRB": {
+        "name": "Cruzeiro",
+        "symbol": "BRB",
+        "country": "BRAZIL",
+        "withdrawal_date": "1986-03",
+        "numeric": "076"
+    },
+    "BRC": {
+        "name": "Cruzado",
+        "symbol": "BRC",
+        "country": "BRAZIL",
+        "withdrawal_date": "1989-02",
+        "numeric": "076"
+    },
+    "BRE": {
+        "name": "Cruzeiro",
+        "symbol": "BRE",
+        "country": "BRAZIL",
+        "withdrawal_date": "1993-03",
+        "numeric": "076"
+    },
+    "BRN": {
+        "name": "New Cruzado",
+        "symbol": "BRN",
+        "country": "BRAZIL",
+        "withdrawal_date": "1990-03",
+        "numeric": "076"
+    },
+    "BRR": {
+        "name": "Cruzeiro Real",
+        "symbol": "BRR",
+        "country": "BRAZIL",
+        "withdrawal_date": "1994-07",
+        "numeric": "987"
+    },
+    "BUK": {
+        "name": "Kyat",
+        "symbol": "BUK",
+        "country": "BURMA",
+        "withdrawal_date": "1990-02",
+        "numeric": "104"
+    },
+    "BYB": {
+        "name": "Belarusian Ruble",
+        "symbol": "BYB",
+        "country": "BELARUS",
+        "withdrawal_date": "2001-01",
+        "numeric": "112"
+    },
+    "BYR": {
+        "name": "Belarusian Ruble",
+        "symbol": "BYR",
+        "country": "BELARUS",
+        "withdrawal_date": "2017-01",
+        "numeric": "974"
+    },
+    "CHC": {
+        "name": "WIR Franc (for electronic)",
+        "symbol": "CHC",
+        "country": "SWITZERLAND",
+        "withdrawal_date": "2004-11",
+        "numeric": "948"
+    },
+    "CSD": {
+        "name": "Serbian Dinar",
+        "symbol": "CSD",
+        "country": "SERBIA AND MONTENEGRO",
+        "withdrawal_date": "2006-10",
+        "numeric": "891"
+    },
+    "CSJ": {
+        "name": "Krona A/53",
+        "symbol": "CSJ",
+        "country": "CZECHOSLOVAKIA",
+        "withdrawal_date": "1989 to 1990",
+        "numeric": "203"
+    },
+    "CSK": {
+        "name": "Koruna",
+        "symbol": "CSK",
+        "country": "CZECHOSLOVAKIA",
+        "withdrawal_date": "1993-03",
+        "numeric": "200"
+    },
+    "CUC": {
+        "name": "Peso Convertible",
+        "symbol": "CUC",
+        "country": "CUBA",
+        "withdrawal_date": "2021-06",
+        "numeric": "931"
+    },
+    "CYP": {
+        "name": "Cyprus Pound",
+        "symbol": "CYP",
+        "country": "CYPRUS",
+        "withdrawal_date": "2008-01",
+        "numeric": "196"
+    },
+    "DDM": {
+        "name": "Mark der DDR",
+        "symbol": "DDM",
+        "country": "GERMAN DEMOCRATIC REPUBLIC",
+        "withdrawal_date": "1990-07 to 1990-09",
+        "numeric": "278"
+    },
+    "DEM": {
+        "name": "Deutsche Mark",
+        "symbol": "DEM",
+        "country": "GERMANY",
+        "withdrawal_date": "2002-03",
+        "numeric": "276"
+    },
+    "ECS": {
+        "name": "Sucre",
+        "symbol": "ECS",
+        "country": "ECUADOR",
+        "withdrawal_date": "2000-09",
+        "numeric": "218"
+    },
+    "ECV": {
+        "name": "Unidad de Valor Constante (UVC)",
+        "symbol": "ECV",
+        "country": "ECUADOR",
+        "withdrawal_date": "2000-09",
+        "numeric": "983"
+    },
+    "EEK": {
+        "name": "Kroon",
+        "symbol": "EEK",
+        "country": "ESTONIA",
+        "withdrawal_date": "2011-01",
+        "numeric": "233"
+    },
+    "ESA": {
+        "name": "Spanish Peseta",
+        "symbol": "ESA",
+        "country": "SPAIN",
+        "withdrawal_date": "1978 to 1981",
+        "numeric": "996"
+    },
+    "ESB": {
+        "name": "\"A\" Account (convertible Peseta Account)",
+        "symbol": "ESB",
+        "country": "SPAIN",
+        "withdrawal_date": "1994-12",
+        "numeric": "995"
+    },
+    "ESP": {
+        "name": "Spanish Peseta",
+        "symbol": "ESP",
+        "country": "ANDORRA",
+        "withdrawal_date": "2002-03",
+        "numeric": "724"
+    },
+    "EUR": {
+        "name": "Euro",
+        "symbol": "EUR",
+        "country": "SERBIA AND MONTENEGRO",
+        "withdrawal_date": "2006-10",
+        "numeric": "978"
+    },
+    "FIM": {
+        "name": "Markka",
+        "symbol": "FIM",
+        "country": "ÅLAND ISLANDS",
+        "withdrawal_date": "2002-03",
+        "numeric": "246"
+    },
+    "FRF": {
+        "name": "French Franc",
+        "symbol": "FRF",
+        "country": "ANDORRA",
+        "withdrawal_date": "2002-03",
+        "numeric": "250"
+    },
+    "GEK": {
+        "name": "Georgian Coupon",
+        "symbol": "GEK",
+        "country": "GEORGIA",
+        "withdrawal_date": "1995-10",
+        "numeric": "268"
+    },
+    "GHC": {
+        "name": "Cedi",
+        "symbol": "GHC",
+        "country": "GHANA",
+        "withdrawal_date": "2008-01",
+        "numeric": "288"
+    },
+    "GHP": {
+        "name": "Ghana Cedi",
+        "symbol": "GHP",
+        "country": "GHANA",
+        "withdrawal_date": "2007-06",
+        "numeric": "939"
+    },
+    "GNE": {
+        "name": "Syli",
+        "symbol": "GNE",
+        "country": "GUINEA",
+        "withdrawal_date": "1989-12",
+        "numeric": "324"
+    },
+    "GNS": {
+        "name": "Syli",
+        "symbol": "GNS",
+        "country": "GUINEA",
+        "withdrawal_date": "1986-02",
+        "numeric": "324"
+    },
+    "GQE": {
+        "name": "Ekwele",
+        "symbol": "GQE",
+        "country": "EQUATORIAL GUINEA",
+        "withdrawal_date": "1986-06",
+        "numeric": "226"
+    },
+    "GRD": {
+        "name": "Drachma",
+        "symbol": "GRD",
+        "country": "GREECE",
+        "withdrawal_date": "2002-03",
+        "numeric": "300"
+    },
+    "GWE": {
+        "name": "Guinea Escudo",
+        "symbol": "GWE",
+        "country": "GUINEA-BISSAU",
+        "withdrawal_date": "1978 to 1981",
+        "numeric": "624"
+    },
+    "GWP": {
+        "name": "Guinea-Bissau Peso",
+        "symbol": "GWP",
+        "country": "GUINEA-BISSAU",
+        "withdrawal_date": "1997-05",
+        "numeric": "624"
+    },
+    "HRD": {
+        "name": "Croatian Dinar",
+        "symbol": "HRD",
+        "country": "CROATIA",
+        "withdrawal_date": "1995-01",
+        "numeric": "191"
+    },
+    "HRK": {
+        "name": "Croatian Kuna",
+        "symbol": "HRK",
+        "country": "CROATIA",
+        "withdrawal_date": "2015-06",
+        "numeric": "191"
+    },
+    "IDR": {
+        "name": "Rupiah",
+        "symbol": "IDR",
+        "country": "TIMOR-LESTE",
+        "withdrawal_date": "2002-07",
+        "numeric": "360"
+    },
+    "IEP": {
+        "name": "Irish Pound",
+        "symbol": "IEP",
+        "country": "IRELAND",
+        "withdrawal_date": "2002-03",
+        "numeric": "372"
+    },
+    "ILP": {
+        "name": "Pound",
+        "symbol": "ILP",
+        "country": "ISRAEL",
+        "withdrawal_date": "1978 to 1981",
+        "numeric": "376"
+    },
+    "ILR": {
+        "name": "Old Shekel",
+        "symbol": "ILR",
+        "country": "ISRAEL",
+        "withdrawal_date": "1989 to 1990",
+        "numeric": "376"
+    },
+    "ISJ": {
+        "name": "Old Krona",
+        "symbol": "ISJ",
+        "country": "ICELAND",
+        "withdrawal_date": "1989 to 1990",
+        "numeric": "352"
+    },
+    "ITL": {
+        "name": "Italian Lira",
+        "symbol": "ITL",
+        "country": "HOLY SEE (VATICAN CITY STATE)",
+        "withdrawal_date": "2002-03",
+        "numeric": "380"
+    },
+    "LAJ": {
+        "name": "Pathet Lao Kip",
+        "symbol": "LAJ",
+        "country": "LAO",
+        "withdrawal_date": "1979-12",
+        "numeric": "418"
+    },
+    "LSM": {
+        "name": "Loti",
+        "symbol": "LSM",
+        "country": "LESOTHO",
+        "withdrawal_date": "1985-05",
+        "numeric": "426"
+    },
+    "LTL": {
+        "name": "Lithuanian Litas",
+        "symbol": "LTL",
+        "country": "LITHUANIA",
+        "withdrawal_date": "2014-12",
+        "numeric": "440"
+    },
+    "LTT": {
+        "name": "Talonas",
+        "symbol": "LTT",
+        "country": "LITHUANIA",
+        "withdrawal_date": "1993-07",
+        "numeric": "440"
+    },
+    "LUC": {
+        "name": "Luxembourg Convertible Franc",
+        "symbol": "LUC",
+        "country": "LUXEMBOURG",
+        "withdrawal_date": "1990-03",
+        "numeric": "989"
+    },
+    "LUF": {
+        "name": "Luxembourg Franc",
+        "symbol": "LUF",
+        "country": "LUXEMBOURG",
+        "withdrawal_date": "2002-03",
+        "numeric": "442"
+    },
+    "LUL": {
+        "name": "Luxembourg Financial Franc",
+        "symbol": "LUL",
+        "country": "LUXEMBOURG",
+        "withdrawal_date": "1990-03",
+        "numeric": "988"
+    },
+    "LVL": {
+        "name": "Latvian Lats",
+        "symbol": "LVL",
+        "country": "LATVIA",
+        "withdrawal_date": "2014-01",
+        "numeric": "428"
+    },
+    "LVR": {
+        "name": "Latvian Ruble",
+        "symbol": "LVR",
+        "country": "LATVIA",
+        "withdrawal_date": "1994-12",
+        "numeric": "428"
+    },
+    "MGF": {
+        "name": "Malagasy Franc",
+        "symbol": "MGF",
+        "country": "MADAGASCAR",
+        "withdrawal_date": "2004-12",
+        "numeric": "450"
+    },
+    "MLF": {
+        "name": "Mali Franc",
+        "symbol": "MLF",
+        "country": "MALI",
+        "withdrawal_date": "1984-11",
+        "numeric": "466"
+    },
+    "MRO": {
+        "name": "Ouguiya",
+        "symbol": "MRO",
+        "country": "MAURITANIA",
+        "withdrawal_date": "2017-12",
+        "numeric": "478"
+    },
+    "MTL": {
+        "name": "Maltese Lira",
+        "symbol": "MTL",
+        "country": "MALTA",
+        "withdrawal_date": "2008-01",
+        "numeric": "470"
+    },
+    "MTP": {
+        "name": "Maltese Pound",
+        "symbol": "MTP",
+        "country": "MALTA",
+        "withdrawal_date": "1983-06",
+        "numeric": "470"
+    },
+    "MVQ": {
+        "name": "Maldive Rupee",
+        "symbol": "MVQ",
+        "country": "MALDIVES",
+        "withdrawal_date": "1989-12",
+        "numeric": "462"
+    },
+    "MWK": {
+        "name": "Kwacha",
+        "symbol": "MWK",
+        "country": "MALAWI",
+        "withdrawal_date": "2016-02",
+        "numeric": "454"
+    },
+    "MXP": {
+        "name": "Mexican Peso",
+        "symbol": "MXP",
+        "country": "MEXICO",
+        "withdrawal_date": "1993-01",
+        "numeric": "484"
+    },
+    "MZE": {
+        "name": "Mozambique Escudo",
+        "symbol": "MZE",
+        "country": "MOZAMBIQUE",
+        "withdrawal_date": "1978 to 1981",
+        "numeric": "508"
+    },
+    "MZM": {
+        "name": "Mozambique Metical",
+        "symbol": "MZM",
+        "country": "MOZAMBIQUE",
+        "withdrawal_date": "2006-06",
+        "numeric": "508"
+    },
+    "NIC": {
+        "name": "Cordoba",
+        "symbol": "NIC",
+        "country": "NICARAGUA",
+        "withdrawal_date": "1990-10",
+        "numeric": "558"
+    },
+    "NLG": {
+        "name": "Netherlands Guilder",
+        "symbol": "NLG",
+        "country": "NETHERLANDS",
+        "withdrawal_date": "2002-03",
+        "numeric": "528"
+    },
+    "PEH": {
+        "name": "Sol",
+        "symbol": "PEH",
+        "country": "PERU",
+        "withdrawal_date": "1989 to 1990",
+        "numeric": "604"
+    },
+    "PEI": {
+        "name": "Inti",
+        "symbol": "PEI",
+        "country": "PERU",
+        "withdrawal_date": "1991-07",
+        "numeric": "604"
+    },
+    "PEN": {
+        "name": "Nuevo Sol",
+        "symbol": "PEN",
+        "country": "PERU",
+        "withdrawal_date": "2015-12",
+        "numeric": "604"
+    },
+    "PES": {
+        "name": "Sol",
+        "symbol": "PES",
+        "country": "PERU",
+        "withdrawal_date": "1986-02",
+        "numeric": "604"
+    },
+    "PLZ": {
+        "name": "Zloty",
+        "symbol": "PLZ",
+        "country": "POLAND",
+        "withdrawal_date": "1997-01",
+        "numeric": "616"
+    },
+    "PTE": {
+        "name": "Portuguese Escudo",
+        "symbol": "PTE",
+        "country": "PORTUGAL",
+        "withdrawal_date": "2002-03",
+        "numeric": "620"
+    },
+    "RHD": {
+        "name": "Rhodesian Dollar",
+        "symbol": "RHD",
+        "country": "SOUTHERN RHODESIA",
+        "withdrawal_date": "1978 to 1981",
+        "numeric": "716"
+    },
+    "ROK": {
+        "name": "Leu A/52",
+        "symbol": "ROK",
+        "country": "ROMANIA",
+        "withdrawal_date": "1989 to 1990",
+        "numeric": "642"
+    },
+    "ROL": {
+        "name": "Old Leu",
+        "symbol": "ROL",
+        "country": "ROMANIA",
+        "withdrawal_date": "2005-06",
+        "numeric": "642"
+    },
+    "RON": {
+        "name": "New Romanian Leu",
+        "symbol": "RON",
+        "country": "ROMANIA",
+        "withdrawal_date": "2015-06",
+        "numeric": "946"
+    },
+    "RUR": {
+        "name": "Russian Ruble",
+        "symbol": "RUR",
+        "country": "ARMENIA",
+        "withdrawal_date": "1994-08",
+        "numeric": "810"
+    },
+    "SDD": {
+        "name": "Sudanese Dinar",
+        "symbol": "SDD",
+        "country": "SUDAN",
+        "withdrawal_date": "2007-07",
+        "numeric": "736"
+    },
+    "SDG": {
+        "name": "Sudanese Pound",
+        "symbol": "SDG",
+        "country": "SOUTH SUDAN",
+        "withdrawal_date": "2012-09",
+        "numeric": "938"
+    },
+    "SDP": {
+        "name": "Sudanese Pound",
+        "symbol": "SDP",
+        "country": "SUDAN",
+        "withdrawal_date": "1998-06",
+        "numeric": "736"
+    },
+    "SIT": {
+        "name": "Tolar",
+        "symbol": "SIT",
+        "country": "SLOVENIA",
+        "withdrawal_date": "2007-01",
+        "numeric": "705"
+    },
+    "SKK": {
+        "name": "Slovak Koruna",
+        "symbol": "SKK",
+        "country": "SLOVAKIA",
+        "withdrawal_date": "2009-01",
+        "numeric": "703"
+    },
+    "SLL": {
+        "name": "Leone",
+        "symbol": "SLL",
+        "country": "SIERRA LEONE",
+        "withdrawal_date": "2023-12",
+        "numeric": "694"
+    },
+    "SRG": {
+        "name": "Surinam Guilder",
+        "symbol": "SRG",
+        "country": "SURINAME",
+        "withdrawal_date": "2003-12",
+        "numeric": "740"
+    },
+    "STD": {
+        "name": "Dobra",
+        "symbol": "STD",
+        "country": "SAO TOME AND PRINCIPE",
+        "withdrawal_date": "2017-12",
+        "numeric": "678"
+    },
+    "SUR": {
+        "name": "Rouble",
+        "symbol": "SUR",
+        "country": "UNION OF SOVIET SOCIALIST REPUBLICS",
+        "withdrawal_date": "1990-12",
+        "numeric": "810"
+    },
+    "SZL": {
+        "name": "Lilangeni",
+        "symbol": "SZL",
+        "country": "SWAZILAND",
+        "withdrawal_date": "2018-08",
+        "numeric": "748"
+    },
+    "TJR": {
+        "name": "Tajik Ruble",
+        "symbol": "TJR",
+        "country": "TAJIKISTAN",
+        "withdrawal_date": "2001-04",
+        "numeric": "762"
+    },
+    "TMM": {
+        "name": "Turkmenistan Manat",
+        "symbol": "TMM",
+        "country": "TURKMENISTAN",
+        "withdrawal_date": "2009-01",
+        "numeric": "795"
+    },
+    "TPE": {
+        "name": "Timor Escudo",
+        "symbol": "TPE",
+        "country": "TIMOR-LESTE",
+        "withdrawal_date": "2002-11",
+        "numeric": "626"
+    },
+    "TRL": {
+        "name": "Old Turkish Lira",
+        "symbol": "TRL",
+        "country": "TURKEY",
+        "withdrawal_date": "2005-12",
+        "numeric": "792"
+    },
+    "TRY": {
+        "name": "New Turkish Lira",
+        "symbol": "TRY",
+        "country": "TURKEY",
+        "withdrawal_date": "2009-01",
+        "numeric": "949"
+    },
+    "UAK": {
+        "name": "Karbovanet",
+        "symbol": "UAK",
+        "country": "UKRAINE",
+        "withdrawal_date": "1996-09",
+        "numeric": "804"
+    },
+    "UGS": {
+        "name": "Uganda Shilling",
+        "symbol": "UGS",
+        "country": "UGANDA",
+        "withdrawal_date": "1987-05",
+        "numeric": "800"
+    },
+    "UGW": {
+        "name": "Old Shilling",
+        "symbol": "UGW",
+        "country": "UGANDA",
+        "withdrawal_date": "1989 to 1990",
+        "numeric": "800"
+    },
+    "USS": {
+        "name": "US Dollar (Same day)",
+        "symbol": "USS",
+        "country": "UNITED STATES",
+        "withdrawal_date": "2014-03",
+        "numeric": "998"
+    },
+    "UYN": {
+        "name": "Old Uruguay Peso",
+        "symbol": "UYN",
+        "country": "URUGUAY",
+        "withdrawal_date": "1989-12",
+        "numeric": "858"
+    },
+    "UYP": {
+        "name": "Uruguayan Peso",
+        "symbol": "UYP",
+        "country": "URUGUAY",
+        "withdrawal_date": "1993-03",
+        "numeric": "858"
+    },
+    "VEB": {
+        "name": "Bolivar",
+        "symbol": "VEB",
+        "country": "VENEZUELA",
+        "withdrawal_date": "2008-01",
+        "numeric": "862"
+    },
+    "VEF": {
+        "name": "Bolivar Fuerte",
+        "symbol": "VEF",
+        "country": "VENEZUELA",
+        "withdrawal_date": "2011-12",
+        "numeric": "937"
+    },
+    "VNC": {
+        "name": "Old Dong",
+        "symbol": "VNC",
+        "country": "VIETNAM",
+        "withdrawal_date": "1989-1990",
+        "numeric": "704"
+    },
+    "XEU": {
+        "name": "European Currency Unit (E.C.U)",
+        "symbol": "XEU",
+        "country": "EUROPEAN MONETARY CO-OPERATION FUND (EMCF)",
+        "withdrawal_date": "1999-01",
+        "numeric": "954"
+    },
+    "XFO": {
+        "name": "Gold-Franc",
+        "symbol": "XFO",
+        "country": "ZZ01_Gold-Franc",
+        "withdrawal_date": "2006-10"
+    },
+    "XFU": {
+        "name": "UIC-Franc",
+        "symbol": "XFU",
+        "country": "ZZ05_UIC-Franc",
+        "withdrawal_date": "2013-11"
+    },
+    "XRE": {
+        "name": "RINET Funds Code",
+        "symbol": "XRE",
+        "country": "ZZ02_RINET Funds Code",
+        "withdrawal_date": "1999-11"
+    },
+    "YDD": {
+        "name": "Yemeni Dinar",
+        "symbol": "YDD",
+        "country": "YEMEN, DEMOCRATIC",
+        "withdrawal_date": "1991-09",
+        "numeric": "720"
+    },
+    "YUD": {
+        "name": "New Yugoslavian Dinar",
+        "symbol": "YUD",
+        "country": "YUGOSLAVIA",
+        "withdrawal_date": "1990-01",
+        "numeric": "890"
+    },
+    "YUM": {
+        "name": "New Dinar",
+        "symbol": "YUM",
+        "country": "YUGOSLAVIA",
+        "withdrawal_date": "2003-07",
+        "numeric": "891"
+    },
+    "YUN": {
+        "name": "Yugoslavian Dinar",
+        "symbol": "YUN",
+        "country": "YUGOSLAVIA",
+        "withdrawal_date": "1995-11",
+        "numeric": "890"
+    },
+    "ZAL": {
+        "name": "Financial Rand",
+        "symbol": "ZAL",
+        "country": "LESOTHO",
+        "withdrawal_date": "1995-03",
+        "numeric": "991"
+    },
+    "ZMK": {
+        "name": "Zambian Kwacha",
+        "symbol": "ZMK",
+        "country": "ZAMBIA",
+        "withdrawal_date": "2012-12",
+        "numeric": "894"
+    },
+    "ZRN": {
+        "name": "New Zaire",
+        "symbol": "ZRN",
+        "country": "ZAIRE",
+        "withdrawal_date": "1999-06",
+        "numeric": "180"
+    },
+    "ZRZ": {
+        "name": "Zaire",
+        "symbol": "ZRZ",
+        "country": "ZAIRE",
+        "withdrawal_date": "1994-02",
+        "numeric": "180"
+    },
+    "ZWC": {
+        "name": "Rhodesian Dollar",
+        "symbol": "ZWC",
+        "country": "ZIMBABWE",
+        "withdrawal_date": "1989-12",
+        "numeric": "716"
+    },
+    "ZWD": {
+        "name": "Zimbabwe Dollar (old)",
+        "symbol": "ZWD",
+        "country": "ZIMBABWE",
+        "withdrawal_date": "2006-08",
+        "numeric": "716"
+    },
+    "ZWL": {
+        "name": "Zimbabwe Dollar",
+        "symbol": "ZWL",
+        "country": "ZIMBABWE",
+        "withdrawal_date": "2024-09",
+        "numeric": "932"
+    },
+    "ZWN": {
+        "name": "Zimbabwe Dollar (new)",
+        "symbol": "ZWN",
+        "country": "ZIMBABWE",
+        "withdrawal_date": "2006-09",
+        "numeric": "942"
+    },
+    "ZWR": {
+        "name": "Zimbabwe Dollar",
+        "symbol": "ZWR",
+        "country": "ZIMBABWE",
+        "withdrawal_date": "2009-06",
+        "numeric": "935"
+    }
+}
