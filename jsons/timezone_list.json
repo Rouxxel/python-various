@@ -1,0 +1,3601 @@
+[
+    {
+        "id": "UTC",
+        "label": "Coordinated Universal Time",
+        "region": "Global",
+        "utc_offset_std": "+00:00",
+        "dst": false,
+        "countries": [],
+        "coordinates": "+0000+00000"
+    },
+    {
+        "id": "Africa/Abidjan",
+        "label": "far western Africa; Iceland (GMT)",
+        "region": "Africa",
+        "utc_offset_std": "+00:00",
+        "dst": false,
+        "countries": [
+            "CI",
+            "BF",
+            "GH",
+            "GM",
+            "GN",
+            "IS",
+            "ML",
+            "MR",
+            "SH",
+            "SL",
+            "SN",
+            "TG"
+        ],
+        "coordinates": "+0519-00402"
+    },
+    {
+        "id": "Africa/Algiers",
+        "label": "Algeria, Tunisia (CET)",
+        "region": "Africa",
+        "utc_offset_std": "+01:00",
+        "dst": false,
+        "countries": [
+            "DZ"
+        ],
+        "coordinates": "+3647+00303"
+    },
+    {
+        "id": "Africa/Bissau",
+        "label": "Bissau",
+        "region": "Africa",
+        "utc_offset_std": "+00:00",
+        "dst": false,
+        "countries": [
+            "GW"
+        ],
+        "coordinates": "+1151-01535"
+    },
+    {
+        "id": "Africa/Cairo",
+        "label": "Egypt",
+        "region": "Africa",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "EG"
+        ],
+        "coordinates": "+3003+03115"
+    },
+    {
+        "id": "Africa/Casablanca",
+        "label": "Morocco",
+        "region": "Africa",
+        "utc_offset_std": "+01:00",
+        "dst": false,
+        "countries": [
+            "MA"
+        ],
+        "coordinates": "+3339-00735"
+    },
+    {
+        "id": "Africa/Ceuta",
+        "label": "Ceuta, Melilla",
+        "region": "Africa",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "ES"
+        ],
+        "coordinates": "+3553-00519"
+    },
+    {
+        "id": "Africa/El_Aaiun",
+        "label": "El Aaiun",
+        "region": "Africa",
+        "utc_offset_std": "+01:00",
+        "dst": false,
+        "countries": [
+            "EH"
+        ],
+        "coordinates": "+2709-01312"
+    },
+    {
+        "id": "Africa/Johannesburg",
+        "label": "southern Africa (SAST)",
+        "region": "Africa",
+        "utc_offset_std": "+02:00",
+        "dst": false,
+        "countries": [
+            "ZA",
+            "LS",
+            "SZ"
+        ],
+        "coordinates": "-2615+02800"
+    },
+    {
+        "id": "Africa/Juba",
+        "label": "Juba",
+        "region": "Africa",
+        "utc_offset_std": "+02:00",
+        "dst": false,
+        "countries": [
+            "SS"
+        ],
+        "coordinates": "+0451+03137"
+    },
+    {
+        "id": "Africa/Khartoum",
+        "label": "Khartoum",
+        "region": "Africa",
+        "utc_offset_std": "+02:00",
+        "dst": false,
+        "countries": [
+            "SD"
+        ],
+        "coordinates": "+1536+03232"
+    },
+    {
+        "id": "Africa/Lagos",
+        "label": "western Africa (WAT)",
+        "region": "Africa",
+        "utc_offset_std": "+01:00",
+        "dst": false,
+        "countries": [
+            "NG",
+            "AO",
+            "BJ",
+            "CD",
+            "CF",
+            "CG",
+            "CM",
+            "GA",
+            "GQ",
+            "NE"
+        ],
+        "coordinates": "+0627+00324",
+        "comment": "West Africa Time"
+    },
+    {
+        "id": "Africa/Maputo",
+        "label": "central Africa (CAT)",
+        "region": "Africa",
+        "utc_offset_std": "+02:00",
+        "dst": false,
+        "countries": [
+            "MZ",
+            "BI",
+            "BW",
+            "CD",
+            "MW",
+            "RW",
+            "ZM",
+            "ZW"
+        ],
+        "coordinates": "-2558+03235",
+        "comment": "Central Africa Time"
+    },
+    {
+        "id": "Africa/Monrovia",
+        "label": "Monrovia",
+        "region": "Africa",
+        "utc_offset_std": "+00:00",
+        "dst": false,
+        "countries": [
+            "LR"
+        ],
+        "coordinates": "+0618-01047"
+    },
+    {
+        "id": "Africa/Nairobi",
+        "label": "eastern Africa (EAT)",
+        "region": "Africa",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "KE",
+            "DJ",
+            "ER",
+            "ET",
+            "KM",
+            "MG",
+            "SO",
+            "TZ",
+            "UG",
+            "YT"
+        ],
+        "coordinates": "-0117+03649"
+    },
+    {
+        "id": "Africa/Ndjamena",
+        "label": "Ndjamena",
+        "region": "Africa",
+        "utc_offset_std": "+01:00",
+        "dst": false,
+        "countries": [
+            "TD"
+        ],
+        "coordinates": "+1207+01503"
+    },
+    {
+        "id": "Africa/Sao_Tome",
+        "label": "Sao Tome",
+        "region": "Africa",
+        "utc_offset_std": "+00:00",
+        "dst": false,
+        "countries": [
+            "ST"
+        ],
+        "coordinates": "+0020+00644"
+    },
+    {
+        "id": "Africa/Tripoli",
+        "label": "Libya; Kaliningrad (EET)",
+        "region": "Africa",
+        "utc_offset_std": "+02:00",
+        "dst": false,
+        "countries": [
+            "LY"
+        ],
+        "coordinates": "+3254+01311"
+    },
+    {
+        "id": "Africa/Tunis",
+        "label": "Tunis",
+        "region": "Africa",
+        "utc_offset_std": "+01:00",
+        "dst": false,
+        "countries": [
+            "TN"
+        ],
+        "coordinates": "+3648+01011"
+    },
+    {
+        "id": "Africa/Windhoek",
+        "label": "Windhoek",
+        "region": "Africa",
+        "utc_offset_std": "+02:00",
+        "dst": false,
+        "countries": [
+            "NA"
+        ],
+        "coordinates": "-2234+01706"
+    },
+    {
+        "id": "America/Adak",
+        "label": "western Aleutians in Alaska (HST/HDT)",
+        "region": "Americas",
+        "utc_offset_std": "-10:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+515248-1763929",
+        "comment": "Alaska - western Aleutians"
+    },
+    {
+        "id": "America/Anchorage",
+        "label": "most of Alaska (AKST/AKDT)",
+        "region": "Americas",
+        "utc_offset_std": "-09:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+611305-1495401",
+        "comment": "Alaska (most areas)"
+    },
+    {
+        "id": "America/Araguaina",
+        "label": "Tocantins",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0712-04812"
+    },
+    {
+        "id": "America/Argentina/Buenos_Aires",
+        "label": "Buenos Aires (BA, CF)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-3436-05827"
+    },
+    {
+        "id": "America/Argentina/Catamarca",
+        "label": "Catamarca (CT), Chubut (CH)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-2828-06547"
+    },
+    {
+        "id": "America/Argentina/Cordoba",
+        "label": "most areas: CB, CC, CN, ER, FM, MN, SE, SF",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-3124-06411"
+    },
+    {
+        "id": "America/Argentina/Jujuy",
+        "label": "Jujuy (JY)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-2411-06518"
+    },
+    {
+        "id": "America/Argentina/La_Rioja",
+        "label": "La Rioja (LR)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-2926-06651"
+    },
+    {
+        "id": "America/Argentina/Mendoza",
+        "label": "Mendoza (MZ)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-3253-06849"
+    },
+    {
+        "id": "America/Argentina/Rio_Gallegos",
+        "label": "Santa Cruz (SC)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-5138-06913"
+    },
+    {
+        "id": "America/Argentina/Salta",
+        "label": "Salta (SA, LP, NQ, RN)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-2447-06525"
+    },
+    {
+        "id": "America/Argentina/San_Juan",
+        "label": "San Juan (SJ)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-3132-06831"
+    },
+    {
+        "id": "America/Argentina/San_Luis",
+        "label": "San Luis (SL)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-3319-06621"
+    },
+    {
+        "id": "America/Argentina/Tucuman",
+        "label": "Tucumán (TM)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-2649-06513"
+    },
+    {
+        "id": "America/Argentina/Ushuaia",
+        "label": "Tierra del Fuego (TF)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AR"
+        ],
+        "coordinates": "-5448-06818"
+    },
+    {
+        "id": "America/Asuncion",
+        "label": "Asuncion",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "PY"
+        ],
+        "coordinates": "-2516-05740"
+    },
+    {
+        "id": "America/Bahia",
+        "label": "Bahia",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-1259-03831"
+    },
+    {
+        "id": "America/Bahia_Banderas",
+        "label": "Bahía de Banderas",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+2048-10515"
+    },
+    {
+        "id": "America/Barbados",
+        "label": "Barbados",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "BB"
+        ],
+        "coordinates": "+1306-05937"
+    },
+    {
+        "id": "America/Belem",
+        "label": "Pará (east), Amapá",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0127-04829"
+    },
+    {
+        "id": "America/Belize",
+        "label": "Belize",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "BZ"
+        ],
+        "coordinates": "+1730-08812"
+    },
+    {
+        "id": "America/Boa_Vista",
+        "label": "Roraima",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "+0249-06040"
+    },
+    {
+        "id": "America/Bogota",
+        "label": "Bogota",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": false,
+        "countries": [
+            "CO"
+        ],
+        "coordinates": "+0436-07405"
+    },
+    {
+        "id": "America/Boise",
+        "label": "Mountain - ID (south), OR (east)",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+433649-1161209"
+    },
+    {
+        "id": "America/Cambridge_Bay",
+        "label": "Mountain - NU (west)",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+690650-1050310"
+    },
+    {
+        "id": "America/Campo_Grande",
+        "label": "Mato Grosso do Sul",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-2027-05437"
+    },
+    {
+        "id": "America/Cancun",
+        "label": "Quintana Roo",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": false,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+2105-08646"
+    },
+    {
+        "id": "America/Caracas",
+        "label": "western South America",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "VE"
+        ],
+        "coordinates": "+1030-06656"
+    },
+    {
+        "id": "America/Cayenne",
+        "label": "Cayenne",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "GF"
+        ],
+        "coordinates": "+0456-05220"
+    },
+    {
+        "id": "America/Chicago",
+        "label": "Central (CST/CDT) - US & Canada; Mexico near US border",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+415100-0873900",
+        "comment": "Central (most areas)"
+    },
+    {
+        "id": "America/Chihuahua",
+        "label": "Chihuahua (most areas)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+2838-10605"
+    },
+    {
+        "id": "America/Ciudad_Juarez",
+        "label": "Chihuahua (US border - west)",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": true,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+3144-10629"
+    },
+    {
+        "id": "America/Costa_Rica",
+        "label": "Costa Rica",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "CR"
+        ],
+        "coordinates": "+0956-08405"
+    },
+    {
+        "id": "America/Coyhaique",
+        "label": "Aysén Region",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "CL"
+        ],
+        "coordinates": "-4534-07204"
+    },
+    {
+        "id": "America/Cuiaba",
+        "label": "Mato Grosso",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-1535-05605"
+    },
+    {
+        "id": "America/Danmarkshavn",
+        "label": "National Park (east coast)",
+        "region": "Americas",
+        "utc_offset_std": "+00:00",
+        "dst": false,
+        "countries": [
+            "GL"
+        ],
+        "coordinates": "+7646-01840"
+    },
+    {
+        "id": "America/Dawson",
+        "label": "MST - Yukon (west)",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": false,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+6404-13925"
+    },
+    {
+        "id": "America/Dawson_Creek",
+        "label": "MST - BC (Dawson Cr, Ft St John)",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": false,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+5546-12014"
+    },
+    {
+        "id": "America/Denver",
+        "label": "Mountain (MST/MDT) - US; Mexico near US border; northern Canada",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+394421-1045903",
+        "comment": "Mountain (most areas)"
+    },
+    {
+        "id": "America/Detroit",
+        "label": "Eastern - MI (most areas)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+421953-0830245"
+    },
+    {
+        "id": "America/Edmonton",
+        "label": "Central Standard (CST) - Alberta and some neighbors",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+5333-11328",
+        "comment": "CST - AB, BC(E), NT(E), SK(W)"
+    },
+    {
+        "id": "America/Eirunepe",
+        "label": "Amazonas (west)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0640-06952"
+    },
+    {
+        "id": "America/El_Salvador",
+        "label": "El Salvador",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "SV"
+        ],
+        "coordinates": "+1342-08912"
+    },
+    {
+        "id": "America/Fort_Nelson",
+        "label": "MST - BC (Ft Nelson)",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": false,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+5848-12242"
+    },
+    {
+        "id": "America/Fortaleza",
+        "label": "Brazil (northeast: MA, PI, CE, RN, PB)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0343-03830"
+    },
+    {
+        "id": "America/Glace_Bay",
+        "label": "Atlantic - NS (Cape Breton)",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+4612-05957"
+    },
+    {
+        "id": "America/Goose_Bay",
+        "label": "Atlantic - Labrador (most areas)",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+5320-06025"
+    },
+    {
+        "id": "America/Grand_Turk",
+        "label": "Grand Turk",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "TC"
+        ],
+        "coordinates": "+2128-07108"
+    },
+    {
+        "id": "America/Guatemala",
+        "label": "Guatemala",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "GT"
+        ],
+        "coordinates": "+1438-09031"
+    },
+    {
+        "id": "America/Guayaquil",
+        "label": "Ecuador (mainland)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": false,
+        "countries": [
+            "EC"
+        ],
+        "coordinates": "-0210-07950"
+    },
+    {
+        "id": "America/Guyana",
+        "label": "Guyana",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "GY"
+        ],
+        "coordinates": "+0648-05810"
+    },
+    {
+        "id": "America/Halifax",
+        "label": "Atlantic (AST/ADT) - Canada; Bermuda",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+4439-06336",
+        "comment": "Atlantic - NS (most areas), PE"
+    },
+    {
+        "id": "America/Havana",
+        "label": "Cuba",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "CU"
+        ],
+        "coordinates": "+2308-08222"
+    },
+    {
+        "id": "America/Hermosillo",
+        "label": "Sonora",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": false,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+2904-11058"
+    },
+    {
+        "id": "America/Indiana/Indianapolis",
+        "label": "Eastern - IN (most areas)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+394606-0860929"
+    },
+    {
+        "id": "America/Indiana/Knox",
+        "label": "Central - IN (Starke)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+411745-0863730"
+    },
+    {
+        "id": "America/Indiana/Marengo",
+        "label": "Eastern - IN (Crawford)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+382232-0862041"
+    },
+    {
+        "id": "America/Indiana/Petersburg",
+        "label": "Eastern - IN (Pike)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+382931-0871643"
+    },
+    {
+        "id": "America/Indiana/Tell_City",
+        "label": "Central - IN (Perry)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+375711-0864541"
+    },
+    {
+        "id": "America/Indiana/Vevay",
+        "label": "Eastern - IN (Switzerland)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+384452-0850402"
+    },
+    {
+        "id": "America/Indiana/Vincennes",
+        "label": "Eastern - IN (Da, Du, K, Mn)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+384038-0873143"
+    },
+    {
+        "id": "America/Indiana/Winamac",
+        "label": "Eastern - IN (Pulaski)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+410305-0863611"
+    },
+    {
+        "id": "America/Inuvik",
+        "label": "Mountain - NT (west)",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+682059-1334300"
+    },
+    {
+        "id": "America/Iqaluit",
+        "label": "Eastern - NU (most areas)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+6344-06828"
+    },
+    {
+        "id": "America/Jamaica",
+        "label": "Eastern Standard (EST) - Caymans; Jamaica; eastern Mexico; Panama",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": false,
+        "countries": [
+            "JM"
+        ],
+        "coordinates": "+175805-0764736"
+    },
+    {
+        "id": "America/Juneau",
+        "label": "Alaska - Juneau area",
+        "region": "Americas",
+        "utc_offset_std": "-09:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+581807-1342511"
+    },
+    {
+        "id": "America/Kentucky/Louisville",
+        "label": "Eastern - KY (Louisville area)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+381515-0854534"
+    },
+    {
+        "id": "America/Kentucky/Monticello",
+        "label": "Eastern - KY (Wayne)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+364947-0845057"
+    },
+    {
+        "id": "America/La_Paz",
+        "label": "La Paz",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "BO"
+        ],
+        "coordinates": "-1630-06809"
+    },
+    {
+        "id": "America/Lima",
+        "label": "eastern South America",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": false,
+        "countries": [
+            "PE"
+        ],
+        "coordinates": "-1203-07703"
+    },
+    {
+        "id": "America/Los_Angeles",
+        "label": "Pacific (PST/PDT) - US; Mexico near US border",
+        "region": "Americas",
+        "utc_offset_std": "-08:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+340308-1181434",
+        "comment": "Pacific"
+    },
+    {
+        "id": "America/Maceio",
+        "label": "Alagoas, Sergipe",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0940-03543"
+    },
+    {
+        "id": "America/Managua",
+        "label": "Managua",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "NI"
+        ],
+        "coordinates": "+1209-08617"
+    },
+    {
+        "id": "America/Manaus",
+        "label": "Amazonas (east)",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0308-06001"
+    },
+    {
+        "id": "America/Martinique",
+        "label": "Martinique",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "MQ"
+        ],
+        "coordinates": "+1436-06105"
+    },
+    {
+        "id": "America/Matamoros",
+        "label": "Coahuila, Nuevo León, Tamaulipas (US border)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+2550-09730"
+    },
+    {
+        "id": "America/Mazatlan",
+        "label": "Baja California Sur, Nayarit (most areas), Sinaloa",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": false,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+2313-10625"
+    },
+    {
+        "id": "America/Menominee",
+        "label": "Central - MI (Wisconsin border)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+450628-0873651"
+    },
+    {
+        "id": "America/Merida",
+        "label": "Campeche, Yucatán",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+2058-08937"
+    },
+    {
+        "id": "America/Metlakatla",
+        "label": "Alaska - Annette Island",
+        "region": "Americas",
+        "utc_offset_std": "-09:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+550737-1313435"
+    },
+    {
+        "id": "America/Mexico_City",
+        "label": "Central Standard (CST) - Saskatchewan; central Mexico; Central America",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+1924-09909",
+        "comment": "Central Mexico"
+    },
+    {
+        "id": "America/Miquelon",
+        "label": "St Pierre & Miquelon",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": true,
+        "countries": [
+            "PM"
+        ],
+        "coordinates": "+4703-05620"
+    },
+    {
+        "id": "America/Moncton",
+        "label": "Atlantic - New Brunswick",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+4606-06447"
+    },
+    {
+        "id": "America/Monterrey",
+        "label": "Durango; Coahuila, Nuevo León, Tamaulipas (most areas)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+2540-10019"
+    },
+    {
+        "id": "America/Montevideo",
+        "label": "Montevideo",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "UY"
+        ],
+        "coordinates": "-345433-0561245"
+    },
+    {
+        "id": "America/New_York",
+        "label": "Eastern (EST/EDT) - US & Canada",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+404251-0740023",
+        "comment": "Eastern (most areas)"
+    },
+    {
+        "id": "America/Nome",
+        "label": "Alaska (west)",
+        "region": "Americas",
+        "utc_offset_std": "-09:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+643004-1652423"
+    },
+    {
+        "id": "America/Noronha",
+        "label": "Fernando de Noronha; South Georgia",
+        "region": "Americas",
+        "utc_offset_std": "-02:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0351-03225",
+        "comment": "Atlantic islands"
+    },
+    {
+        "id": "America/North_Dakota/Beulah",
+        "label": "Central - ND (Mercer)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+471551-1014640"
+    },
+    {
+        "id": "America/North_Dakota/Center",
+        "label": "Central - ND (Oliver)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+470659-1011757"
+    },
+    {
+        "id": "America/North_Dakota/New_Salem",
+        "label": "Central - ND (Morton rural)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+465042-1012439"
+    },
+    {
+        "id": "America/Nuuk",
+        "label": "most of Greenland",
+        "region": "Americas",
+        "utc_offset_std": "-02:00",
+        "dst": true,
+        "countries": [
+            "GL"
+        ],
+        "coordinates": "+6411-05144"
+    },
+    {
+        "id": "America/Ojinaga",
+        "label": "Chihuahua (US border - east)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+2934-10425"
+    },
+    {
+        "id": "America/Panama",
+        "label": "EST - ON (Atikokan), NU (Coral H)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": false,
+        "countries": [
+            "PA",
+            "CA",
+            "KY"
+        ],
+        "coordinates": "+0858-07932"
+    },
+    {
+        "id": "America/Paramaribo",
+        "label": "Paramaribo",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "SR"
+        ],
+        "coordinates": "+0550-05510"
+    },
+    {
+        "id": "America/Phoenix",
+        "label": "Mountain Standard (MST) - Arizona; western Mexico; Yukon",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": false,
+        "countries": [
+            "US",
+            "CA"
+        ],
+        "coordinates": "+332654-1120424",
+        "comment": "MST - AZ (most areas), Creston BC"
+    },
+    {
+        "id": "America/Port-au-Prince",
+        "label": "Port-au-Prince",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "HT"
+        ],
+        "coordinates": "+1832-07220"
+    },
+    {
+        "id": "America/Porto_Velho",
+        "label": "Rondônia",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0846-06354"
+    },
+    {
+        "id": "America/Puerto_Rico",
+        "label": "AST - QC (Lower North Shore)",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "PR",
+            "AG",
+            "CA",
+            "AI",
+            "AW",
+            "BL",
+            "BQ",
+            "CW",
+            "DM",
+            "GD",
+            "GP",
+            "KN",
+            "LC",
+            "MF",
+            "MS",
+            "SX",
+            "TT",
+            "VC",
+            "VG",
+            "VI"
+        ],
+        "coordinates": "+182806-0660622"
+    },
+    {
+        "id": "America/Punta_Arenas",
+        "label": "Magallanes Region",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "CL"
+        ],
+        "coordinates": "-5309-07055"
+    },
+    {
+        "id": "America/Rankin_Inlet",
+        "label": "Central - NU (central)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+624900-0920459"
+    },
+    {
+        "id": "America/Recife",
+        "label": "Pernambuco",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0803-03454"
+    },
+    {
+        "id": "America/Regina",
+        "label": "CST - SK (most areas)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+5024-10439"
+    },
+    {
+        "id": "America/Resolute",
+        "label": "Central - NU (Resolute)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+744144-0944945"
+    },
+    {
+        "id": "America/Rio_Branco",
+        "label": "Acre",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0958-06748"
+    },
+    {
+        "id": "America/Santarem",
+        "label": "Pará (west)",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-0226-05452"
+    },
+    {
+        "id": "America/Santiago",
+        "label": "most of Chile",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": true,
+        "countries": [
+            "CL"
+        ],
+        "coordinates": "-3327-07040"
+    },
+    {
+        "id": "America/Santo_Domingo",
+        "label": "Atlantic Standard (AST) - eastern Caribbean",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": false,
+        "countries": [
+            "DO"
+        ],
+        "coordinates": "+1828-06954"
+    },
+    {
+        "id": "America/Sao_Paulo",
+        "label": "eastern and southern South America",
+        "region": "Americas",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "BR"
+        ],
+        "coordinates": "-2332-04637",
+        "comment": "Brazil (southeast: GO, DF, MG, ES, RJ, SP, PR, SC, RS)"
+    },
+    {
+        "id": "America/Scoresbysund",
+        "label": "Scoresbysund/Ittoqqortoormiit",
+        "region": "Americas",
+        "utc_offset_std": "-02:00",
+        "dst": true,
+        "countries": [
+            "GL"
+        ],
+        "coordinates": "+7029-02158"
+    },
+    {
+        "id": "America/Sitka",
+        "label": "Alaska - Sitka area",
+        "region": "Americas",
+        "utc_offset_std": "-09:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+571035-1351807"
+    },
+    {
+        "id": "America/St_Johns",
+        "label": "Newfoundland (NST/NDT)",
+        "region": "Americas",
+        "utc_offset_std": "-03:30",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+4734-05243",
+        "comment": "Newfoundland, Labrador (SE)"
+    },
+    {
+        "id": "America/Swift_Current",
+        "label": "CST - SK (midwest)",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+5017-10750"
+    },
+    {
+        "id": "America/Tegucigalpa",
+        "label": "Tegucigalpa",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "HN"
+        ],
+        "coordinates": "+1406-08713"
+    },
+    {
+        "id": "America/Thule",
+        "label": "Thule/Pituffik",
+        "region": "Americas",
+        "utc_offset_std": "-04:00",
+        "dst": true,
+        "countries": [
+            "GL"
+        ],
+        "coordinates": "+7634-06847"
+    },
+    {
+        "id": "America/Tijuana",
+        "label": "Baja California",
+        "region": "Americas",
+        "utc_offset_std": "-08:00",
+        "dst": true,
+        "countries": [
+            "MX"
+        ],
+        "coordinates": "+3232-11701"
+    },
+    {
+        "id": "America/Toronto",
+        "label": "Eastern - ON & QC (most areas)",
+        "region": "Americas",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "CA",
+            "BS"
+        ],
+        "coordinates": "+4339-07923"
+    },
+    {
+        "id": "America/Vancouver",
+        "label": "Mountain Standard (MST) - British Columbia (most areas)",
+        "region": "Americas",
+        "utc_offset_std": "-08:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+4916-12307",
+        "comment": "MST - BC (most areas)"
+    },
+    {
+        "id": "America/Whitehorse",
+        "label": "MST - Yukon (east)",
+        "region": "Americas",
+        "utc_offset_std": "-07:00",
+        "dst": false,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+6043-13503"
+    },
+    {
+        "id": "America/Winnipeg",
+        "label": "Central - ON (west), Manitoba",
+        "region": "Americas",
+        "utc_offset_std": "-06:00",
+        "dst": true,
+        "countries": [
+            "CA"
+        ],
+        "coordinates": "+4953-09709"
+    },
+    {
+        "id": "America/Yakutat",
+        "label": "Alaska - Yakutat",
+        "region": "Americas",
+        "utc_offset_std": "-09:00",
+        "dst": true,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+593249-1394338"
+    },
+    {
+        "id": "Antarctica/Casey",
+        "label": "Casey",
+        "region": "Antarctica",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "AQ"
+        ],
+        "coordinates": "-6617+11031"
+    },
+    {
+        "id": "Antarctica/Davis",
+        "label": "Davis",
+        "region": "Antarctica",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "AQ"
+        ],
+        "coordinates": "-6835+07758"
+    },
+    {
+        "id": "Antarctica/Macquarie",
+        "label": "Macquarie Island",
+        "region": "Antarctica",
+        "utc_offset_std": "+11:00",
+        "dst": true,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-5430+15857"
+    },
+    {
+        "id": "Antarctica/Mawson",
+        "label": "Mawson",
+        "region": "Antarctica",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "AQ"
+        ],
+        "coordinates": "-6736+06253"
+    },
+    {
+        "id": "Antarctica/Palmer",
+        "label": "Palmer",
+        "region": "Antarctica",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AQ"
+        ],
+        "coordinates": "-6448-06406"
+    },
+    {
+        "id": "Antarctica/Rothera",
+        "label": "Rothera",
+        "region": "Antarctica",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "AQ"
+        ],
+        "coordinates": "-6734-06808"
+    },
+    {
+        "id": "Antarctica/Troll",
+        "label": "Troll Station in Antarctica",
+        "region": "Antarctica",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "AQ"
+        ],
+        "coordinates": "-720041+0023206",
+        "comment": "Troll"
+    },
+    {
+        "id": "Antarctica/Vostok",
+        "label": "Vostok",
+        "region": "Antarctica",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "AQ"
+        ],
+        "coordinates": "-7824+10654"
+    },
+    {
+        "id": "Asia/Almaty",
+        "label": "most of Kazakhstan",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "KZ"
+        ],
+        "coordinates": "+4315+07657"
+    },
+    {
+        "id": "Asia/Amman",
+        "label": "Amman",
+        "region": "Asia",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "JO"
+        ],
+        "coordinates": "+3157+03556"
+    },
+    {
+        "id": "Asia/Anadyr",
+        "label": "MSK+09 - Bering Sea",
+        "region": "Asia",
+        "utc_offset_std": "+12:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+6445+17729"
+    },
+    {
+        "id": "Asia/Aqtau",
+        "label": "Mangghystaū/Mankistau",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "KZ"
+        ],
+        "coordinates": "+4431+05016"
+    },
+    {
+        "id": "Asia/Aqtobe",
+        "label": "Aqtöbe/Aktobe",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "KZ"
+        ],
+        "coordinates": "+5017+05710"
+    },
+    {
+        "id": "Asia/Ashgabat",
+        "label": "Ashgabat",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "TM"
+        ],
+        "coordinates": "+3757+05823"
+    },
+    {
+        "id": "Asia/Atyrau",
+        "label": "Atyraū/Atirau/Gur’yev",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "KZ"
+        ],
+        "coordinates": "+4707+05156"
+    },
+    {
+        "id": "Asia/Baghdad",
+        "label": "Baghdad",
+        "region": "Asia",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "IQ"
+        ],
+        "coordinates": "+3321+04425"
+    },
+    {
+        "id": "Asia/Baku",
+        "label": "Baku",
+        "region": "Asia",
+        "utc_offset_std": "+04:00",
+        "dst": false,
+        "countries": [
+            "AZ"
+        ],
+        "coordinates": "+4023+04951"
+    },
+    {
+        "id": "Asia/Bangkok",
+        "label": "Russia; Indochina; Christmas Island",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "TH",
+            "CX",
+            "KH",
+            "LA",
+            "VN"
+        ],
+        "coordinates": "+1345+10031",
+        "comment": "north Vietnam"
+    },
+    {
+        "id": "Asia/Barnaul",
+        "label": "MSK+04 - Altai",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5322+08345"
+    },
+    {
+        "id": "Asia/Beirut",
+        "label": "Lebanon",
+        "region": "Asia",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "LB"
+        ],
+        "coordinates": "+3353+03530"
+    },
+    {
+        "id": "Asia/Bishkek",
+        "label": "Bishkek",
+        "region": "Asia",
+        "utc_offset_std": "+06:00",
+        "dst": false,
+        "countries": [
+            "KG"
+        ],
+        "coordinates": "+4254+07436"
+    },
+    {
+        "id": "Asia/Chita",
+        "label": "Russia; Palau; East Timor",
+        "region": "Asia",
+        "utc_offset_std": "+09:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5203+11328",
+        "comment": "MSK+06 - Zabaykalsky"
+    },
+    {
+        "id": "Asia/Colombo",
+        "label": "Sri Lanka",
+        "region": "Asia",
+        "utc_offset_std": "+05:30",
+        "dst": false,
+        "countries": [
+            "LK"
+        ],
+        "coordinates": "+0656+07951"
+    },
+    {
+        "id": "Asia/Damascus",
+        "label": "Damascus",
+        "region": "Asia",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "SY"
+        ],
+        "coordinates": "+3330+03618"
+    },
+    {
+        "id": "Asia/Dhaka",
+        "label": "Russia; Kyrgyzstan; Bhutan; Bangladesh; Chagos",
+        "region": "Asia",
+        "utc_offset_std": "+06:00",
+        "dst": false,
+        "countries": [
+            "BD"
+        ],
+        "coordinates": "+2343+09025"
+    },
+    {
+        "id": "Asia/Dili",
+        "label": "Dili",
+        "region": "Asia",
+        "utc_offset_std": "+09:00",
+        "dst": false,
+        "countries": [
+            "TL"
+        ],
+        "coordinates": "-0833+12535"
+    },
+    {
+        "id": "Asia/Dubai",
+        "label": "Russia; Caucasus; Persian Gulf; Seychelles; Réunion",
+        "region": "Asia",
+        "utc_offset_std": "+04:00",
+        "dst": false,
+        "countries": [
+            "AE",
+            "OM",
+            "RE",
+            "SC",
+            "TF"
+        ],
+        "coordinates": "+2518+05518",
+        "comment": "Crozet"
+    },
+    {
+        "id": "Asia/Dushanbe",
+        "label": "Dushanbe",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "TJ"
+        ],
+        "coordinates": "+3835+06848"
+    },
+    {
+        "id": "Asia/Famagusta",
+        "label": "Northern Cyprus",
+        "region": "Asia",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "CY"
+        ],
+        "coordinates": "+3507+03357"
+    },
+    {
+        "id": "Asia/Gaza",
+        "label": "Palestine",
+        "region": "Asia",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "PS"
+        ],
+        "coordinates": "+3130+03428",
+        "comment": "Gaza Strip"
+    },
+    {
+        "id": "Asia/Hebron",
+        "label": "West Bank",
+        "region": "Asia",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "PS"
+        ],
+        "coordinates": "+313200+0350542"
+    },
+    {
+        "id": "Asia/Ho_Chi_Minh",
+        "label": "south Vietnam",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "VN"
+        ],
+        "coordinates": "+1045+10640"
+    },
+    {
+        "id": "Asia/Hong_Kong",
+        "label": "Hong Kong (HKT)",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "HK"
+        ],
+        "coordinates": "+2217+11409"
+    },
+    {
+        "id": "Asia/Hovd",
+        "label": "Bayan-Ölgii, Hovd, Uvs",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "MN"
+        ],
+        "coordinates": "+4801+09139"
+    },
+    {
+        "id": "Asia/Irkutsk",
+        "label": "MSK+05 - Irkutsk, Buryatia",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5216+10420"
+    },
+    {
+        "id": "Asia/Jakarta",
+        "label": "Indonesia (WIB)",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "ID"
+        ],
+        "coordinates": "-0610+10648",
+        "comment": "Java, Sumatra"
+    },
+    {
+        "id": "Asia/Jayapura",
+        "label": "Indonesia (WIT)",
+        "region": "Asia",
+        "utc_offset_std": "+09:00",
+        "dst": false,
+        "countries": [
+            "ID"
+        ],
+        "coordinates": "-0232+14042",
+        "comment": "New Guinea (West Papua / Irian Jaya), Malukus/Moluccas"
+    },
+    {
+        "id": "Asia/Jerusalem",
+        "label": "Israel",
+        "region": "Asia",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "IL"
+        ],
+        "coordinates": "+314650+0351326"
+    },
+    {
+        "id": "Asia/Kabul",
+        "label": "Afghanistan",
+        "region": "Asia",
+        "utc_offset_std": "+04:30",
+        "dst": false,
+        "countries": [
+            "AF"
+        ],
+        "coordinates": "+3431+06912"
+    },
+    {
+        "id": "Asia/Kamchatka",
+        "label": "Russia; Tuvalu; Fiji; etc.",
+        "region": "Asia",
+        "utc_offset_std": "+12:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5301+15839",
+        "comment": "MSK+09 - Kamchatka"
+    },
+    {
+        "id": "Asia/Karachi",
+        "label": "Pakistan (PKT)",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "PK"
+        ],
+        "coordinates": "+2452+06703"
+    },
+    {
+        "id": "Asia/Kathmandu",
+        "label": "Nepal",
+        "region": "Asia",
+        "utc_offset_std": "+05:45",
+        "dst": false,
+        "countries": [
+            "NP"
+        ],
+        "coordinates": "+2743+08519"
+    },
+    {
+        "id": "Asia/Khandyga",
+        "label": "MSK+06 - Tomponsky, Ust-Maysky",
+        "region": "Asia",
+        "utc_offset_std": "+09:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+623923+1353314"
+    },
+    {
+        "id": "Asia/Kolkata",
+        "label": "India (IST)",
+        "region": "Asia",
+        "utc_offset_std": "+05:30",
+        "dst": false,
+        "countries": [
+            "IN"
+        ],
+        "coordinates": "+2232+08822"
+    },
+    {
+        "id": "Asia/Krasnoyarsk",
+        "label": "MSK+04 - Krasnoyarsk area",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5601+09250"
+    },
+    {
+        "id": "Asia/Kuching",
+        "label": "Sabah, Sarawak",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "MY",
+            "BN"
+        ],
+        "coordinates": "+0133+11020"
+    },
+    {
+        "id": "Asia/Macau",
+        "label": "Macau",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "MO"
+        ],
+        "coordinates": "+221150+1133230"
+    },
+    {
+        "id": "Asia/Magadan",
+        "label": "MSK+08 - Magadan",
+        "region": "Asia",
+        "utc_offset_std": "+11:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5934+15048"
+    },
+    {
+        "id": "Asia/Makassar",
+        "label": "Indonesia (WITA)",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "ID"
+        ],
+        "coordinates": "-0507+11924",
+        "comment": "Borneo (east, south), Sulawesi/Celebes, Bali, Nusa Tengarra, Timor (west)"
+    },
+    {
+        "id": "Asia/Manila",
+        "label": "Philippines (PHT)",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "PH"
+        ],
+        "coordinates": "+143512+1205804"
+    },
+    {
+        "id": "Asia/Nicosia",
+        "label": "most of Cyprus",
+        "region": "Asia",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "CY"
+        ],
+        "coordinates": "+3510+03322"
+    },
+    {
+        "id": "Asia/Novokuznetsk",
+        "label": "MSK+04 - Kemerovo",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5345+08707"
+    },
+    {
+        "id": "Asia/Novosibirsk",
+        "label": "MSK+04 - Novosibirsk",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5502+08255"
+    },
+    {
+        "id": "Asia/Omsk",
+        "label": "MSK+03 - Omsk",
+        "region": "Asia",
+        "utc_offset_std": "+06:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5500+07324"
+    },
+    {
+        "id": "Asia/Oral",
+        "label": "West Kazakhstan",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "KZ"
+        ],
+        "coordinates": "+5113+05121"
+    },
+    {
+        "id": "Asia/Pontianak",
+        "label": "Borneo (west, central)",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "ID"
+        ],
+        "coordinates": "-0002+10920"
+    },
+    {
+        "id": "Asia/Pyongyang",
+        "label": "Pyongyang",
+        "region": "Asia",
+        "utc_offset_std": "+09:00",
+        "dst": false,
+        "countries": [
+            "KP"
+        ],
+        "coordinates": "+3901+12545"
+    },
+    {
+        "id": "Asia/Qatar",
+        "label": "Qatar",
+        "region": "Asia",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "QA",
+            "BH"
+        ],
+        "coordinates": "+2517+05132"
+    },
+    {
+        "id": "Asia/Qostanay",
+        "label": "Qostanay/Kostanay/Kustanay",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "KZ"
+        ],
+        "coordinates": "+5312+06337"
+    },
+    {
+        "id": "Asia/Qyzylorda",
+        "label": "Qyzylorda/Kyzylorda/Kzyl-Orda",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "KZ"
+        ],
+        "coordinates": "+4448+06528"
+    },
+    {
+        "id": "Asia/Riyadh",
+        "label": "Syowa",
+        "region": "Asia",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "SA",
+            "AQ",
+            "KW",
+            "YE"
+        ],
+        "coordinates": "+2438+04643"
+    },
+    {
+        "id": "Asia/Sakhalin",
+        "label": "MSK+08 - Sakhalin Island",
+        "region": "Asia",
+        "utc_offset_std": "+11:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+4658+14242"
+    },
+    {
+        "id": "Asia/Samarkand",
+        "label": "Uzbekistan (west)",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "UZ"
+        ],
+        "coordinates": "+3940+06648"
+    },
+    {
+        "id": "Asia/Seoul",
+        "label": "Korea (KST)",
+        "region": "Asia",
+        "utc_offset_std": "+09:00",
+        "dst": false,
+        "countries": [
+            "KR"
+        ],
+        "coordinates": "+3733+12658"
+    },
+    {
+        "id": "Asia/Shanghai",
+        "label": "China (CST)",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "CN"
+        ],
+        "coordinates": "+3114+12128",
+        "comment": "Beijing Time"
+    },
+    {
+        "id": "Asia/Singapore",
+        "label": "Russia; Brunei; Malaysia; Singapore; Concordia",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "SG",
+            "AQ",
+            "MY"
+        ],
+        "coordinates": "+0117+10351",
+        "comment": "peninsular Malaysia, Concordia"
+    },
+    {
+        "id": "Asia/Srednekolymsk",
+        "label": "MSK+08 - Sakha (E), N Kuril Is",
+        "region": "Asia",
+        "utc_offset_std": "+11:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+6728+15343"
+    },
+    {
+        "id": "Asia/Taipei",
+        "label": "Taipei",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "TW"
+        ],
+        "coordinates": "+2503+12130"
+    },
+    {
+        "id": "Asia/Tashkent",
+        "label": "Russia; Kazakhstan; Tajikistan; Turkmenistan; Uzbekistan; Maldives",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "UZ"
+        ],
+        "coordinates": "+4120+06918",
+        "comment": "Uzbekistan (east)"
+    },
+    {
+        "id": "Asia/Tbilisi",
+        "label": "Tbilisi",
+        "region": "Asia",
+        "utc_offset_std": "+04:00",
+        "dst": false,
+        "countries": [
+            "GE"
+        ],
+        "coordinates": "+4143+04449"
+    },
+    {
+        "id": "Asia/Tehran",
+        "label": "Iran",
+        "region": "Asia",
+        "utc_offset_std": "+03:30",
+        "dst": false,
+        "countries": [
+            "IR"
+        ],
+        "coordinates": "+3540+05126"
+    },
+    {
+        "id": "Asia/Thimphu",
+        "label": "Thimphu",
+        "region": "Asia",
+        "utc_offset_std": "+06:00",
+        "dst": false,
+        "countries": [
+            "BT"
+        ],
+        "coordinates": "+2728+08939"
+    },
+    {
+        "id": "Asia/Tokyo",
+        "label": "Japan (JST); Eyre Bird Observatory",
+        "region": "Asia",
+        "utc_offset_std": "+09:00",
+        "dst": false,
+        "countries": [
+            "JP",
+            "AU"
+        ],
+        "coordinates": "+353916+1394441",
+        "comment": "Eyre Bird Observatory"
+    },
+    {
+        "id": "Asia/Tomsk",
+        "label": "MSK+04 - Tomsk",
+        "region": "Asia",
+        "utc_offset_std": "+07:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5630+08458"
+    },
+    {
+        "id": "Asia/Ulaanbaatar",
+        "label": "most of Mongolia",
+        "region": "Asia",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "MN"
+        ],
+        "coordinates": "+4755+10653"
+    },
+    {
+        "id": "Asia/Urumqi",
+        "label": "Xinjiang Time",
+        "region": "Asia",
+        "utc_offset_std": "+06:00",
+        "dst": false,
+        "countries": [
+            "CN"
+        ],
+        "coordinates": "+4348+08735"
+    },
+    {
+        "id": "Asia/Ust-Nera",
+        "label": "MSK+07 - Oymyakonsky",
+        "region": "Asia",
+        "utc_offset_std": "+10:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+643337+1431336"
+    },
+    {
+        "id": "Asia/Vladivostok",
+        "label": "Russia; Yap; Chuuk; Papua New Guinea; Dumont d’Urville",
+        "region": "Asia",
+        "utc_offset_std": "+10:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+4310+13156",
+        "comment": "MSK+07 - Amur River"
+    },
+    {
+        "id": "Asia/Yakutsk",
+        "label": "MSK+06 - Lena River",
+        "region": "Asia",
+        "utc_offset_std": "+09:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+6200+12940"
+    },
+    {
+        "id": "Asia/Yangon",
+        "label": "Myanmar; Cocos",
+        "region": "Asia",
+        "utc_offset_std": "+06:30",
+        "dst": false,
+        "countries": [
+            "MM",
+            "CC"
+        ],
+        "coordinates": "+1647+09610"
+    },
+    {
+        "id": "Asia/Yekaterinburg",
+        "label": "MSK+02 - Urals",
+        "region": "Asia",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5651+06036"
+    },
+    {
+        "id": "Asia/Yerevan",
+        "label": "Yerevan",
+        "region": "Asia",
+        "utc_offset_std": "+04:00",
+        "dst": false,
+        "countries": [
+            "AM"
+        ],
+        "coordinates": "+4011+04430"
+    },
+    {
+        "id": "Atlantic/Azores",
+        "label": "Azores",
+        "region": "Atlantic",
+        "utc_offset_std": "-01:00",
+        "dst": true,
+        "countries": [
+            "PT"
+        ],
+        "coordinates": "+3744-02540"
+    },
+    {
+        "id": "Atlantic/Bermuda",
+        "label": "Bermuda",
+        "region": "Atlantic",
+        "utc_offset_std": "-04:00",
+        "dst": true,
+        "countries": [
+            "BM"
+        ],
+        "coordinates": "+3217-06446"
+    },
+    {
+        "id": "Atlantic/Canary",
+        "label": "Canary Islands",
+        "region": "Atlantic",
+        "utc_offset_std": "+00:00",
+        "dst": true,
+        "countries": [
+            "ES"
+        ],
+        "coordinates": "+2806-01524"
+    },
+    {
+        "id": "Atlantic/Cape_Verde",
+        "label": "Cape Verde",
+        "region": "Atlantic",
+        "utc_offset_std": "-01:00",
+        "dst": false,
+        "countries": [
+            "CV"
+        ],
+        "coordinates": "+1455-02331"
+    },
+    {
+        "id": "Atlantic/Faroe",
+        "label": "Faroe",
+        "region": "Atlantic",
+        "utc_offset_std": "+00:00",
+        "dst": true,
+        "countries": [
+            "FO"
+        ],
+        "coordinates": "+6201-00646"
+    },
+    {
+        "id": "Atlantic/Madeira",
+        "label": "Madeira Islands",
+        "region": "Atlantic",
+        "utc_offset_std": "+00:00",
+        "dst": true,
+        "countries": [
+            "PT"
+        ],
+        "coordinates": "+3238-01654"
+    },
+    {
+        "id": "Atlantic/South_Georgia",
+        "label": "South Georgia",
+        "region": "Atlantic",
+        "utc_offset_std": "-02:00",
+        "dst": false,
+        "countries": [
+            "GS"
+        ],
+        "coordinates": "-5416-03632"
+    },
+    {
+        "id": "Atlantic/Stanley",
+        "label": "Stanley",
+        "region": "Atlantic",
+        "utc_offset_std": "-03:00",
+        "dst": false,
+        "countries": [
+            "FK"
+        ],
+        "coordinates": "-5142-05751"
+    },
+    {
+        "id": "Australia/Adelaide",
+        "label": "South Australia (ACST/ACDT)",
+        "region": "Oceania",
+        "utc_offset_std": "+10:30",
+        "dst": true,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-3455+13835",
+        "comment": "South Australia"
+    },
+    {
+        "id": "Australia/Brisbane",
+        "label": "Queensland (AEST)",
+        "region": "Oceania",
+        "utc_offset_std": "+10:00",
+        "dst": false,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-2728+15302",
+        "comment": "Queensland (most areas)"
+    },
+    {
+        "id": "Australia/Broken_Hill",
+        "label": "New South Wales (Yancowinna)",
+        "region": "Oceania",
+        "utc_offset_std": "+10:30",
+        "dst": true,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-3157+14127"
+    },
+    {
+        "id": "Australia/Darwin",
+        "label": "Northern Territory (ACST)",
+        "region": "Oceania",
+        "utc_offset_std": "+09:30",
+        "dst": false,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-1228+13050",
+        "comment": "Northern Territory"
+    },
+    {
+        "id": "Australia/Eucla",
+        "label": "Eucla",
+        "region": "Oceania",
+        "utc_offset_std": "+08:45",
+        "dst": false,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-3143+12852",
+        "comment": "Western Australia (Eucla)"
+    },
+    {
+        "id": "Australia/Hobart",
+        "label": "Tasmania",
+        "region": "Oceania",
+        "utc_offset_std": "+11:00",
+        "dst": true,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-4253+14719"
+    },
+    {
+        "id": "Australia/Lindeman",
+        "label": "Queensland (Whitsunday Islands)",
+        "region": "Oceania",
+        "utc_offset_std": "+10:00",
+        "dst": false,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-2016+14900"
+    },
+    {
+        "id": "Australia/Lord_Howe",
+        "label": "Lord Howe Island",
+        "region": "Oceania",
+        "utc_offset_std": "+11:00",
+        "dst": true,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-3133+15905"
+    },
+    {
+        "id": "Australia/Melbourne",
+        "label": "Victoria",
+        "region": "Oceania",
+        "utc_offset_std": "+11:00",
+        "dst": true,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-3749+14458"
+    },
+    {
+        "id": "Australia/Perth",
+        "label": "Western Australia (AWST)",
+        "region": "Oceania",
+        "utc_offset_std": "+08:00",
+        "dst": false,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-3157+11551",
+        "comment": "Western Australia (most areas)"
+    },
+    {
+        "id": "Australia/Sydney",
+        "label": "southeast Australia (AEST/AEDT)",
+        "region": "Oceania",
+        "utc_offset_std": "+11:00",
+        "dst": true,
+        "countries": [
+            "AU"
+        ],
+        "coordinates": "-3352+15113",
+        "comment": "New South Wales (most areas)"
+    },
+    {
+        "id": "Europe/Andorra",
+        "label": "Andorra",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "AD"
+        ],
+        "coordinates": "+4230+00131"
+    },
+    {
+        "id": "Europe/Astrakhan",
+        "label": "MSK+01 - Astrakhan",
+        "region": "Europe",
+        "utc_offset_std": "+04:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+4621+04803"
+    },
+    {
+        "id": "Europe/Athens",
+        "label": "eastern Europe (EET/EEST)",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "GR"
+        ],
+        "coordinates": "+3758+02343"
+    },
+    {
+        "id": "Europe/Belgrade",
+        "label": "Belgrade",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "RS",
+            "BA",
+            "HR",
+            "ME",
+            "MK",
+            "SI"
+        ],
+        "coordinates": "+4450+02030"
+    },
+    {
+        "id": "Europe/Berlin",
+        "label": "most of Germany",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "DE",
+            "DK",
+            "NO",
+            "SE",
+            "SJ"
+        ],
+        "coordinates": "+5230+01322"
+    },
+    {
+        "id": "Europe/Brussels",
+        "label": "Brussels",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "BE",
+            "LU",
+            "NL"
+        ],
+        "coordinates": "+5050+00420"
+    },
+    {
+        "id": "Europe/Bucharest",
+        "label": "Bucharest",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "RO"
+        ],
+        "coordinates": "+4426+02606"
+    },
+    {
+        "id": "Europe/Budapest",
+        "label": "Budapest",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "HU"
+        ],
+        "coordinates": "+4730+01905"
+    },
+    {
+        "id": "Europe/Chisinau",
+        "label": "Chisinau",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "MD"
+        ],
+        "coordinates": "+4700+02850"
+    },
+    {
+        "id": "Europe/Dublin",
+        "label": "Ireland (IST/GMT)",
+        "region": "Europe",
+        "utc_offset_std": "+00:00",
+        "dst": true,
+        "countries": [
+            "IE"
+        ],
+        "coordinates": "+5320-00615"
+    },
+    {
+        "id": "Europe/Gibraltar",
+        "label": "Gibraltar",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "GI"
+        ],
+        "coordinates": "+3608-00521"
+    },
+    {
+        "id": "Europe/Helsinki",
+        "label": "Helsinki",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "FI",
+            "AX"
+        ],
+        "coordinates": "+6010+02458"
+    },
+    {
+        "id": "Europe/Istanbul",
+        "label": "Near East; Belarus",
+        "region": "Europe",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "TR"
+        ],
+        "coordinates": "+4101+02858"
+    },
+    {
+        "id": "Europe/Kaliningrad",
+        "label": "MSK-01 - Kaliningrad",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5443+02030"
+    },
+    {
+        "id": "Europe/Kirov",
+        "label": "MSK+00 - Kirov",
+        "region": "Europe",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5836+04939"
+    },
+    {
+        "id": "Europe/Kyiv",
+        "label": "most of Ukraine",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "UA"
+        ],
+        "coordinates": "+5026+03031"
+    },
+    {
+        "id": "Europe/Lisbon",
+        "label": "western Europe (WET/WEST)",
+        "region": "Europe",
+        "utc_offset_std": "+00:00",
+        "dst": true,
+        "countries": [
+            "PT"
+        ],
+        "coordinates": "+3843-00908",
+        "comment": "Portugal (mainland)"
+    },
+    {
+        "id": "Europe/London",
+        "label": "United Kingdom (GMT/BST)",
+        "region": "Europe",
+        "utc_offset_std": "+00:00",
+        "dst": true,
+        "countries": [
+            "GB",
+            "GG",
+            "IM",
+            "JE"
+        ],
+        "coordinates": "+513030-0000731"
+    },
+    {
+        "id": "Europe/Madrid",
+        "label": "Spain (mainland)",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "ES"
+        ],
+        "coordinates": "+4024-00341"
+    },
+    {
+        "id": "Europe/Malta",
+        "label": "Malta",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "MT"
+        ],
+        "coordinates": "+3554+01431"
+    },
+    {
+        "id": "Europe/Minsk",
+        "label": "Minsk",
+        "region": "Europe",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "BY"
+        ],
+        "coordinates": "+5354+02734"
+    },
+    {
+        "id": "Europe/Moscow",
+        "label": "Moscow (MSK)",
+        "region": "Europe",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+554521+0373704",
+        "comment": "MSK+00 - Moscow area"
+    },
+    {
+        "id": "Europe/Paris",
+        "label": "central Europe (CET/CEST)",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "FR",
+            "MC"
+        ],
+        "coordinates": "+4852+00220"
+    },
+    {
+        "id": "Europe/Prague",
+        "label": "Prague",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "CZ",
+            "SK"
+        ],
+        "coordinates": "+5005+01426"
+    },
+    {
+        "id": "Europe/Riga",
+        "label": "Riga",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "LV"
+        ],
+        "coordinates": "+5657+02406"
+    },
+    {
+        "id": "Europe/Rome",
+        "label": "Rome",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "IT",
+            "SM",
+            "VA"
+        ],
+        "coordinates": "+4154+01229"
+    },
+    {
+        "id": "Europe/Samara",
+        "label": "MSK+01 - Samara, Udmurtia",
+        "region": "Europe",
+        "utc_offset_std": "+04:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5312+05009"
+    },
+    {
+        "id": "Europe/Saratov",
+        "label": "MSK+01 - Saratov",
+        "region": "Europe",
+        "utc_offset_std": "+04:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5134+04602"
+    },
+    {
+        "id": "Europe/Simferopol",
+        "label": "Crimea",
+        "region": "Europe",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "RU",
+            "UA"
+        ],
+        "coordinates": "+4457+03406"
+    },
+    {
+        "id": "Europe/Sofia",
+        "label": "Sofia",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "BG"
+        ],
+        "coordinates": "+4241+02319"
+    },
+    {
+        "id": "Europe/Tallinn",
+        "label": "Tallinn",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "EE"
+        ],
+        "coordinates": "+5925+02445"
+    },
+    {
+        "id": "Europe/Tirane",
+        "label": "Tirane",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "AL"
+        ],
+        "coordinates": "+4120+01950"
+    },
+    {
+        "id": "Europe/Ulyanovsk",
+        "label": "MSK+01 - Ulyanovsk",
+        "region": "Europe",
+        "utc_offset_std": "+04:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+5420+04824"
+    },
+    {
+        "id": "Europe/Vienna",
+        "label": "Vienna",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "AT"
+        ],
+        "coordinates": "+4813+01620"
+    },
+    {
+        "id": "Europe/Vilnius",
+        "label": "Vilnius",
+        "region": "Europe",
+        "utc_offset_std": "+02:00",
+        "dst": true,
+        "countries": [
+            "LT"
+        ],
+        "coordinates": "+5441+02519"
+    },
+    {
+        "id": "Europe/Volgograd",
+        "label": "MSK+00 - Volgograd",
+        "region": "Europe",
+        "utc_offset_std": "+03:00",
+        "dst": false,
+        "countries": [
+            "RU"
+        ],
+        "coordinates": "+4844+04425"
+    },
+    {
+        "id": "Europe/Warsaw",
+        "label": "Warsaw",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "PL"
+        ],
+        "coordinates": "+5215+02100"
+    },
+    {
+        "id": "Europe/Zurich",
+        "label": "Büsingen",
+        "region": "Europe",
+        "utc_offset_std": "+01:00",
+        "dst": true,
+        "countries": [
+            "CH",
+            "DE",
+            "LI"
+        ],
+        "coordinates": "+4723+00832"
+    },
+    {
+        "id": "Indian/Chagos",
+        "label": "Chagos",
+        "region": "Indian Ocean",
+        "utc_offset_std": "+06:00",
+        "dst": false,
+        "countries": [
+            "IO"
+        ],
+        "coordinates": "-0720+07225"
+    },
+    {
+        "id": "Indian/Maldives",
+        "label": "Kerguelen, St Paul I, Amsterdam I",
+        "region": "Indian Ocean",
+        "utc_offset_std": "+05:00",
+        "dst": false,
+        "countries": [
+            "MV",
+            "TF"
+        ],
+        "coordinates": "+0410+07330"
+    },
+    {
+        "id": "Indian/Mauritius",
+        "label": "Mauritius",
+        "region": "Indian Ocean",
+        "utc_offset_std": "+04:00",
+        "dst": false,
+        "countries": [
+            "MU"
+        ],
+        "coordinates": "-2010+05730"
+    },
+    {
+        "id": "Pacific/Apia",
+        "label": "Apia",
+        "region": "Oceania",
+        "utc_offset_std": "+13:00",
+        "dst": false,
+        "countries": [
+            "WS"
+        ],
+        "coordinates": "-1350-17144"
+    },
+    {
+        "id": "Pacific/Auckland",
+        "label": "New Zealand (NZST/NZDT)",
+        "region": "Oceania",
+        "utc_offset_std": "+13:00",
+        "dst": true,
+        "countries": [
+            "NZ",
+            "AQ"
+        ],
+        "coordinates": "-3652+17446",
+        "comment": "New Zealand time"
+    },
+    {
+        "id": "Pacific/Bougainville",
+        "label": "Russia; Kosrae; Bougainville; Solomons",
+        "region": "Oceania",
+        "utc_offset_std": "+11:00",
+        "dst": false,
+        "countries": [
+            "PG"
+        ],
+        "coordinates": "-0613+15534",
+        "comment": "Bougainville"
+    },
+    {
+        "id": "Pacific/Chatham",
+        "label": "Chatham Islands",
+        "region": "Oceania",
+        "utc_offset_std": "+13:45",
+        "dst": true,
+        "countries": [
+            "NZ"
+        ],
+        "coordinates": "-4357-17633"
+    },
+    {
+        "id": "Pacific/Easter",
+        "label": "Easter Island",
+        "region": "Oceania",
+        "utc_offset_std": "-05:00",
+        "dst": true,
+        "countries": [
+            "CL"
+        ],
+        "coordinates": "-2709-10926"
+    },
+    {
+        "id": "Pacific/Efate",
+        "label": "Efate",
+        "region": "Oceania",
+        "utc_offset_std": "+11:00",
+        "dst": false,
+        "countries": [
+            "VU"
+        ],
+        "coordinates": "-1740+16825"
+    },
+    {
+        "id": "Pacific/Fakaofo",
+        "label": "Fakaofo",
+        "region": "Oceania",
+        "utc_offset_std": "+13:00",
+        "dst": false,
+        "countries": [
+            "TK"
+        ],
+        "coordinates": "-0922-17114"
+    },
+    {
+        "id": "Pacific/Fiji",
+        "label": "Fiji",
+        "region": "Oceania",
+        "utc_offset_std": "+12:00",
+        "dst": false,
+        "countries": [
+            "FJ"
+        ],
+        "coordinates": "-1808+17825"
+    },
+    {
+        "id": "Pacific/Galapagos",
+        "label": "Galápagos",
+        "region": "Oceania",
+        "utc_offset_std": "-06:00",
+        "dst": false,
+        "countries": [
+            "EC"
+        ],
+        "coordinates": "-0054-08936",
+        "comment": "Galápagos Islands"
+    },
+    {
+        "id": "Pacific/Gambier",
+        "label": "Gambier",
+        "region": "Oceania",
+        "utc_offset_std": "-09:00",
+        "dst": false,
+        "countries": [
+            "PF"
+        ],
+        "coordinates": "-2308-13457",
+        "comment": "Gambier Islands"
+    },
+    {
+        "id": "Pacific/Guadalcanal",
+        "label": "Pohnpei",
+        "region": "Oceania",
+        "utc_offset_std": "+11:00",
+        "dst": false,
+        "countries": [
+            "SB",
+            "FM"
+        ],
+        "coordinates": "-0932+16012"
+    },
+    {
+        "id": "Pacific/Guam",
+        "label": "Mariana Islands (ChST)",
+        "region": "Oceania",
+        "utc_offset_std": "+10:00",
+        "dst": false,
+        "countries": [
+            "GU",
+            "MP"
+        ],
+        "coordinates": "+1328+14445"
+    },
+    {
+        "id": "Pacific/Honolulu",
+        "label": "Hawaii (HST)",
+        "region": "Oceania",
+        "utc_offset_std": "-10:00",
+        "dst": false,
+        "countries": [
+            "US"
+        ],
+        "coordinates": "+211825-1575130",
+        "comment": "Hawaii"
+    },
+    {
+        "id": "Pacific/Kanton",
+        "label": "Phoenix Islands",
+        "region": "Oceania",
+        "utc_offset_std": "+13:00",
+        "dst": false,
+        "countries": [
+            "KI"
+        ],
+        "coordinates": "-0247-17143"
+    },
+    {
+        "id": "Pacific/Kiritimati",
+        "label": "Kiritimati",
+        "region": "Oceania",
+        "utc_offset_std": "+14:00",
+        "dst": false,
+        "countries": [
+            "KI"
+        ],
+        "coordinates": "+0152-15720",
+        "comment": "Line Islands"
+    },
+    {
+        "id": "Pacific/Kosrae",
+        "label": "Kosrae",
+        "region": "Oceania",
+        "utc_offset_std": "+11:00",
+        "dst": false,
+        "countries": [
+            "FM"
+        ],
+        "coordinates": "+0519+16259"
+    },
+    {
+        "id": "Pacific/Kwajalein",
+        "label": "Kwajalein",
+        "region": "Oceania",
+        "utc_offset_std": "+12:00",
+        "dst": false,
+        "countries": [
+            "MH"
+        ],
+        "coordinates": "+0905+16720"
+    },
+    {
+        "id": "Pacific/Marquesas",
+        "label": "Marquesas",
+        "region": "Oceania",
+        "utc_offset_std": "-09:30",
+        "dst": false,
+        "countries": [
+            "PF"
+        ],
+        "coordinates": "-0900-13930",
+        "comment": "Marquesas Islands"
+    },
+    {
+        "id": "Pacific/Nauru",
+        "label": "Nauru",
+        "region": "Oceania",
+        "utc_offset_std": "+12:00",
+        "dst": false,
+        "countries": [
+            "NR"
+        ],
+        "coordinates": "-0031+16655"
+    },
+    {
+        "id": "Pacific/Niue",
+        "label": "Niue",
+        "region": "Oceania",
+        "utc_offset_std": "-11:00",
+        "dst": false,
+        "countries": [
+            "NU"
+        ],
+        "coordinates": "-1901-16955"
+    },
+    {
+        "id": "Pacific/Norfolk",
+        "label": "Norfolk Island",
+        "region": "Oceania",
+        "utc_offset_std": "+12:00",
+        "dst": true,
+        "countries": [
+            "NF"
+        ],
+        "coordinates": "-2903+16758"
+    },
+    {
+        "id": "Pacific/Noumea",
+        "label": "Noumea",
+        "region": "Oceania",
+        "utc_offset_std": "+11:00",
+        "dst": false,
+        "countries": [
+            "NC"
+        ],
+        "coordinates": "-2216+16627"
+    },
+    {
+        "id": "Pacific/Pago_Pago",
+        "label": "Midway; Samoa (SST)",
+        "region": "Oceania",
+        "utc_offset_std": "-11:00",
+        "dst": false,
+        "countries": [
+            "AS",
+            "UM"
+        ],
+        "coordinates": "-1416-17042",
+        "comment": "Midway"
+    },
+    {
+        "id": "Pacific/Palau",
+        "label": "Palau",
+        "region": "Oceania",
+        "utc_offset_std": "+09:00",
+        "dst": false,
+        "countries": [
+            "PW"
+        ],
+        "coordinates": "+0720+13429"
+    },
+    {
+        "id": "Pacific/Pitcairn",
+        "label": "Pitcairn",
+        "region": "Oceania",
+        "utc_offset_std": "-08:00",
+        "dst": false,
+        "countries": [
+            "PN"
+        ],
+        "coordinates": "-2504-13005"
+    },
+    {
+        "id": "Pacific/Port_Moresby",
+        "label": "Papua New Guinea (most areas), Chuuk, Yap, Dumont d’Urville",
+        "region": "Oceania",
+        "utc_offset_std": "+10:00",
+        "dst": false,
+        "countries": [
+            "PG",
+            "AQ",
+            "FM"
+        ],
+        "coordinates": "-0930+14710"
+    },
+    {
+        "id": "Pacific/Rarotonga",
+        "label": "Rarotonga",
+        "region": "Oceania",
+        "utc_offset_std": "-10:00",
+        "dst": false,
+        "countries": [
+            "CK"
+        ],
+        "coordinates": "-2114-15946"
+    },
+    {
+        "id": "Pacific/Tahiti",
+        "label": "Tahiti; Cook Islands",
+        "region": "Oceania",
+        "utc_offset_std": "-10:00",
+        "dst": false,
+        "countries": [
+            "PF"
+        ],
+        "coordinates": "-1732-14934",
+        "comment": "Society Islands"
+    },
+    {
+        "id": "Pacific/Tarawa",
+        "label": "Gilberts, Marshalls, Wake",
+        "region": "Oceania",
+        "utc_offset_std": "+12:00",
+        "dst": false,
+        "countries": [
+            "KI",
+            "MH",
+            "TV",
+            "UM",
+            "WF"
+        ],
+        "coordinates": "+0125+17300"
+    },
+    {
+        "id": "Pacific/Tongatapu",
+        "label": "Kanton; Tokelau; Samoa (western); Tonga",
+        "region": "Oceania",
+        "utc_offset_std": "+13:00",
+        "dst": false,
+        "countries": [
+            "TO"
+        ],
+        "coordinates": "-210800-1751200"
+    }
+]
