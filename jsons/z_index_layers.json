@@ -1,0 +1,50 @@
+{
+    "base": {
+        "value": 0,
+        "label": "Default document flow"
+    },
+    "below": {
+        "value": -1,
+        "label": "Behind main content"
+    },
+    "sticky": {
+        "value": 100,
+        "label": "Sticky headers and nav bars"
+    },
+    "fixed": {
+        "value": 200,
+        "label": "Fixed sidebars and floating controls"
+    },
+    "dropdown": {
+        "value": 1000,
+        "label": "Dropdowns and select menus"
+    },
+    "overlay": {
+        "value": 1100,
+        "label": "Backdrop / scrim behind modals"
+    },
+    "modal": {
+        "value": 1200,
+        "label": "Modal dialogs"
+    },
+    "drawer": {
+        "value": 1250,
+        "label": "Slide-out panels and drawers"
+    },
+    "popover": {
+        "value": 1300,
+        "label": "Popovers and context menus"
+    },
+    "toast": {
+        "value": 1400,
+        "label": "Toast and snackbar notifications"
+    },
+    "tooltip": {
+        "value": 1500,
+        "label": "Tooltips"
+    },
+    "max": {
+        "value": 9999,
+        "label": "Emergency / debug overlays"
+    }
+}
