@@ -1,19 +1,23 @@
 {
-    "base": {
-        "value": 0,
-        "label": "Default document flow"
-    },
     "below": {
         "value": -1,
         "label": "Behind main content"
     },
+    "base": {
+        "value": 0,
+        "label": "Default document flow"
+    },
+    "content": {
+        "value": 1,
+        "label": "Raised content"
+    },
     "sticky": {
         "value": 100,
-        "label": "Sticky headers and nav bars"
+        "label": "Sticky headers and navigation"
     },
     "fixed": {
         "value": 200,
-        "label": "Fixed sidebars and floating controls"
+        "label": "Fixed controls and sidebars"
     },
     "dropdown": {
         "value": 1000,
@@ -21,7 +25,7 @@
     },
     "overlay": {
         "value": 1100,
-        "label": "Backdrop / scrim behind modals"
+        "label": "Backdrop / scrim"
     },
     "modal": {
         "value": 1200,
@@ -43,8 +47,12 @@
         "value": 1500,
         "label": "Tooltips"
     },
+    "debug": {
+        "value": 9000,
+        "label": "Debug / development overlays"
+    },
     "max": {
         "value": 9999,
-        "label": "Emergency / debug overlays"
+        "label": "Emergency / highest-priority overlays"
     }
 }
