@@ -1,0 +1,32 @@
+{
+    "xs": {
+        "min_px": 0,
+        "max_px": 639,
+        "label": "Extra small (phones portrait)"
+    },
+    "sm": {
+        "min_px": 640,
+        "max_px": 767,
+        "label": "Small (phones landscape, small tablets)"
+    },
+    "md": {
+        "min_px": 768,
+        "max_px": 1023,
+        "label": "Medium (tablets)"
+    },
+    "lg": {
+        "min_px": 1024,
+        "max_px": 1279,
+        "label": "Large (laptops, small desktops)"
+    },
+    "xl": {
+        "min_px": 1280,
+        "max_px": 1535,
+        "label": "Extra large (desktops)"
+    },
+    "2xl": {
+        "min_px": 1536,
+        "max_px": null,
+        "label": "2X large (wide screens)"
+    }
+}
