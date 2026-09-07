@@ -1,0 +1,471 @@
+[
+    {
+        "id": "email",
+        "label": "Email address",
+        "pattern": "^[\\w.+-]+@[\\w.-]+\\.[A-Za-z]{2,}$",
+        "example": "user@example.com",
+        "flags": "i"
+    },
+    {
+        "id": "url_http",
+        "label": "HTTP/HTTPS URL",
+        "pattern": "^https?:\\/\\/[\\w.-]+(?:\\.[\\w.-]+)+(?:\\/[\\w./?%&=+#-]*)?$",
+        "example": "https://example.com/path",
+        "flags": "i"
+    },
+    {
+        "id": "uuid_v4",
+        "label": "UUID v4",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+        "example": "550e8400-e29b-41d4-a716-446655440000",
+        "flags": "i"
+    },
+    {
+        "id": "ipv4",
+        "label": "IPv4 address",
+        "pattern": "^(?:(?:25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d\\d?)$",
+        "example": "192.168.1.1",
+        "flags": ""
+    },
+    {
+        "id": "ipv6",
+        "label": "IPv6 address (simplified)",
+        "pattern": "^([0-9a-f]{0,4}:){2,7}[0-9a-f]{0,4}$",
+        "example": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+        "flags": "i"
+    },
+    {
+        "id": "mac_address",
+        "label": "MAC address",
+        "pattern": "^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$",
+        "example": "00:1A:2B:3C:4D:5E",
+        "flags": ""
+    },
+    {
+        "id": "semver",
+        "label": "Semantic version",
+        "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[\\w.-]+)?(?:\\+[\\w.-]+)?$",
+        "example": "1.2.3-beta.1+build.4",
+        "flags": ""
+    },
+    {
+        "id": "hex_color",
+        "label": "Hex color",
+        "pattern": "^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$",
+        "example": "#FF3B20",
+        "flags": ""
+    },
+    {
+        "id": "slug",
+        "label": "URL slug",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+        "example": "my-project-name",
+        "flags": ""
+    },
+    {
+        "id": "username",
+        "label": "Username",
+        "pattern": "^[A-Za-z0-9_]{3,32}$",
+        "example": "user_123",
+        "flags": ""
+    },
+    {
+        "id": "password_strong",
+        "label": "Strong password",
+        "pattern": "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{12,}$",
+        "example": "Str0ng!Passw0rd",
+        "flags": ""
+    },
+    {
+        "id": "phone_e164",
+        "label": "Phone number (E.164)",
+        "pattern": "^\\+[1-9]\\d{6,14}$",
+        "example": "+14155552671",
+        "flags": ""
+    },
+    {
+        "id": "postal_code_us",
+        "label": "US ZIP code",
+        "pattern": "^\\d{5}(?:-\\d{4})?$",
+        "example": "90210-1234",
+        "flags": ""
+    },
+    {
+        "id": "credit_card",
+        "label": "Credit card number (digits only)",
+        "pattern": "^\\d{13,19}$",
+        "example": "4111111111111111",
+        "flags": ""
+    },
+    {
+        "id": "iso_date",
+        "label": "ISO 8601 date",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+        "example": "2026-09-07",
+        "flags": ""
+    },
+    {
+        "id": "iso_datetime",
+        "label": "ISO 8601 datetime",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$",
+        "example": "2026-09-07T14:30:00Z",
+        "flags": ""
+    },
+    {
+        "id": "jwt",
+        "label": "JWT token (shape only)",
+        "pattern": "^[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+$",
+        "example": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNryP4J3jVmNHl0w5N_XgL0n3I9PlFUP0THsR8U",
+        "flags": ""
+    },
+    {
+        "id": "base64",
+        "label": "Base64 string",
+        "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+        "example": "SGVsbG8gV29ybGQ=",
+        "flags": ""
+    },
+    {
+        "id": "domain",
+        "label": "Domain name",
+        "pattern": "^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z]{2,}$",
+        "example": "example.com",
+        "flags": "i"
+    },
+    {
+        "id": "latitude",
+        "label": "Latitude",
+        "pattern": "^[-+]?(?:[0-8]?\\d(?:\\.\\d+)?|90(?:\\.0+)?)$",
+        "example": "48.8566",
+        "flags": ""
+    },
+    {
+        "id": "longitude",
+        "label": "Longitude",
+        "pattern": "^[-+]?(?:180(?:\\.0+)?|(?:1[0-7]\\d|[1-9]?\\d)(?:\\.\\d+)?)$",
+        "example": "2.3522",
+        "flags": ""
+    },
+    {
+        "id": "integer",
+        "label": "Integer number",
+        "pattern": "^-?(?:0|[1-9]\\d*)$",
+        "example": "-42",
+        "flags": ""
+    },
+    {
+        "id": "decimal",
+        "label": "Decimal number",
+        "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+        "example": "3.1415",
+        "flags": ""
+    },
+    {
+        "id": "positive_integer",
+        "label": "Positive integer",
+        "pattern": "^[1-9]\\d*$",
+        "example": "42",
+        "flags": ""
+    },
+    {
+        "id": "non_negative_integer",
+        "label": "0 or positive integer",
+        "pattern": "^(?:0|[1-9]\\d*)$",
+        "example": "0",
+        "flags": ""
+    },
+    {
+        "id": "hexadecimal",
+        "label": "Hexadecimal string",
+        "pattern": "^(?:0x)?[0-9A-Fa-f]+$",
+        "example": "0x1A2B3C",
+        "flags": "i"
+    },
+    {
+        "id": "binary",
+        "label": "Binary string",
+        "pattern": "^(?:0b)?[01]+$",
+        "example": "0b101010",
+        "flags": ""
+    },
+    {
+        "id": "octal",
+        "label": "Octal string",
+        "pattern": "^(?:0o)?[0-7]+$",
+        "example": "0o755",
+        "flags": "i"
+    },
+    {
+        "id": "base32",
+        "label": "Base32",
+        "pattern": "^(?:[A-Z2-7]{8})*(?:[A-Z2-7]{2}(?:======)?|[A-Z2-7]{4}(?:====)?|[A-Z2-7]{5}(?:===)?|[A-Z2-7]{7}=)?$",
+        "example": "MEZWTCRC",
+        "flags": ""
+    },
+    {
+        "id": "base64url",
+        "label": "Base64URL",
+        "pattern": "^(?:[A-Za-z0-9_-]{4})*(?:[A-Za-z0-9_-]{2}(?:==)?|[A-Za-z0-9_-]{3}=?)?$",
+        "example": "SGVsbG8gV29ybGQ",
+        "flags": ""
+    },
+    {
+        "id": "json_pointer",
+        "label": "JSON Pointer",
+        "pattern": "^(?:\\/(?:[^~/]|~0|~1)*)*$",
+        "example": "/foo/0/bar",
+        "flags": ""
+    },
+    {
+        "id": "uuid",
+        "label": "UUID, any version",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "example": "550e8400-e29b-41d4-a716-446655440000",
+        "flags": "i"
+    },
+    {
+        "id": "uuid_v1",
+        "label": "UUID v1",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-1[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+        "example": "6ba7b810-9dad-11d1-80b4-00c04fd430c8",
+        "flags": "i"
+    },
+    {
+        "id": "uuid_v7",
+        "label": "UUID v7",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+        "example": "01890a5d-4afd-7b2c-8c3d-1b2e3f4a5b6c",
+        "flags": "i"
+    },
+    {
+        "id": "isbn_10",
+        "label": "ISBN-10",
+        "pattern": "^(?:\\d{9}[\\dX]|\\d{1,5}-\\d{1,7}-\\d{1,6}-[\\dX])$",
+        "example": "0306406152",
+        "flags": ""
+    },
+    {
+        "id": "isbn_13",
+        "label": "ISBN-13",
+        "pattern": "^(?:\\d{13}|\\d{3}-\\d{1,5}-\\d{1,7}-\\d{1,6}-\\d)$",
+        "example": "9780306406157",
+        "flags": ""
+    },
+    {
+        "id": "issn",
+        "label": "ISSN",
+        "pattern": "^\\d{4}-\\d{3}[\\dX]$",
+        "example": "2049-3630",
+        "flags": ""
+    },
+    {
+        "id": "country_code",
+        "label": "ISO 3166-1 alpha-2",
+        "pattern": "^[A-Z]{2}$",
+        "example": "US",
+        "flags": ""
+    },
+    {
+        "id": "language_code",
+        "label": "ISO 639-1",
+        "pattern": "^[a-z]{2}$",
+        "example": "en",
+        "flags": ""
+    },
+    {
+        "id": "currency_code",
+        "label": "ISO 4217 alphabetic",
+        "pattern": "^[A-Z]{3}$",
+        "example": "USD",
+        "flags": ""
+    },
+    {
+        "id": "time",
+        "label": "HH:MM[:SS]",
+        "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?$",
+        "example": "14:30:00",
+        "flags": ""
+    },
+    {
+        "id": "timezone_offset",
+        "label": "+01:00, -05:00",
+        "pattern": "^(?:Z|[+-](?:[01]\\d|2[0-3]):[0-5]\\d)$",
+        "example": "+01:00",
+        "flags": ""
+    },
+    {
+        "id": "date_us",
+        "label": "MM/DD/YYYY",
+        "pattern": "^(?:0[1-9]|1[0-2])\\/(?:0[1-9]|[12]\\d|3[01])\\/\\d{4}$",
+        "example": "09/07/2026",
+        "flags": ""
+    },
+    {
+        "id": "date_eu",
+        "label": "DD/MM/YYYY",
+        "pattern": "^(?:0[1-9]|[12]\\d|3[01])\\/(?:0[1-9]|1[0-2])\\/\\d{4}$",
+        "example": "07/09/2026",
+        "flags": ""
+    },
+    {
+        "id": "datetime_local",
+        "label": "ISO-style datetime without timezone",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?$",
+        "example": "2026-09-07T14:30:00",
+        "flags": ""
+    },
+    {
+        "id": "duration_iso8601",
+        "label": "ISO 8601 duration",
+        "pattern": "^P(?:\\d+Y)?(?:\\d+M)?(?:\\d+W)?(?:\\d+D)?(?:T(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:\\.\\d+)?S)?)?$",
+        "example": "P1Y2M3DT4H5M6S",
+        "flags": "i"
+    },
+    {
+        "id": "ipv4_cidr",
+        "label": "IPv4 network notation",
+        "pattern": "^(?:(?:25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\.){3}(?:25[0-5]|2[0-4]\\d|[01]?\\d\\d?)\\/(?:[0-9]|[12]\\d|3[0-2])$",
+        "example": "192.168.1.0/24",
+        "flags": ""
+    },
+    {
+        "id": "ipv6_cidr",
+        "label": "IPv6 network notation (simplified)",
+        "pattern": "^([0-9a-f:]+)\\/(?:[0-9]|[1-9]\\d|1[01]\\d|12[0-8])$",
+        "example": "2001:db8::/32",
+        "flags": "i"
+    },
+    {
+        "id": "mac_address_compact",
+        "label": "MAC address without separators",
+        "pattern": "^[0-9A-Fa-f]{12}$",
+        "example": "001A2B3C4D5E",
+        "flags": ""
+    },
+    {
+        "id": "hex_color_short",
+        "label": "#RGB",
+        "pattern": "^#[0-9A-Fa-f]{3}$",
+        "example": "#F30",
+        "flags": ""
+    },
+    {
+        "id": "hex_color_alpha",
+        "label": "#RGBA / #RRGGBBAA",
+        "pattern": "^#(?:[0-9A-Fa-f]{4}|[0-9A-Fa-f]{8})$",
+        "example": "#FF3B20CC",
+        "flags": ""
+    },
+    {
+        "id": "css_variable",
+        "label": "CSS custom-property name",
+        "pattern": "^--[a-zA-Z0-9_-]+$",
+        "example": "--primary-color",
+        "flags": ""
+    },
+    {
+        "id": "environment_variable",
+        "label": "Environment variable name",
+        "pattern": "^[A-Z_][A-Z0-9_]*$",
+        "example": "DATABASE_URL",
+        "flags": ""
+    },
+    {
+        "id": "git_hash",
+        "label": "Git SHA",
+        "pattern": "^[0-9a-f]{40}$",
+        "example": "a3f1c2d4e5b6789012345678901234567890abcd",
+        "flags": "i"
+    },
+    {
+        "id": "git_short_hash",
+        "label": "Short Git SHA",
+        "pattern": "^[0-9a-f]{7,40}$",
+        "example": "a3f1c2d",
+        "flags": "i"
+    },
+    {
+        "id": "docker_image",
+        "label": "Docker image reference",
+        "pattern": "^(?:[a-z0-9]+(?:[._-][a-z0-9]+)*(?:\\/[a-z0-9]+(?:[._-][a-z0-9]+)*)?)(?::[\\w][\\w.-]{0,127})?(?:@[A-Za-z0-9:]+)?$",
+        "example": "nginx:1.25-alpine",
+        "flags": ""
+    },
+    {
+        "id": "cron",
+        "label": "Cron expression",
+        "pattern": "^(?:\\S+\\s+){4,5}\\S+$",
+        "example": "0 0 * * *",
+        "flags": ""
+    },
+    {
+        "id": "file_extension",
+        "label": "File extension",
+        "pattern": "^\\.[A-Za-z0-9]+(?:[._-][A-Za-z0-9]+)*$",
+        "example": ".json",
+        "flags": ""
+    },
+    {
+        "id": "mime_type",
+        "label": "MIME type",
+        "pattern": "^[A-Za-z0-9!#$&^_.+-]+\\/[A-Za-z0-9!#$&^_.+-]+$",
+        "example": "application/json",
+        "flags": ""
+    },
+    {
+        "id": "data_uri",
+        "label": "Data URI",
+        "pattern": "^data:[^;,]+(?:;[^;,]+)*,(?:%[0-9A-Fa-f]{2}|[A-Za-z0-9+/._~!$&'()*+,;=:@/?-])+$",
+        "example": "data:text/plain,Hello%20World",
+        "flags": ""
+    },
+    {
+        "id": "http_method",
+        "label": "HTTP method",
+        "pattern": "^(?:GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE|CONNECT)$",
+        "example": "GET",
+        "flags": "i"
+    },
+    {
+        "id": "http_status",
+        "label": "HTTP status code",
+        "pattern": "^[1-5]\\d{2}$",
+        "example": "404",
+        "flags": ""
+    },
+    {
+        "id": "graphql_name",
+        "label": "GraphQL identifier",
+        "pattern": "^[_A-Za-z][_0-9A-Za-z]*$",
+        "example": "userProfile",
+        "flags": ""
+    },
+    {
+        "id": "sql_identifier",
+        "label": "SQL identifier",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+        "example": "user_id",
+        "flags": ""
+    },
+    {
+        "id": "css_hex_color",
+        "label": "CSS hex color",
+        "pattern": "^#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$",
+        "example": "#FF3B20",
+        "flags": ""
+    },
+    {
+        "id": "html_entity",
+        "label": "HTML entity",
+        "pattern": "^&(?:#x?[0-9A-Fa-f]+|[A-Za-z][A-Za-z0-9]+);$",
+        "example": "&amp;",
+        "flags": ""
+    },
+    {
+        "id": "unicode_codepoint",
+        "label": "Unicode code point",
+        "pattern": "^(?:U\\+|\\\\u\\{?)[0-9A-Fa-f]{1,6}\\}?$",
+        "example": "U+1F600",
+        "flags": "i"
+    }
+]
