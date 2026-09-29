@@ -75,6 +75,7 @@ This repository is organized by language and purpose, with small utilities, exam
     - `java_rest_api_template/` - a Java REST API starter project.
     - `python_graphql_template/` - Python GraphQL app template.
     - `python_rest_api_template/` - Python REST API starter with Docker support.
+    - `python_rpc_api_template/` - Python local RPC-style HTTP + JSON API with SSE streaming for long runs.
     - `python_websocket_template/` - Python WebSocket service template.
     - `react_ts_template/` - React + TypeScript application template.
 
