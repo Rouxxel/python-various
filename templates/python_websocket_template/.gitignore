@@ -20,6 +20,7 @@ yarn-error.log*
 #Specific ones
 example.py
 tester.py
+.env
 
 #Sensitive data files
 *.pem
