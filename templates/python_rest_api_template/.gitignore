@@ -18,7 +18,7 @@ yarn-debug.log*
 yarn-error.log*
 
 #Specific ones
-.env #RE ENABLE ONCE COPIED
+.env
 example.py
 tester.py
 
